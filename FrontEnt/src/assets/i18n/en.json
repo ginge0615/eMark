@@ -1,0 +1,14 @@
+{
+    "login": {
+        "title": "Create your account",
+        "Username": "Username",
+        "Password": "Password",
+        "Email": "Email address",
+        "Mobile": "Mobile number",
+        "PasswordTips": "Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter."
+    },
+    "test": "test1"
+
+
+
+}

@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* update your 'styles.css' with */
+
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+label.xrequired:after {
+    content: '* ';
+    color: red;
+}
