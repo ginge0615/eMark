@@ -1,0 +1,27 @@
+<div class="h-center">
+    <div class="input-group container-fix-width">
+        <input type="text" class="form-control" id="searchItem">
+        <div class="input-group-append">
+            <button type="button" class="btn btn-primary" i18n="@@Search"><i class="fas fa-search"></i>Search</button>
+        </div>
+    </div>
+</div>
+<div class="row ml-3 mt-2">
+    <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" style="height:30px;padding-top:0;" id="manufacturer" ngbDropdownToggle i18n="@@Manufacturer">Manufacturer</button>
+        <div ngbDropdownMenu aria-labelledby="manufacturer">
+            <button ngbDropdownItem>Samsung</button>
+            <button ngbDropdownItem>OPPO</button>
+        </div>
+    </div>
+
+    <span class="ml-5" i18b="@@Price">Price</span>
+    <input type="text" class="form-control textbox-sm ml-1" style="width:70px;" placeholder="$" />
+    <span class="ml-1">~</span>
+    <input type="text" class="form-control textbox-sm ml-1" style="width:70px;" placeholder="$" />
+    <button type="button" class="btn btn-secondary ml-1  button-sm" i18n="@@Filter"><i class="fas fa-filter"></i>Filter</button>
+</div>
+<div>
+    <ngx-datatable class="material" [rows]="rows" [columns]="[{ name: 'Name' }, { name: 'Gender' }, { name: 'Company' }]" [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10">
+    </ngx-datatable>
+</div>
