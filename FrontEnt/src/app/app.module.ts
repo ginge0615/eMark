@@ -14,10 +14,7 @@ import { ItemSearchComponent } from './item-search/item-search.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BuyerMainComponent } from './buyer-main/buyer-main.component';
 
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
-// the second parameter 'fr-FR' is optional
-registerLocaleData(localeFr, 'zh');
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 
 @NgModule({
@@ -33,10 +30,10 @@ registerLocaleData(localeFr, 'zh');
    imports: [
       BrowserModule,
       NgbModule,
-      NgxDatatableModule,
       RouterModule.forRoot([
          { path: '', component: BuyerMainComponent },
-       ])
+       ]),
+      NzButtonModule
    ],
    providers: [],
    bootstrap: [

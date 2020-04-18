@@ -5,6 +5,15 @@
 
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import './assets/fontawesome-free-5.13.0-web/css/all.css';
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
+@import "../node_modules/ng-zorro-antd/style/index.min.css";
+
+/* 引入基本样式 */
+
+@import "../node_modules/ng-zorro-antd/button/style/index.min.css";
+
+/* 引入组件样式 */
+
 label.xrequired:after {
     content: '* ';
     color: red;
@@ -15,7 +24,7 @@ label.xrequired:after {
 
 * {
     font-family: 'Roboto', Arial, sans-serif;
-    color: #616161;
+    /* color: #616161; */
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
