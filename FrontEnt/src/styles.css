@@ -7,13 +7,8 @@
 @import './assets/fontawesome-free-5.13.0-web/css/all.css';
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
 @import "../node_modules/ng-zorro-antd/style/index.min.css";
-
-/* 引入基本样式 */
-
 @import "../node_modules/ng-zorro-antd/button/style/index.min.css";
-
-/* 引入组件样式 */
-
+@import "../node_modules/ng-zorro-antd/input/style/index.min.css";
 label.xrequired:after {
     content: '* ';
     color: red;
@@ -58,20 +53,6 @@ router-outlet+* {
 
 
 /* Hyperlink */
-
-a {
-    cursor: pointer;
-    color: #1976d2;
-    text-decoration: none;
-}
-
-a:hover {
-    opacity: 0.8;
-}
-
-i {
-    color: white;
-}
 
 
 /* Input */

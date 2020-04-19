@@ -1,6 +1,6 @@
-<div nz-row nzJustify="center" nzAlign="top">
-    <div nz-col nzSpan="4">
-        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="width: 100%;">
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()" style="width: 100%;">
+    <div nz-row nzJustify="center" nzAlign="top">
+        <div nz-col nzSpan="4">
             <nz-form-item>
                 <nz-form-control nzErrorTip="Please input your username!">
                     <nz-input-group nzPrefixIcon="star">
@@ -26,6 +26,6 @@
                 </div>
             </div>
             <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button> Or <a> register now! </a>
-        </form>
+        </div>
     </div>
-</div>
+</form>
