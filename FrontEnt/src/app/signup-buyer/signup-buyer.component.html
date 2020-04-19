@@ -1,30 +1,70 @@
-<div class="container container-fix-width">
-    <h1 i18n="@@signup.Header" class="text-center">Create your account</h1>
-    <div class="form-group">
-        <label for="username" class="xrequired" i18n="@@signup.Username">Username</label>
-        <input type="text" class="form-control" id="username" required>
-    </div>
-    <div class="form-group">
-        <label for="email" class="xrequired" i18n="@@signup.Email">Email address</label>
-        <input type="text" class="form-control" id="email" required>
-    </div>
-    <div class="form-group">
-        <label for="pwd" class="xrequired" i18n="@@signup.Password">Password</label>
-        <input type="password" class="form-control" id="pwd" required>
-        <p style="font-size: 0.7em" i18n="@@signup.passwordTips">Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
-    </div>
-    <div class="form-group">
-        <label for="mobile" class="xrequired" i18n="@@signup.Mobile">Mobile number</label>
-        <input type="text" class="form-control" id="mobile" required>
-    </div>
-    <div class="form-group">
-        <button type="button" class="btn btn-primary" style="width: 100%;" i18n="@@Singup">Signup</button>
-    </div>
-    <div class="form-group">
-        <a href="#">
-            <span style="font-size: 1.2em;"><i class="far fa-user-circle"></i>
-            <span i18n="@@signup.SingupAsSeller">Signup as seller</span>
-            </span>
-        </a>
+<div nz-row nzJustify="center" nzAlign="top">
+    <div nz-col nzSpan="12">
+        <h1 i18n="@@signup.Header" class="text-center">Create your account</h1>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="width: 100%;">
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired i18n="@@signup.Username">
+                    <span>Username</span>
+                </nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your username!">
+                    <input nz-input id="username" formControlName="username" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" i18n="@@signup.Email">Email address</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <input nz-input formControlName="email" id="email" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired i18n="@@signup.Password">Password</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+                    <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()" />
+                    <p style="font-size: 0.7em" i18n="@@signup.passwordInputTips">Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired i18n="@@signup.ConfirmPassword">Confirm Password</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+                    <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+                    <ng-template #errorTpl let-control>
+                        <ng-container *ngIf="control.hasError('required')" i18n="@@signup.PlsConfirmPassword">
+                            Please confirm your password!
+                        </ng-container>
+                        <ng-container *ngIf="control.hasError('confirm')" i18n="@@signup.PasswordsInconsistent">
+                            Two passwords that you enter is inconsistent!
+                        </ng-container>
+                    </ng-template>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mobile" nzRequired>Mobile number</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['mobile']" nzErrorTip="Please input your mobile number!">
+                    <input formControlName="mobile" id="'mobile'" nz-input />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                    <label nz-checkbox formControlName="agree">
+                        <span>I have read the <a>agreement</a></span>
+                    </label>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6" [nzSm]="14" [nzXs]="24">
+                    <button nz-button nzType="primary" style="width: 100%;">Register</button>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item class="mt-2">
+                <nz-form-control [nzOffset]="6">
+                    <a href="#">
+                        <span style="font-size: 1.5em;"><i class="far fa-user-circle"></i>
+                            <span i18n="@@signup.SingupAsSeller">Signup as seller</span>
+                        </span>
+                    </a>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
     </div>
 </div>

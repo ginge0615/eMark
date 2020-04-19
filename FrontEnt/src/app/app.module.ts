@@ -45,7 +45,7 @@ import { BuyerMainComponent } from './buyer-main/buyer-main.component';
       NgbModule,
       FormsModule,
       RouterModule.forRoot([
-         { path: '', component: SignupSellerComponent },
+         { path: '', component: SignupBuyerComponent },
        ]),
        NzFormModule,
        ReactiveFormsModule,
