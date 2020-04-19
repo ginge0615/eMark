@@ -1,30 +1,68 @@
-<div class="h-center">
-    <div class="input-group container-fix-width">
-        <input type="text" class="form-control" id="searchItem">
-        <div class="input-group-append">
-            <button type="button" class="btn btn-primary" i18n="@@Search"><i class="fas fa-search"></i>Search</button>
-        </div>
+<div nz-row nzJustify="center">
+    <div nz-col nzSpan="8">
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+            <input type="text" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSize="large" nzSearch><i class="fas fa-search"></i>Search</button>
+        </ng-template>
     </div>
 </div>
-<div class="row ml-3 mt-2">
-    <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" style="height:30px;padding-top:0;" id="manufacturer" ngbDropdownToggle i18n="@@Manufacturer">Manufacturer</button>
-        <div ngbDropdownMenu aria-labelledby="manufacturer">
-            <button ngbDropdownItem>Samsung</button>
-            <button ngbDropdownItem>OPPO</button>
-        </div>
+<div nz-row class="mt-2">
+    <div nz-col nzSpan="4">
+        <nz-form-item>
+            <nz-form-label i18n="@@Manufacturer">Manufacturer</nz-form-label>
+            <nz-form-control>
+                <nz-select ngModel="manufacturer" nzSize="small">
+                    <nz-option nzValue="1" nzLabel="Samsung"></nz-option>
+                    <nz-option nzValue="2" nzLabel="OPPO"></nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
     </div>
-
-    <span class="ml-5" i18b="@@Price">Price</span>
-    <input type="text" class="form-control textbox-sm ml-1" style="width:70px;" placeholder="$" />
-    <span class="ml-1">~</span>
-    <input type="text" class="form-control textbox-sm ml-1" style="width:70px;" placeholder="$" />
-    <button type="button" class="btn btn-secondary ml-1  button-sm" i18n="@@Filter"><i class="fas fa-filter"></i>Filter</button>
+    <div nz-col nzSpan="5" nzOffset="1">
+        <nz-form-item>
+            <nz-form-label i18n="@@Price">Price</nz-form-label>
+            <nz-form-control>
+                <input nz-input id="priceFrom" class="price-txt" placeholder="$" nzSize="small" />
+            </nz-form-control>
+            <nz-form-control>~</nz-form-control>
+            <nz-form-control>
+                <input nz-input id="priceTo" class="price-txt" placeholder="$" nzSize="small" />
+            </nz-form-control>
+            <nz-form-control>
+                <button nz-button nzType="primary" nzSize="small" i18n="@@Filter"><i class="fas fa-filter"></i>Filter</button>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
 </div>
-<div>
-
-</div>
-<button nz-button nzType="primary">Primary</button>
-<button nz-button nzType="default">Default</button>
-<button nz-button nzType="dashed">Dashed</button>
-<a nz-button nzType="link">Link</a>
+<nz-table #sortTable [nzData]="listOfData" nzShowPagination nzPageSize="5">
+    <thead>
+        <tr>
+            <th style="font-weight:bold" *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">{{ column.title }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of sortTable.data">
+            <td>{{ data.picture }}</td>
+            <td>
+                <div nz-row>
+                    <div nz-col>
+                        {{ data.subcategory }}
+                    </div>
+                </div>
+                <div nz-row>
+                    <div nz-col>
+                        {{ data.item }}
+                    </div>
+                </div>
+            </td>
+            <td>{{ data.price }}</td>
+            <td>{{ data.seller }}</td>
+            <td>{{ data.salesvolume }}</td>
+            <td>
+                <button nz-button nzType="primary" nzSize="small" i18n="@@ViewDetails">View Details<i class="fas fa-angle-double-right"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

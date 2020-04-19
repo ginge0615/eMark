@@ -57,15 +57,6 @@ router-outlet+* {
 
 /* Input */
 
-.button-sm,
-.textbox-sm {
-    height: 30px;
-    padding-top: 0;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 0;
-}
-
 
 /* Top Bar */
 
