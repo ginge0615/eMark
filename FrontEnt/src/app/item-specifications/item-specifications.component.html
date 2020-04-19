@@ -37,9 +37,26 @@
                 <button nz-button nzType="primary" nzSize="large" i18n="@@Checkout">Checkout</button>
             </div>
             <div nz-col>
-                <button id="btnAddtoCart" nzType="primary" nz-button nzSize="large" i18n="@@AddToCart"><i class="fas fa-shopping-cart"></i>Add to cart</button>
+                <button nz-button nzType="primary" nzDanger nzSize="large" i18n="@@AddToCart"><i class="fas fa-shopping-cart"></i>Add to cart</button>
             </div>
         </div>
     </div>
 </div>
 <nz-divider></nz-divider>
+<div nz-row [nzGutter]="16" style="height: 300px;">
+    <div nz-col [nzSpan]="4" nzOffset="2">
+        <div nz-row *ngFor="let specification of specifications1">
+            {{specification}}
+        </div>
+    </div>
+    <div nz-col [nzSpan]="4" nzOffset="1">
+        <div nz-row *ngFor="let specification of specifications2">
+            {{specification}}
+        </div>
+    </div>
+</div>
+<div nz-row nzJustify="center">
+    <div nz-col>
+        <button class="btn btn-link btn-sm"><i class="fas fa-angle-double-left"></i>Back to Search</button>
+    </div>
+</div>

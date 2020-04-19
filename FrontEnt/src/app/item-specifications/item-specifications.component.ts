@@ -15,6 +15,9 @@ export class ItemSpecificationsComponent implements OnInit {
   seller : string = "Seller2";
   salesVolume : number = 200;
   buyNum : number = 5;
+  specifications1 = ["Screen Resolution:1080p","Network Type:4G","Battery Capactity: 3000mA", "Memory Storage:64G"];
+  specifications2 = ["Cameras:1000","OS Version:Android 11"];
+
 
   constructor() { }
 

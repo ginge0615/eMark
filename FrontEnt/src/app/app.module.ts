@@ -16,19 +16,6 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
 //NzModule
-// import { NzFormModule } from 'ng-zorro-antd/form';
-// import { NzI18nModule } from 'ng-zorro-antd/i18n';
-// import { NzIconModule } from 'ng-zorro-antd/icon';
-// import { NzInputModule } from 'ng-zorro-antd/input';
-// import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
-// import { NzButtonModule } from 'ng-zorro-antd/button';
-// import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-// import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-// import { NzSpaceModule } from 'ng-zorro-antd/space';
-// import { NzSelectModule } from 'ng-zorro-antd/select';
-// import { NzMenuModule } from 'ng-zorro-antd/menu';
-// import { NzGridModule } from 'ng-zorro-antd/grid';
-
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 
 
@@ -39,6 +26,7 @@ import { ItemSearchComponent } from './item-search/item-search.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { BuyerMainComponent } from './buyer-main/buyer-main.component';
 import { ItemSpecificationsComponent } from './item-specifications/item-specifications.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const antDesignIcons = AllIcons as {
    [key: string]: IconDefinition;
@@ -54,7 +42,9 @@ const antDesignIcons = AllIcons as {
       ItemSearchComponent,
       TopBarComponent,
       BuyerMainComponent,
-      ItemSpecificationsComponent
+      ItemSpecificationsComponent,
+      ShoppingCartComponent
+
    ],
    imports: [
       BrowserModule,
@@ -62,12 +52,12 @@ const antDesignIcons = AllIcons as {
       FormsModule,
       DragDropModule,
       ScrollingModule,
-      RouterModule.forRoot([
-         { path: '', component: ItemSpecificationsComponent },
-       ]),
-       ReactiveFormsModule,
-       BrowserAnimationsModule,
+      ReactiveFormsModule,
+      BrowserAnimationsModule,
       DemoNgZorroAntdModule,
+      RouterModule.forRoot([
+         { path: '', component: ShoppingCartComponent },
+       ])
    ],
    providers: [],
    bootstrap: [

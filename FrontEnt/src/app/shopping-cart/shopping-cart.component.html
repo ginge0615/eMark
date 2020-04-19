@@ -1,0 +1,50 @@
+<div nz-row nzJustify="center">
+    <div nz-col [nzSpan]="20">
+        <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listOfData" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+            <thead>
+                <tr>
+                    <th [(nzChecked)]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Number</th>
+                    <th>Total Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of rowSelectionTable.data">
+                    <td [nzChecked]="setOfCheckedId.has(data.id)" (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+                    <td>
+                        <a href="#">
+                            <div nz-row>
+                                <div nz-col>
+                                    <img src="{{ data.picture }}" width="50px" height="50px" />
+                                </div>
+                                <div nz-col>
+                                    <div nz-row>
+                                        <div nz-col>
+                                            {{ data.subcategory }}
+                                        </div>
+                                    </div>
+                                    <div nz-row>
+                                        <div nz-col>
+                                            {{ data.item }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>{{ data.price }}</td>
+                    <td>
+                        <nz-input-number [(ngModel)]="data.num" [nzMin]="1" [nzMax]="100" [nzStep]="1"></nz-input-number>
+                    </td>
+                    <td>{{ data.num * data.price }}</td>
+                    <td>
+                        <button nz-button nzType="primary" i18n="@@Delete"><i class="fas fa-trash-alt"></i><span class="ml-1">Delete</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
