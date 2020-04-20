@@ -15,9 +15,10 @@ interface ItemData {
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  checked = false;
+  allChecked  = false;
   indeterminate = false;
-  listOfCurrentPageData: ItemData[] = [];
+  totalTax : number = 100;
+  totalPrice : number = 0;
   setOfCheckedId = new Set<number>();
   listOfData: ItemData[] = [
     {
@@ -29,7 +30,7 @@ export class ShoppingCartComponent implements OnInit {
       num : 1
     },
     {
-      id : 1,
+      id : 2,
       picture : '../../assets/pictures/oppo1.jpg',
       subcategory : 'OPPO',
       item : 'A5S',
@@ -39,42 +40,42 @@ export class ShoppingCartComponent implements OnInit {
 
   ];
 
-  updateCheckedSet(id: number, checked: boolean): void {
+  updateCheckedSet(data : ItemData, checked: boolean): void {
     if (checked) {
-      this.setOfCheckedId.add(id);
+      this.setOfCheckedId.add(data.id);
     } else {
-      this.setOfCheckedId.delete(id);
+      this.setOfCheckedId.delete(data.id);
     }
   }
 
-  onItemChecked(id: number, checked: boolean): void {
-    this.updateCheckedSet(id, checked);
+  updateTotalPriceSum() {
+    this.totalPrice = 0;
+
+    for (let item of this.listOfData) {
+      if (this.setOfCheckedId.has(item.id)) {
+        this.totalPrice += item.price * item.num;
+      }
+    }
+   
+  }
+
+  onItemChecked(data : ItemData, checked: boolean): void {
+    this.updateCheckedSet(data, checked);
     this.refreshCheckedStatus();
   }
 
-  onAllChecked(value: boolean): void {
-    this.listOfCurrentPageData.forEach(item => this.updateCheckedSet(item.id, value));
-    this.refreshCheckedStatus();
-  }
-
-  onCurrentPageDataChange($event: ItemData[]): void {
-    this.listOfCurrentPageData = $event;
+  onAllChecked(checked: boolean): void {
+    this.listOfData.forEach(item => this.updateCheckedSet(item, checked));
     this.refreshCheckedStatus();
   }
 
   refreshCheckedStatus(): void {
-    this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.id));
-    this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+    this.allChecked  = this.listOfData.every(item => this.setOfCheckedId.has(item.id));
+    this.indeterminate = this.listOfData.some(item => this.setOfCheckedId.has(item.id)) && !this.allChecked ;
+    this.updateTotalPriceSum();
   }
 
   ngOnInit(): void {
-    // this.listOfData = new Array(200).fill(0).map((_, index) => {
-    //   return {
-    //     id: index,
-    //     name: `Edward King ${index}`,
-    //     age: 32,
-    //     address: `London, Park Lane no. ${index}`
-    //   };
-    // });
+
   }
 }
