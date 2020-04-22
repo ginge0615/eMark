@@ -1,4 +1,4 @@
-<div class="div-component container-fluid">
+<!-- <div class="div-component container-fluid">
     <ul ngbNav #nav="ngbNav" class="nav-tabs">
         <li ngbNavItem>
             <a ngbNavLink i18n="@@BuyItem">Buy Item</a>
@@ -15,4 +15,14 @@
     </ul>
 
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
-</div>
+</div> -->
+
+<ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+        <a routerLink="/buy-item">Buy Item</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+        <a routerLink="/purchase-history/userid">Purchase history</a>
+    </li>
+</ul>
+<router-outlet></router-outlet>
