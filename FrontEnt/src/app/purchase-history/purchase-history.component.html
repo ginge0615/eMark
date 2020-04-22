@@ -1,3 +1,49 @@
-<p>
-  purchase-history works!
-</p>
+<div nz-row nzJustify="center">
+    <div nz-col [nzSpan]="20">
+
+        <nz-table #basicTable [nzData]="listOfData">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Number</th>
+                    <th>Total Price</th>
+                    <th>Datetime</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of listOfData ">
+                    <td>
+                        <a href="# ">
+                            <div nz-row>
+                                <div nz-col>
+                                    <img src="{{ data.picture }} " width="50px " height="50px " />
+                                </div>
+                                <div nz-col>
+                                    <div nz-row>
+                                        <div nz-col>
+                                            {{ data.subcategory }}
+                                        </div>
+                                    </div>
+                                    <div nz-row>
+                                        <div nz-col>
+                                            {{ data.item }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>{{ data.price | currency }}</td>
+                    <td>{{ data.num }}</td>
+                    <td>{{ data.num * data.price | currency }}</td>
+                    <td>{{ data.datetime | date }}</td>
+                    <td>
+                        <button nz-button nzType="primary" i18n="@@View "><span class="ml-1 ">View</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

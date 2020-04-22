@@ -8,19 +8,19 @@
         </ng-template>
     </div>
 </div>
-<div nz-row class="mt-2">
+<div nz-row class="mt-3" nzAlign="middle" style="height: 30px;">
     <div nz-col nzSpan="4">
         <nz-form-item>
             <nz-form-label i18n="@@Manufacturer">Manufacturer</nz-form-label>
             <nz-form-control>
-                <nz-select ngModel="manufacturer" nzSize="small">
+                <nz-select ngModel="manufacturer" nzSize="small" id="manufacturer" class="mt-1">
                     <nz-option nzValue="1" nzLabel="Samsung"></nz-option>
                     <nz-option nzValue="2" nzLabel="OPPO"></nz-option>
                 </nz-select>
             </nz-form-control>
         </nz-form-item>
     </div>
-    <div nz-col nzSpan="5" nzOffset="1">
+    <div nz-col nzSpan="4" nzOffset="1">
         <nz-form-item>
             <nz-form-label i18n="@@Price">Price</nz-form-label>
             <nz-form-control>
@@ -44,24 +44,32 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of sortTable.data">
-            <td>{{ data.picture }}</td>
             <td>
-                <div nz-row>
-                    <div nz-col>
-                        {{ data.subcategory }}
+                <a href="# ">
+                    <div nz-row>
+                        <div nz-col>
+                            <img src="{{ data.picture }} " width="50px " height="50px " />
+                        </div>
+                        <div nz-col>
+                            <div nz-row>
+                                <div nz-col>
+                                    {{ data.subcategory }}
+                                </div>
+                            </div>
+                            <div nz-row>
+                                <div nz-col>
+                                    {{ data.item }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div nz-row>
-                    <div nz-col>
-                        {{ data.item }}
-                    </div>
-                </div>
+                </a>
             </td>
-            <td>{{ data.price }}</td>
+            <td>{{ data.price | currency}}</td>
             <td>{{ data.seller }}</td>
             <td>{{ data.salesvolume }}</td>
             <td>
-                <button nz-button nzType="primary" nzSize="small" i18n="@@ViewDetails">View Details<i class="fas fa-angle-double-right"></i></button>
+                <button nz-button routerLink="/items-pecifications/{{data.id}}" nzType="primary" nzSize="small" i18n="@@ViewDetails">View Details<i class="fas fa-angle-double-right"></i></button>
             </td>
         </tr>
     </tbody>

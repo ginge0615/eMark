@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 import { registerLocaleData } from '@angular/common';
 
@@ -26,6 +26,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 
 
 //MyCompents
@@ -52,9 +53,7 @@ import { PurchaseHistoryComponent } from './purchase-history/purchase-history.co
       PurchaseHistoryComponent
    ],
    imports: [
-      RouterModule.forRoot([
-         { path: '', component: ShoppingCartComponent },
-      ]),
+      AppRoutingModule,
       BrowserModule,
       NgbModule,
       FormsModule,
@@ -75,6 +74,7 @@ import { PurchaseHistoryComponent } from './purchase-history/purchase-history.co
       NzTableModule,
       NzGridModule,
       NzSpaceModule,
+      NzCarouselModule
    ],
    providers: [],
    bootstrap: [

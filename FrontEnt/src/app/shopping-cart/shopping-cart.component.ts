@@ -7,6 +7,7 @@ interface ItemData {
   item: string;
   price: number;
   num: number;
+  tax : number;
 }
 
 @Component({
@@ -17,7 +18,7 @@ interface ItemData {
 export class ShoppingCartComponent implements OnInit {
   allChecked  = false;
   indeterminate = false;
-  totalTax : number = 100;
+  totalTax : number = 0;
   totalPrice : number = 0;
   setOfCheckedId = new Set<number>();
   listOfData: ItemData[] = [
@@ -27,7 +28,8 @@ export class ShoppingCartComponent implements OnInit {
       subcategory : 'Samsung',
       item : 'Galaxy s7',
       price: 123456,
-      num : 1
+      num : 1,
+      tax : 0.01
     },
     {
       id : 2,
@@ -35,7 +37,8 @@ export class ShoppingCartComponent implements OnInit {
       subcategory : 'OPPO',
       item : 'A5S',
       price: 8838,
-      num : 1
+      num : 1,
+      tax : 0.01
     }
 
   ];
@@ -50,10 +53,12 @@ export class ShoppingCartComponent implements OnInit {
 
   updateTotalPriceSum() {
     this.totalPrice = 0;
+    this.totalTax = 0;
 
     for (let item of this.listOfData) {
       if (this.setOfCheckedId.has(item.id)) {
-        this.totalPrice += item.price * item.num;
+        this.totalPrice += item.price * item.num * (1 + item.tax);
+        this.totalTax += item.price * item.num * item.tax;
       }
     }
    

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 interface DataItem {
+  id : string;
   picture: string;
   subcategory : string;
   item: string;
@@ -17,9 +18,6 @@ interface DataItem {
 export class ItemSearchComponent implements OnInit {
 
   listOfColumn = [
-    {
-      title: ''
-    },
     {
       title: 'Item',
       compare: (a: DataItem, b: DataItem) => a.subcategory.localeCompare(b.subcategory) != 0 ? a.subcategory.localeCompare(b.subcategory): a.item.localeCompare(b.item),
@@ -47,7 +45,8 @@ export class ItemSearchComponent implements OnInit {
 
   listOfData: DataItem[] = [
     {
-      picture: 'picture1',
+      id : '1',
+      picture : '../../assets/pictures/samsung1.jpg',
       subcategory : 'Samsung',
       item:'Galaxy s7',
       price: 123456,
@@ -55,7 +54,8 @@ export class ItemSearchComponent implements OnInit {
       salesvolume : 100
     },
     {
-      picture: 'picture2',
+      id : '2',
+      picture : '../../assets/pictures/samsung2.jpg',
       subcategory : 'OPPO',
       item:'A5S',
       price: 8838,
@@ -63,7 +63,8 @@ export class ItemSearchComponent implements OnInit {
       salesvolume : 200
     },
     {
-      picture: 'picture3',
+      id : '3',
+      picture : '../../assets/pictures/samsung3.jpg',
       subcategory : 'Samsung',
       item:'Galaxy s6',
       price: 5800,
@@ -71,7 +72,8 @@ export class ItemSearchComponent implements OnInit {
       salesvolume : 300
     },
     {
-      picture: 'picture1',
+      id : '4',
+      picture : '../../assets/pictures/samsung4.jpg',
       subcategory : 'Samsung',
       item:'Galaxy s7',
       price: 123456,
@@ -79,7 +81,8 @@ export class ItemSearchComponent implements OnInit {
       salesvolume : 100
     },
     {
-      picture: 'picture2',
+      id : '5',
+      picture : '../../assets/pictures/oppo1.jpg',
       subcategory : 'OPPO',
       item:'A5S',
       price: 8838,
@@ -87,38 +90,14 @@ export class ItemSearchComponent implements OnInit {
       salesvolume : 200
     },
     {
-      picture: 'picture3',
+      id : '6',
+      picture : '../../assets/pictures/oppo2.jpg',
       subcategory : 'Samsung',
       item:'Galaxy s6',
       price: 5800,
       seller: 'Seller2',
       salesvolume : 300
     },
-    {
-      picture: 'picture1',
-      subcategory : 'Samsung',
-      item:'Galaxy s7',
-      price: 123456,
-      seller: 'Seller1',
-      salesvolume : 100
-    },
-    {
-      picture: 'picture2',
-      subcategory : 'OPPO',
-      item:'A5S',
-      price: 8838,
-      seller: 'Seller2',
-      salesvolume : 200
-    },
-    {
-      picture: 'picture3',
-      subcategory : 'Samsung',
-      item:'Galaxy s6',
-      price: 5800,
-      seller: 'Seller2',
-      salesvolume : 300
-    }
-    
   ];
 
   constructor() { }

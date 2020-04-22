@@ -36,11 +36,11 @@
                             </div>
                         </a>
                     </td>
-                    <td>{{ data.price }}</td>
+                    <td>{{ data.price | currency }}</td>
                     <td>
                         <nz-input-number [(ngModel)]="data.num" [nzMin]="1 " [nzMax]="100 " [nzStep]="1 " (ngModelChange)="updateTotalPriceSum()"></nz-input-number>
                     </td>
-                    <td>{{ data.num * data.price }}</td>
+                    <td>{{ data.num * data.price | currency }}</td>
                     <td>
                         <button nz-button nzType="primary" i18n="@@Delete "><i class="fas fa-trash-alt "></i><span class="ml-1 ">Delete</span></button>
                     </td>
@@ -55,7 +55,7 @@
                         <h6 i18n="@@TotalTax">Total Tax</h6>
                     </div>
                     <div nz-col nzSpan="12">
-                        <h6>{{totalTax}}</h6>
+                        <h6>{{totalTax| currency }}</h6>
                     </div>
                 </div>
                 <div nz-row [nzGutter]="16">
@@ -63,7 +63,7 @@
                         <h6 i18n="@@TotalPrice">Total Price</h6>
                     </div>
                     <div nz-col nzSpan="12">
-                        <h6>{{totalPrice}}</h6>
+                        <h6>{{totalPrice| currency }}</h6>
                     </div>
                 </div>
                 <div nz-row [nzGutter]="16">
