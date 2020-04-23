@@ -1,5 +1,5 @@
 <div nz-row nzJustify="center">
-    <div nz-col nzSpan="8">
+    <div nz-col nzSpan="10">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
             <input type="text" nz-input placeholder="input search text" />
         </nz-input-group>
@@ -8,32 +8,34 @@
         </ng-template>
     </div>
 </div>
-<div nz-row class="mt-3" nzAlign="middle" style="height: 30px;">
+<div nz-row class="mt-3" nzJustify="start" style="height: 50px;">
     <div nz-col nzSpan="4">
-        <nz-form-item>
-            <nz-form-label i18n="@@Manufacturer">Manufacturer</nz-form-label>
-            <nz-form-control>
-                <nz-select ngModel="manufacturer" nzSize="small" id="manufacturer" class="mt-1">
+        <nz-space [nzSize]="16">
+            <nz-space-item>
+                Manufacturer
+            </nz-space-item>
+            <nz-space-item>
+                <nz-select ngModel="manufacturer" nzSize="small" id="manufacturer" style="margin-top: 10px;">
                     <nz-option nzValue="1" nzLabel="Samsung"></nz-option>
                     <nz-option nzValue="2" nzLabel="OPPO"></nz-option>
                 </nz-select>
-            </nz-form-control>
-        </nz-form-item>
-    </div>
-    <div nz-col nzSpan="4" nzOffset="1">
-        <nz-form-item>
-            <nz-form-label i18n="@@Price">Price</nz-form-label>
-            <nz-form-control>
+            </nz-space-item>
+            <nz-space-item>
+                Price
+            </nz-space-item>
+            <nz-space-item>
                 <input nz-input id="priceFrom" class="price-txt" placeholder="$" nzSize="small" />
-            </nz-form-control>
-            <nz-form-control>~</nz-form-control>
-            <nz-form-control>
+            </nz-space-item>
+            <nz-space-item>
+                ~
+            </nz-space-item>
+            <nz-space-item>
                 <input nz-input id="priceTo" class="price-txt" placeholder="$" nzSize="small" />
-            </nz-form-control>
-            <nz-form-control>
+            </nz-space-item>
+            <nz-space-item>
                 <button nz-button nzType="primary" nzSize="small" i18n="@@Filter"><i class="fas fa-filter"></i>Filter</button>
-            </nz-form-control>
-        </nz-form-item>
+            </nz-space-item>
+        </nz-space>
     </div>
 </div>
 <nz-table #sortTable [nzData]="listOfData" nzShowPagination nzPageSize="5">

@@ -1,28 +1,13 @@
-<!-- <div class="div-component container-fluid">
-    <ul ngbNav #nav="ngbNav" class="nav-tabs">
-        <li ngbNavItem>
-            <a ngbNavLink i18n="@@BuyItem">Buy Item</a>
-            <ng-template ngbNavContent>
-                <app-item-search></app-item-search>
-            </ng-template>
-        </li>
-        <li ngbNavItem>
-            <a ngbNavLink i18n="@@PurchaseHistory">Purchase history</a>
-            <ng-template ngbNavContent>
-                <app-purchase-history></app-purchase-history>
-            </ng-template>
-        </li>
-    </ul>
-
-    <div [ngbNavOutlet]="nav" class="mt-2"></div>
-</div> -->
-
-<ul nz-menu nzMode="horizontal">
-    <li nz-menu-item nzMatchRouter>
-        <a routerLink="/buy-item">Buy Item</a>
-    </li>
-    <li nz-menu-item nzMatchRouter>
-        <a routerLink="/purchase-history/userid">Purchase history</a>
-    </li>
-</ul>
-<router-outlet></router-outlet>
+<div nz-row nzJustify="center">
+    <div nz-col [nzSpan]="20">
+        <nz-tabset>
+            <nz-tab>
+                <a nz-tab-link [routerLink]="['/search-item']">Buy Item</a>
+            </nz-tab>
+            <nz-tab>
+                <a nz-tab-link [routerLink]="['/purchase-history/1']">Purchase history</a>
+            </nz-tab>
+        </nz-tabset>
+        <router-outlet></router-outlet>
+    </div>
+</div>

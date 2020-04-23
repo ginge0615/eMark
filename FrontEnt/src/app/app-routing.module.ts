@@ -11,8 +11,17 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 
 const routes: Routes = [
-  { path: '', component: BuyerMainComponent },
+  {
+    path: '',
+    component: BuyerMainComponent,
+    children: [
+      { path: 'search-item', component: ItemSearchComponent },
+      { path: 'purchase-history/:userid', component: PurchaseHistoryComponent }
+    ]
+  },
   { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
+
+
 
 ];
 

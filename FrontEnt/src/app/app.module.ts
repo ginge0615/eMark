@@ -27,6 +27,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 
 //MyCompents
@@ -76,7 +77,8 @@ import { SellerMainComponent } from './seller-main/seller-main.component';
       NzTableModule,
       NzGridModule,
       NzSpaceModule,
-      NzCarouselModule
+      NzCarouselModule,
+      NzTabsModule
    ],
    providers: [],
    bootstrap: [
