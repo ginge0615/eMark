@@ -40,6 +40,7 @@ import { ItemSpecificationsComponent } from './item-specifications/item-specific
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 import { SellerMainComponent } from './seller-main/seller-main.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 @NgModule({
    declarations: [
@@ -53,7 +54,8 @@ import { SellerMainComponent } from './seller-main/seller-main.component';
       ItemSpecificationsComponent,
       ShoppingCartComponent,
       PurchaseHistoryComponent,
-      SellerMainComponent
+      SellerMainComponent,
+      AddItemComponent
    ],
    imports: [
       AppRoutingModule,

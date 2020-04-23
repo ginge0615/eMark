@@ -9,17 +9,28 @@ import { BuyerMainComponent } from './buyer-main/buyer-main.component';
 import { ItemSpecificationsComponent } from './item-specifications/item-specifications.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
+import { SellerMainComponent } from './seller-main/seller-main.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: BuyerMainComponent,
+  //   children: [
+  //     { path: 'search-item', component: ItemSearchComponent },
+  //     { path: 'purchase-history/:userid', component: PurchaseHistoryComponent }
+  //   ]
+  // },
+  { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
   {
     path: '',
-    component: BuyerMainComponent,
+    component: SellerMainComponent,
     children: [
-      { path: 'search-item', component: ItemSearchComponent },
-      { path: 'purchase-history/:userid', component: PurchaseHistoryComponent }
+      { path: 'add-item', component: AddItemComponent },
+      { path: 'manage-stock', component: PurchaseHistoryComponent },
+      { path: 'reports', component: PurchaseHistoryComponent }
     ]
   },
-  { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
 
 
 

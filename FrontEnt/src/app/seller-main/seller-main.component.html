@@ -1,8 +1,16 @@
-<ul nz-menu nzMode="horizontal">
-    <li nz-menu-item nzMatchRouter>
-        <a [routerLink]="['/', 'components', 'menu', 'en']">English Menu Document</a>
-    </li>
-    <li nz-menu-item nzMatchRouter>
-        <a [routerLink]="['/', 'components', 'menu', 'zh']">Chinese Menu Document</a>
-    </li>
-</ul>
+<div nz-row nzJustify="center">
+    <div nz-col [nzSpan]="20">
+        <nz-tabset>
+            <nz-tab>
+                <a nz-tab-link [routerLink]="['/add-item']">Add Item</a>
+            </nz-tab>
+            <nz-tab>
+                <a nz-tab-link [routerLink]="['/manage-stock']">Manage Stock</a>
+            </nz-tab>
+            <nz-tab>
+                <a nz-tab-link [routerLink]="['/reports']">Reports</a>
+            </nz-tab>
+        </nz-tabset>
+        <router-outlet></router-outlet>
+    </div>
+</div>
