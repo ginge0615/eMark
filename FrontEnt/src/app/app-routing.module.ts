@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoginComponent } from './login/login.component';
 import { SignupSellerComponent } from './signup-seller/signup-seller.component';
 import { SignupBuyerComponent } from './signup-buyer/signup-buyer.component';
 import { ItemSearchComponent } from './item-search/item-search.component';
@@ -24,10 +25,11 @@ const routes: Routes = [
   { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
   {
     path: '',
-    component: SellerMainComponent,
+    component: SellerMainComponent
+    ,
     children: [
       { path: 'add-item', component: AddItemComponent },
-      { path: 'manage-stock', component: PurchaseHistoryComponent },
+      { path: 'manage-stock', component: SignupSellerComponent },
       { path: 'reports', component: PurchaseHistoryComponent }
     ]
   },
