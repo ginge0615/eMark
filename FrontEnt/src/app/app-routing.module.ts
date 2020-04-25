@@ -13,6 +13,7 @@ import { PurchaseHistoryComponent } from './buyer/purchase-history/purchase-hist
 import { SellerMainComponent } from './seller/seller-main/seller-main.component';
 import { AddItemComponent } from './seller/add-item/add-item.component';
 import { ManageStockComponent } from './seller/manage-stock/manage-stock.component'
+import {ReportsComponent} from './seller/reports/reports.component';
 
 const routes: Routes = [
   // {
@@ -31,7 +32,7 @@ const routes: Routes = [
     children: [
       { path: 'add-item', component: AddItemComponent },
       { path: 'manage-stock', component: ManageStockComponent },
-      { path: 'reports', component: PurchaseHistoryComponent }
+      { path: 'reports', component: ReportsComponent }
     ]
   },
 

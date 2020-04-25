@@ -1,0 +1,62 @@
+<form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label nzFor="item">Item</nz-form-label>
+        <nz-form-control>
+            <input formControlName="item" nz-input />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="sellDate">SelledDate</nz-form-label>
+        <nz-form-control>
+            <nz-range-picker [nzFormat]="'yyyy-MM-dd'" formControlName="sellDate"></nz-range-picker>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary"><i nz-icon nzType="search" nzTheme="outline"></i>Search</button>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary" nzGhost><i nz-icon nzType="download"></i>Output Report</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>
+<nz-table #basicTable [nzData]="listOfData">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Sold Number</th>
+            <th>Income</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of listOfData ">
+            <td>
+                <a href="# ">
+                    <div nz-row>
+                        <div nz-col>
+                            <img src="{{ data.picture }} " width="50px " height="50px " />
+                        </div>
+                        <div nz-col>
+                            <div nz-row>
+                                <div nz-col>
+                                    {{ data.subcategory }}
+                                </div>
+                            </div>
+                            <div nz-row>
+                                <div nz-col>
+                                    {{ data.item }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </td>
+            <td>{{ data.price | currency }}</td>
+            <td>{{ data.soldNum }}</td>
+            <td>{{ data.soldNum * data.price | currency }}</td>
+        </tr>
+    </tbody>
+</nz-table>

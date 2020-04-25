@@ -31,6 +31,7 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 
 //MyCompents
@@ -45,7 +46,8 @@ import { PurchaseHistoryComponent } from './buyer/purchase-history/purchase-hist
 import { SellerMainComponent } from './seller/seller-main/seller-main.component';
 import { AddItemComponent } from './seller/add-item/add-item.component';
 import { UploadPictureComponent } from './common-components/upload-picture/upload-picture.component';
-import { ManageStockComponent } from './seller/manage-stock/manage-stock.component'
+import { ManageStockComponent } from './seller/manage-stock/manage-stock.component';
+import {ReportsComponent} from './seller/reports/reports.component';
 
 @NgModule({
    declarations: [
@@ -62,7 +64,8 @@ import { ManageStockComponent } from './seller/manage-stock/manage-stock.compone
       SellerMainComponent,
       AddItemComponent,
       UploadPictureComponent,
-      ManageStockComponent
+      ManageStockComponent,
+      ReportsComponent
    ],
    imports: [
       AppRoutingModule,
@@ -90,6 +93,7 @@ import { ManageStockComponent } from './seller/manage-stock/manage-stock.compone
       NzTabsModule,
       NzUploadModule,
       NzModalModule,
+      NzDatePickerModule,
       HttpClientJsonpModule, 
       HttpClientModule
    ],
