@@ -1,0 +1,46 @@
+<div nz-row nzJustify="center">
+    <div nz-col [nzSpan]="24">
+        <nz-table #basicTable [nzData]="listOfData">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>No. of Stock</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of listOfData ">
+                    <td>
+                        <a href="# ">
+                            <div nz-row>
+                                <div nz-col>
+                                    <img src="{{ data.picture }} " width="50px " height="50px " />
+                                </div>
+                                <div nz-col>
+                                    <div nz-row>
+                                        <div nz-col>
+                                            {{ data.subcategory }}
+                                        </div>
+                                    </div>
+                                    <div nz-row>
+                                        <div nz-col>
+                                            {{ data.item }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>{{ data.price | currency }}</td>
+                    <td>
+                        <nz-input-number [(ngModel)]="data.stock" [nzStep]="1 " [nzMin]="0 " class="stock"></nz-input-number>
+                    </td>
+                    <td>
+                        <button nz-button nzType="primary" i18n="@@Update "><span class="ml-1 ">Update</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
