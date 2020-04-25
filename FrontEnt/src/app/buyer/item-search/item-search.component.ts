@@ -103,6 +103,7 @@ export class ItemSearchComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.info("ItemSearchComponent Actived!!!!!");
   }
 
 }

@@ -1,16 +1,19 @@
 <div nz-row nzJustify="center">
     <div nz-col [nzSpan]="16">
         <nz-tabset>
-            <nz-tab>
-                <a nz-tab-link [routerLink]="['/add-item']">Add Item</a>
+            <nz-tab nzTitle="Add Item">
+                <app-add-item></app-add-item>
             </nz-tab>
-            <nz-tab>
-                <a nz-tab-link [routerLink]="['/manage-stock']">Manage Stock</a>
+            <nz-tab nzTitle="Manage Stock">
+                <ng-template nz-tab>
+                    <app-manage-stock></app-manage-stock>
+                </ng-template>
             </nz-tab>
-            <nz-tab>
-                <a nz-tab-link [routerLink]="['/reports']">Reports</a>
+            <nz-tab nzTitle="Reports">
+                <ng-template nz-tab>
+                    <app-reports></app-reports>
+                </ng-template>
             </nz-tab>
         </nz-tabset>
-        <router-outlet></router-outlet>
     </div>
 </div>

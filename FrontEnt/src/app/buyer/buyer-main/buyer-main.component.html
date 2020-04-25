@@ -1,13 +1,14 @@
 <div nz-row nzJustify="center">
     <div nz-col [nzSpan]="20">
         <nz-tabset>
-            <nz-tab>
-                <a nz-tab-link [routerLink]="['/search-item']">Buy Item</a>
+            <nz-tab nzTitle="Buy Item">
+                <app-item-search></app-item-search>
             </nz-tab>
-            <nz-tab>
-                <a nz-tab-link [routerLink]="['/purchase-history/1']">Purchase history</a>
+            <nz-tab nzTitle="Purchase history">
+                <ng-template nz-tab>
+                    <app-purchase-history></app-purchase-history>
+                </ng-template>
             </nz-tab>
         </nz-tabset>
-        <router-outlet></router-outlet>
     </div>
 </div>

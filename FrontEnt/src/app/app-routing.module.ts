@@ -13,30 +13,13 @@ import { PurchaseHistoryComponent } from './buyer/purchase-history/purchase-hist
 import { SellerMainComponent } from './seller/seller-main/seller-main.component';
 import { AddItemComponent } from './seller/add-item/add-item.component';
 import { ManageStockComponent } from './seller/manage-stock/manage-stock.component'
-import {ReportsComponent} from './seller/reports/reports.component';
+import { ReportsComponent } from './seller/reports/reports.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: BuyerMainComponent,
-  //   children: [
-  //     { path: 'search-item', component: ItemSearchComponent },
-  //     { path: 'purchase-history/:userid', component: PurchaseHistoryComponent }
-  //   ]
-  // },
+  { path: '', redirectTo : 'emart',pathMatch:'full' },
+  { path: 'emart', component: BuyerMainComponent },
   { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
-  {
-    path: '',
-    component: SellerMainComponent
-    ,
-    children: [
-      { path: 'add-item', component: AddItemComponent },
-      { path: 'manage-stock', component: ManageStockComponent },
-      { path: 'reports', component: ReportsComponent }
-    ]
-  },
-
-
+  { path: 'cart', component: ShoppingCartComponent },
 
 ];
 

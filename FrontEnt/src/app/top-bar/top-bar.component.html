@@ -2,6 +2,8 @@
     <h1>eMart</h1>
 </a>
 <span>
-<a [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i></a>
-<a [routerLink]="['/logout']" class="ml-2" i18n="@@Logout">Logout</a>
+    <nz-badge [nzCount]="2" [nzOverflowCount]="999">
+        <a [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i></a>
+    </nz-badge>
+    <a [routerLink]="['/logout']" class="ml-2" i18n="@@Logout">Logout</a>
 </span>

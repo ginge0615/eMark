@@ -32,6 +32,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 
 //MyCompents
@@ -94,6 +95,7 @@ import {ReportsComponent} from './seller/reports/reports.component';
       NzUploadModule,
       NzModalModule,
       NzDatePickerModule,
+      NzBadgeModule,
       HttpClientJsonpModule, 
       HttpClientModule
    ],

@@ -42,6 +42,7 @@ export class PurchaseHistoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.info("PurchaseHistoryComponent Actived!!!!!");
   }
 
 }
