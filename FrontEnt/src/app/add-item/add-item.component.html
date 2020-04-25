@@ -1,6 +1,6 @@
-<div nz-row>
-    <div nz-col nzSpan="12">
-        <form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="width: 100%;">
+<form [formGroup]="validateForm" (ngSubmit)="submitForm()" style="width: 100%;">
+    <div nz-row>
+        <div nz-col nzSpan="12">
             <nz-form-item>
                 <nz-form-label [nzSpan]="labelSize" nzFor="category" nzRequired>Select Category</nz-form-label>
                 <nz-form-control [nzSpan]="controlSize">
@@ -34,7 +34,7 @@
             <nz-form-item>
                 <nz-form-label [nzSpan]="labelSize" nzFor="price" nzRequired>Price</nz-form-label>
                 <nz-form-control [nzSpan]="controlSize" [nzValidateStatus]="validateForm.controls['price']" nzErrorTip="Please input price!">
-                    <nz-input-number [(ngModel)]="priceValue" formControlName="price" [nzMin]="1" [nzMax]="999999999" [nzStep]="1" [nzFormatter]="formatterDollar" [nzParser]="parserDollar">
+                    <nz-input-number [(ngModel)]="priceValue" formControlName="price" [nzMax]="999999999" [nzStep]="1" [nzFormatter]="formatterDollar" [nzParser]="parserDollar">
                     </nz-input-number>
                 </nz-form-control>
             </nz-form-item>
@@ -52,8 +52,33 @@
                     </nz-input-number>
                 </nz-form-control>
             </nz-form-item>
-        </form>
+        </div>
+        <div nz-col nzSpan="10">
+            <div nz-row>
+                <app-upload-picture></app-upload-picture>
+            </div>
+            <div nz-row>
+                <button nz-button nzType="primary" class="sell-button">Save & Sell Item</button>
+            </div>
+        </div>
     </div>
-    <div nz-col nzSpan="12">
+    <nz-divider nzText="Description" nzOrientation="left"></nz-divider>
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item *ngFor="let control of listOfControl; let i = index">
+                <nz-form-control [nzOffset]="labelSize" [nzSpan]="controlSize" nzErrorTip="Please input description or delete this field.">
+                    <input class="description-input" nz-input [attr.id]="control.id" [formControlName]="control.controlInstance" />
+                    <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeField(control, $event)"></i>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control [nzOffset]="labelSize" [nzSpan]="controlSize">
+                    <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+                    <i nz-icon nzType="plus"></i>
+                    Add field
+                  </button>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
     </div>
-</div>
+</form>

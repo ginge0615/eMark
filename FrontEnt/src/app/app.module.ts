@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -28,6 +29,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 //MyCompents
@@ -41,6 +44,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 import { SellerMainComponent } from './seller-main/seller-main.component';
 import { AddItemComponent } from './add-item/add-item.component';
+import { UploadPictureComponent } from './common-components/upload-picture/upload-picture.component';
 
 @NgModule({
    declarations: [
@@ -55,7 +59,8 @@ import { AddItemComponent } from './add-item/add-item.component';
       ShoppingCartComponent,
       PurchaseHistoryComponent,
       SellerMainComponent,
-      AddItemComponent
+      AddItemComponent,
+      UploadPictureComponent
    ],
    imports: [
       AppRoutingModule,
@@ -80,7 +85,11 @@ import { AddItemComponent } from './add-item/add-item.component';
       NzGridModule,
       NzSpaceModule,
       NzCarouselModule,
-      NzTabsModule
+      NzTabsModule,
+      NzUploadModule,
+      NzModalModule,
+      HttpClientJsonpModule, 
+      HttpClientModule
    ],
    providers: [],
    bootstrap: [

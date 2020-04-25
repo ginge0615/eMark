@@ -1,14 +1,14 @@
 <div nz-row nzJustify="center">
-    <div nz-col [nzSpan]="20">
+    <div nz-col [nzSpan]="16">
         <nz-tabset>
             <nz-tab>
                 <a nz-tab-link [routerLink]="['/add-item']">Add Item</a>
             </nz-tab>
-            <nz-tab nzTitle="Manage Stock">
-                <!-- <a nz-tab-link [routerLink]="['/manage-stock']">Manage Stock</a> -->
+            <nz-tab>
+                <a nz-tab-link [routerLink]="['/manage-stock']">Manage Stock</a>
             </nz-tab>
-            <nz-tab nzTitle="Reports">
-                <!-- <a nz-tab-link [routerLink]="['/reports']">Reports</a> -->
+            <nz-tab>
+                <a nz-tab-link [routerLink]="['/reports']">Reports</a>
             </nz-tab>
         </nz-tabset>
         <router-outlet></router-outlet>

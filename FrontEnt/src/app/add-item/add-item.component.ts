@@ -9,8 +9,8 @@ import { OptionInterface } from '../option-interface';
 })
 export class AddItemComponent implements OnInit {
 
-  labelSize = 5;
-  controlSize = 10;
+  labelSize = 6;
+  controlSize = 14;
 
   validateForm: FormGroup;
 
@@ -56,6 +56,33 @@ export class AddItemComponent implements OnInit {
     }
   }
 
+  listOfControl: Array<{ id: number; controlInstance: string }> = [];
+
+  addField(e?: MouseEvent): void {
+    if (e) {
+      e.preventDefault();
+    }
+    const id = this.listOfControl.length > 0 ? this.listOfControl[this.listOfControl.length - 1].id + 1 : 0;
+
+    const control = {
+      id,
+      controlInstance: `description${id}`
+    };
+    const index = this.listOfControl.push(control);
+    console.log(this.listOfControl[this.listOfControl.length - 1]);
+    this.validateForm.addControl(this.listOfControl[index - 1].controlInstance, new FormControl(null, Validators.required));
+  }
+
+  removeField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
+    e.preventDefault();
+    if (this.listOfControl.length > 1) {
+      const index = this.listOfControl.indexOf(i);
+      this.listOfControl.splice(index, 1);
+      console.log(this.listOfControl);
+      this.validateForm.removeControl(i.controlInstance);
+    }
+  }
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -68,6 +95,8 @@ export class AddItemComponent implements OnInit {
       stock: new FormControl(null, [Validators.required]),
       tax: new FormControl(null, [Validators.required]),
     });
+
+    this.addField();
   }
 
 }

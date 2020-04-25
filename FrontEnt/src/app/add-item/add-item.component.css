@@ -3,5 +3,34 @@ nz-form-item {
 }
 
 nz-input-number {
-    width: 100%;
+    width: 150px;
+}
+
+.dynamic-delete-button {
+    cursor: pointer;
+    position: relative;
+    /* top: 4px; */
+    font-size: 24px;
+    color: #999;
+    transition: all 0.3s;
+}
+
+.dynamic-delete-button:hover {
+    color: #777;
+}
+
+.description-input {
+    width: 90%;
+    margin-right: 8px;
+}
+
+.add-button {
+    width: 90%;
+}
+
+.sell-button {
+    margin-top: 20px;
+    width: 50%;
+    height: 80px;
+    font-size: large;
 }
