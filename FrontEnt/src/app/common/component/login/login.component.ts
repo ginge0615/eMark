@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { GlobalService } from 'src/service/global.service';
+import { GlobalService } from 'src/app/common/service/global.service';
 
 @Component({
   selector: 'app-login',
