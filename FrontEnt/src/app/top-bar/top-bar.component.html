@@ -2,8 +2,10 @@
     <h1>eMart</h1>
 </a>
 <span>
-    <nz-badge [nzCount]="2" [nzOverflowCount]="999">
+    <nz-badge [nzCount]="2" [nzOverflowCount]="999" *ngIf="global.isUserAuth" >
         <a [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i></a>
     </nz-badge>
-    <a [routerLink]="['/logout']" class="ml-2" i18n="@@Logout">Logout</a>
+    <a [routerLink]="['/logout']" class="ml-2" i18n="@@Logout" *ngIf="global.isUserAuth">Logout</a>
+    <a [routerLink]="['/login']" class="ml-2" i18n="@@Logout" *ngIf="!global.isUserAuth">Login</a>
+    <a [routerLink]="['/signup']" class="ml-2" i18n="@@Logout" *ngIf="!global.isUserAuth">Signup</a>
 </span>

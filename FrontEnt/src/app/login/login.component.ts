@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzIconService } from 'ng-zorro-antd/icon';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { GlobalService } from 'src/service/global.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +11,10 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 })
 export class LoginComponent  implements OnInit {
   validateForm: FormGroup;
+  passwordVisible = false;
+  password: string;
+
+  @Input() userName : string;
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -17,7 +23,18 @@ export class LoginComponent  implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder, private iconService: NzIconService) {
+  login() : void {
+    console.info("uername=" + this.userName);
+    console.info("password=" + this.password);
+    
+    this.global.isUserAuth = true;
+
+    //test
+    this.router.navigate(['/emart']);
+    
+  }
+
+  constructor(private fb: FormBuilder, private iconService: NzIconService, private router: Router, private global: GlobalService) {
     this.iconService.fetchFromIconfont({
       scriptUrl: 'https://at.alicdn.com/t/font_8d5l8fzk5b87iudi.js'
     });
@@ -27,8 +44,7 @@ export class LoginComponent  implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
+      password: [null, [Validators.required]]
     });
   }
 }

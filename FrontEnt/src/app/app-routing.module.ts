@@ -20,6 +20,9 @@ const routes: Routes = [
   { path: 'emart', component: BuyerMainComponent },
   { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
   { path: 'cart', component: ShoppingCartComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'singupasbuyer', component: SignupBuyerComponent },
+  { path: 'singupasseller', component: SignupSellerComponent },
 
 ];
 
