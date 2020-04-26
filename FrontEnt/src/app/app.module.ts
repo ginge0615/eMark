@@ -10,8 +10,6 @@ import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { registerLocaleData } from '@angular/common';
-
 //NzModule
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -32,6 +30,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
 
 //MyCompents
@@ -96,6 +95,7 @@ import {ReportsComponent} from './seller/reports/reports.component';
       NzModalModule,
       NzDatePickerModule,
       NzBadgeModule,
+      NzRadioModule,
       HttpClientJsonpModule, 
       HttpClientModule
    ],

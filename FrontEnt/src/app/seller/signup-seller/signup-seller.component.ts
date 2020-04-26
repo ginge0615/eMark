@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, } from '@angular/router';
 
 @Component({
   selector: 'app-signup-seller',
@@ -9,10 +10,21 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class SignupSellerComponent implements OnInit {
   validateForm: FormGroup;
 
+  @Input() username : string;
+
   submitForm(): void {
+    let hasError : boolean = false;
+
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
+      if (this.validateForm.controls[i].errors) {
+        hasError = true;
+      }
+    }
+
+    if (!hasError) {
+      this.router.navigate(['/login'], { queryParams: { userName: this.username } });
     }
   }
 
@@ -30,7 +42,7 @@ export class SignupSellerComponent implements OnInit {
     return {};
   };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -42,8 +54,6 @@ export class SignupSellerComponent implements OnInit {
       contact: [null, [Validators.required]],
       gstin: [null, [Validators.required]],
       postal: [null, [Validators.required]],
-      website: [null, [Validators.required]],
-      agree: [false]
     });
   }
 }

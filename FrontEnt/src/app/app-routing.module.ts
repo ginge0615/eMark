@@ -16,13 +16,14 @@ import { ManageStockComponent } from './seller/manage-stock/manage-stock.compone
 import { ReportsComponent } from './seller/reports/reports.component';
 
 const routes: Routes = [
-  { path: '', redirectTo : 'emart',pathMatch:'full' },
-  { path: 'emart', component: BuyerMainComponent },
+  { path: '', redirectTo : 'emart-buyer',pathMatch:'full' },
+  { path: 'emart-buyer', component: BuyerMainComponent },
+  { path: 'emart-seller', component: SellerMainComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'singup-buyer', component: SignupBuyerComponent },
+  { path: 'singup-seller', component: SignupSellerComponent },
   { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
   { path: 'cart', component: ShoppingCartComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'singupasbuyer', component: SignupBuyerComponent },
-  { path: 'singupasseller', component: SignupSellerComponent },
 
 ];
 

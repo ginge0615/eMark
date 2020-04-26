@@ -4,22 +4,35 @@
             <nz-form-item>
                 <nz-form-control nzErrorTip="Please input your username!">
                     <nz-input-group nzPrefixIcon="user">
-                        <input type="text" nz-input formControlName="userName" placeholder="Username" [(ngModel)]="userName" />
+                        <input type="text" nz-input formControlName="userName" placeholder="Username" [(ngModel)]="userName" required />
                     </nz-input-group>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control nzErrorTip="Please input your Password!">
                     <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
-                        <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" nz-input placeholder="input password" [(ngModel)]="password" />
+                        <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" nz-input placeholder="input password" [(ngModel)]="password" required />
                     </nz-input-group>
                     <ng-template #suffixTemplate>
                         <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
                     </ng-template>
                 </nz-form-control>
             </nz-form-item>
-            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="login()">Login</button>
-            <a>Or signup now! </a>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-radio-group [(ngModel)]="userType" formControlName="userType">
+                        <nz-space [nzSize]="50">
+                            <nz-space-item>
+                                <label nz-radio nzValue="1">As buyer</label>
+                            </nz-space-item>
+                            <nz-space-item>
+                                <label nz-radio nzValue="2">As seller</label>
+                            </nz-space-item>
+                        </nz-space>
+                    </nz-radio-group>
+                </nz-form-control>
+            </nz-form-item>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>
         </div>
     </div>
 </form>

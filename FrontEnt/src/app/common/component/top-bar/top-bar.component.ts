@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/common/service/global.service';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -12,7 +11,8 @@ export class TopBarComponent implements OnInit {
   }
 
   logout() {
-    this.global.isUserAuth = false;
+    window.localStorage.removeItem("USER_NAME");
+    window.localStorage.removeItem["USER_TYPE"];
     this.router.navigate(['/']);
   }
 
