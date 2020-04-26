@@ -1,14 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
-interface DataItem {
-  id : string;
-  picture: string;
-  subcategory : string;
-  item: string;
-  price: number;
-  seller: string;
-  salesvolume :number;
-}
+import { Component, OnInit , Input} from '@angular/core';
+import { OptionInterface } from 'src/app/common/interface/option-interface';
+import { Item } from 'src/app/common/interface/Item';
+import { GlobalService } from 'src/app/common/service/global.service';
 
 @Component({
   selector: 'app-item-search',
@@ -16,94 +9,88 @@ interface DataItem {
   styleUrls: ['./item-search.component.css']
 })
 export class ItemSearchComponent implements OnInit {
+  @Input() searchContent : string;
+  @Input() selectedManufacturer : OptionInterface;
+  @Input() priceFrom : number;
+  @Input() priceTo : number;
 
-  listOfColumn = [
-    {
-      title: 'Item',
-      compare: (a: DataItem, b: DataItem) => a.subcategory.localeCompare(b.subcategory) != 0 ? a.subcategory.localeCompare(b.subcategory): a.item.localeCompare(b.item),
-      priority: 3
-    },
-    {
-      title: 'Price',
-      compare: (a: DataItem, b: DataItem) => a.price - b.price,
-      priority: 2
-    },
-    {
-      title: 'Seller',
-      compare: (a: DataItem, b: DataItem) => a.seller.localeCompare(b.seller),
-      priority: 4
-    },
-    {
-      title: 'Sales volume',
-      compare: (a: DataItem, b: DataItem) => a.salesvolume - b.salesvolume,
-      priority: 1
-    },
-    {
-      title: ''
-    }
-  ];
+  manufacturerOptionList : OptionInterface[];
+  listOfColumn = [];
+  listOfData: Item[];
+  listCurrentData : Item[];
 
-  listOfData: DataItem[] = [
-    {
-      id : '1',
-      picture : '../../assets/pictures/samsung1.jpg',
-      subcategory : 'Samsung',
-      item:'Galaxy s7',
-      price: 123456,
-      seller: 'Seller1',
-      salesvolume : 100
-    },
-    {
-      id : '2',
-      picture : '../../assets/pictures/samsung2.jpg',
-      subcategory : 'OPPO',
-      item:'A5S',
-      price: 8838,
-      seller: 'Seller2',
-      salesvolume : 200
-    },
-    {
-      id : '3',
-      picture : '../../assets/pictures/samsung3.jpg',
-      subcategory : 'Samsung',
-      item:'Galaxy s6',
-      price: 5800,
-      seller: 'Seller2',
-      salesvolume : 300
-    },
-    {
-      id : '4',
-      picture : '../../assets/pictures/samsung4.jpg',
-      subcategory : 'Samsung',
-      item:'Galaxy s7',
-      price: 123456,
-      seller: 'Seller1',
-      salesvolume : 100
-    },
-    {
-      id : '5',
-      picture : '../../assets/pictures/oppo1.jpg',
-      subcategory : 'OPPO',
-      item:'A5S',
-      price: 8838,
-      seller: 'Seller2',
-      salesvolume : 200
-    },
-    {
-      id : '6',
-      picture : '../../assets/pictures/oppo2.jpg',
-      subcategory : 'Samsung',
-      item:'Galaxy s6',
-      price: 5800,
-      seller: 'Seller2',
-      salesvolume : 300
-    },
-  ];
+  compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
 
-  constructor() { }
+  constructor(private global: GlobalService) { }
 
   ngOnInit() {
-    console.info("ItemSearchComponent Actived!!!!!");
+    this.listOfColumn = [
+      {
+        title: 'Item',
+        compare: (a: Item, b: Item) => a.manufactur.localeCompare(b.manufactur) != 0 ? a.manufactur.localeCompare(b.manufactur): a.item.localeCompare(b.item),
+      },
+      {
+        title: 'Price',
+        compare: (a: Item, b: Item) => a.price - b.price,
+      },
+      {
+        title: 'Seller',
+        compare: (a: Item, b: Item) => a.seller.localeCompare(b.seller),
+      },
+      {
+        title: 'Sales volume',
+        compare: (a: Item, b: Item) => a.volume - b.volume,
+      },
+      {
+        title: ''
+      }
+    ];
+    
+    //test
+    this.manufacturerOptionList  = [
+      {value : "1", label : "Samsung"},
+      {value : "2", label : "OPPO"},
+      {value : "3", label : "XIAOMI"},
+    ];
+    this.listOfData = this.global.listItems;
+    this.listCurrentData = this.listOfData;
+  }
+
+  search() {
+    //TODO
+  }
+
+  filter() {
+    this.listCurrentData = [];
+    isObjectData : Boolean;
+
+    for (let data of this.listOfData) {
+      let isObjectData = true;
+
+      if (this.selectedManufacturer?.label) {
+         isObjectData = data.subcategory === this.selectedManufacturer.label;
+      }
+
+      if (isObjectData && this.priceFrom) {
+          isObjectData = data.price >= this.priceFrom;
+      }
+
+      if (isObjectData && this.priceTo) {
+          isObjectData = data.price <= this.priceTo;
+      }
+
+      if (isObjectData) {
+        this.listCurrentData.push(data);
+      }
+    }
+
+  }
+
+  clear() {
+    this.selectedManufacturer = undefined;
+    this.priceFrom = undefined;
+    this.priceTo = undefined;
+    this.listCurrentData = this.listOfData;
   }
 
 }

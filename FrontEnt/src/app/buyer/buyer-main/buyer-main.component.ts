@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from 'src/app/common/service/global.service';
 
 @Component({
   selector: 'app-buyer-main',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyerMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(public global: GlobalService) { }
 
   ngOnInit() {
   }

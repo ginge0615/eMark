@@ -1,10 +1,10 @@
 <div nz-row nzJustify="center">
     <div nz-col nzSpan="10">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="input search text" />
+            <input type="text" nz-input placeholder="input search text" [(ngModel)]="searchContent" />
         </nz-input-group>
         <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large" nzSearch><i class="fas fa-search"></i>Search</button>
+            <button nz-button nzType="primary" nzSize="large" nzSearch (click)="search()"><i class="fas fa-search"></i>Search</button>
         </ng-template>
     </div>
 </div>
@@ -15,30 +15,32 @@
                 Manufacturer
             </nz-space-item>
             <nz-space-item>
-                <nz-select ngModel="manufacturer" nzSize="small" id="manufacturer" style="margin-top: 10px;">
-                    <nz-option nzValue="1" nzLabel="Samsung"></nz-option>
-                    <nz-option nzValue="2" nzLabel="OPPO"></nz-option>
+                <nz-select [(ngModel)]="selectedManufacturer" [compareWith]="compareFn" nzSize="small" nzPlaceHolder="Choose">
+                    <nz-option *ngFor="let o of manufacturerOptionList" [nzValue]="o" [nzLabel]="o.label"></nz-option>
                 </nz-select>
             </nz-space-item>
             <nz-space-item>
                 Price
             </nz-space-item>
             <nz-space-item>
-                <input nz-input id="priceFrom" class="price-txt" placeholder="$" nzSize="small" />
+                <input nz-input [(ngModel)]="priceFrom" class="price-txt" placeholder="$" nzSize="small" />
             </nz-space-item>
             <nz-space-item>
                 ~
             </nz-space-item>
             <nz-space-item>
-                <input nz-input id="priceTo" class="price-txt" placeholder="$" nzSize="small" />
+                <input nz-input [(ngModel)]="priceTo" class="price-txt" placeholder="$" nzSize="small" />
             </nz-space-item>
             <nz-space-item>
-                <button nz-button nzType="primary" nzSize="small" i18n="@@Filter"><i class="fas fa-filter"></i>Filter</button>
+                <button nz-button nzType="primary" nzSize="small" i18n="@@Filter" (click)="filter()"><i class="fas fa-filter"></i>Filter</button>
+            </nz-space-item>
+            <nz-space-item>
+                <button nz-button nzType="primary" nzSize="small" i18n="@@Filter" (click)="clear()">Clear</button>
             </nz-space-item>
         </nz-space>
     </div>
 </div>
-<nz-table #sortTable [nzData]="listOfData" nzShowPagination nzPageSize="5">
+<nz-table #sortTable [nzData]="listCurrentData" nzShowPagination nzPageSize="5">
     <thead>
         <tr>
             <th style="font-weight:bold" *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">{{ column.title }}</th>
@@ -50,12 +52,12 @@
                 <a [routerLink]="['/items-pecifications',data.id]">
                     <div nz-row>
                         <div nz-col>
-                            <img src="{{ data.picture }} " width="50px " height="50px " />
+                            <img src="{{ data.pictures[0] }} " width="50px " height="50px " />
                         </div>
                         <div nz-col>
                             <div nz-row>
                                 <div nz-col>
-                                    {{ data.subcategory }}
+                                    {{ data.manufactur }}
                                 </div>
                             </div>
                             <div nz-row>
@@ -69,7 +71,7 @@
             </td>
             <td>{{ data.price | currency}}</td>
             <td>{{ data.seller }}</td>
-            <td>{{ data.salesvolume }}</td>
+            <td>{{ data.volume }}</td>
             <td>
                 <button nz-button routerLink="/items-pecifications/{{data.id}}" nzType="primary" nzSize="small" i18n="@@ViewDetails">View Details<i class="fas fa-angle-double-right"></i></button>
             </td>

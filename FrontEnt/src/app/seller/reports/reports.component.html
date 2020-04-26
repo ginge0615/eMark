@@ -27,7 +27,7 @@
         <tr>
             <th>Item</th>
             <th>Price</th>
-            <th>Sold Number</th>
+            <th>Sales volume</th>
             <th>Income</th>
         </tr>
     </thead>
@@ -37,12 +37,12 @@
                 <a href="# ">
                     <div nz-row>
                         <div nz-col>
-                            <img src="{{ data.picture }} " width="50px " height="50px " />
+                            <img src="{{ data.pictures[0] }} " width="50px " height="50px " />
                         </div>
                         <div nz-col>
                             <div nz-row>
                                 <div nz-col>
-                                    {{ data.subcategory }}
+                                    {{ data.manufactur }}
                                 </div>
                             </div>
                             <div nz-row>
@@ -55,8 +55,8 @@
                 </a>
             </td>
             <td>{{ data.price | currency }}</td>
-            <td>{{ data.soldNum }}</td>
-            <td>{{ data.soldNum * data.price | currency }}</td>
+            <td>{{ data.volume }}</td>
+            <td>{{ data.volume * data.price | currency }}</td>
         </tr>
     </tbody>
 </nz-table>

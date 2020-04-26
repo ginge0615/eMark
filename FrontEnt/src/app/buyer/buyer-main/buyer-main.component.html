@@ -4,7 +4,7 @@
             <nz-tab nzTitle="Buy Item">
                 <app-item-search></app-item-search>
             </nz-tab>
-            <nz-tab nzTitle="Purchase history">
+            <nz-tab nzTitle="Purchase history" *ngIf="global.isLogined()">
                 <ng-template nz-tab>
                     <app-purchase-history></app-purchase-history>
                 </ng-template>

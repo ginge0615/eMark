@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface ItemData {
-  id: number;
-  picture: string;
-  subcategory : string;
-  item: string;
-  price: number;
-  num: number;
-  tax : number;
-}
+import { Item } from 'src/app/common/interface/Item';
+import { GlobalService } from 'src/app/common/service/global.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,30 +12,13 @@ export class ShoppingCartComponent implements OnInit {
   indeterminate = false;
   totalTax : number = 0;
   totalPrice : number = 0;
-  setOfCheckedId = new Set<number>();
-  listOfData: ItemData[] = [
-    {
-      id : 1,
-      picture : '../../assets/pictures/samsung1.jpg',
-      subcategory : 'Samsung',
-      item : 'Galaxy s7',
-      price: 123456,
-      num : 1,
-      tax : 0.01
-    },
-    {
-      id : 2,
-      picture : '../../assets/pictures/oppo1.jpg',
-      subcategory : 'OPPO',
-      item : 'A5S',
-      price: 8838,
-      num : 1,
-      tax : 0.01
-    }
+  setOfCheckedId = new Set<string>();
+  listOfData: Item[];
 
-  ];
+  constructor(private global: GlobalService) {
+  }
 
-  updateCheckedSet(data : ItemData, checked: boolean): void {
+  updateCheckedSet(data : Item, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(data.id);
     } else {
@@ -57,14 +32,14 @@ export class ShoppingCartComponent implements OnInit {
 
     for (let item of this.listOfData) {
       if (this.setOfCheckedId.has(item.id)) {
-        this.totalPrice += item.price * item.num * (1 + item.tax);
-        this.totalTax += item.price * item.num * item.tax;
+        this.totalPrice += item.price * item.purchaseNum * (1 + item.tax);
+        this.totalTax += item.price * item.purchaseNum * item.tax;
       }
     }
    
   }
 
-  onItemChecked(data : ItemData, checked: boolean): void {
+  onItemChecked(data : Item, checked: boolean): void {
     this.updateCheckedSet(data, checked);
     this.refreshCheckedStatus();
   }

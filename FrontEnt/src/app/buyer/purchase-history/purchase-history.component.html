@@ -17,7 +17,7 @@
                         <a href="# ">
                             <div nz-row>
                                 <div nz-col>
-                                    <img src="{{ data.picture }} " width="50px " height="50px " />
+                                    <img src="{{ data.pictures[0] }} " width="50px " height="50px " />
                                 </div>
                                 <div nz-col>
                                     <div nz-row>
@@ -35,8 +35,8 @@
                         </a>
                     </td>
                     <td>{{ data.price | currency }}</td>
-                    <td>{{ data.num }}</td>
-                    <td>{{ data.num * data.price | currency }}</td>
+                    <td>{{ data.purchaseNum }}</td>
+                    <td>{{ data.purchaseNum * data.price | currency }}</td>
                     <td>{{ data.datetime | date }}</td>
                     <td>
                         <button nz-button nzType="primary" i18n="@@View "><span class="ml-1 ">View</span></button>

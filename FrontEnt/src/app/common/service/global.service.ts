@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Item } from '../interface/Item';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ export class GlobalService {
   constructor() { }
 
   public isLogined() : boolean {
-    if (window.localStorage["USER_NAME"]) {
+    if (window.sessionStorage["USER_NAME"]) {
       return true;
     }
 
@@ -15,10 +16,106 @@ export class GlobalService {
   }
 
   public isBuyer() : boolean {
-    return window.localStorage["USER_TYPE"] === "1";
+    return window.sessionStorage["USER_TYPE"] === "1";
   }
 
   public isSeller() : boolean {
-    return window.localStorage["USER_TYPE"] === "2";
+    return window.sessionStorage["USER_TYPE"] === "2";
   }
+
+  //test
+  public listItems : Item[] = [
+    {id : "1",
+      category : "Electronic",
+      subcategory : "Mobile",
+      manufactur : "Samsung",
+      item:'Galaxy s7',
+      price: 1000,
+      tax : 0.05,
+      pictures: ['../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung3.jpg', '../../assets/pictures/samsung4.jpg'],
+      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      seller: "Seller1",
+      stock : 500,
+      volume : 100,
+      datetime : new Date(),
+      purchaseNum : 1
+    },
+    {id : "2",
+      category : "Electronic",
+      subcategory : "Mobile",
+      manufactur : "OPPO",
+      item:'A5S',
+      price: 800,
+      tax : 0.05,
+      pictures: ['../../assets/pictures/oppo1.jpg', '../../assets/pictures/oppo2.jpg'],
+      descriptions:['Screen Resolution:1080p', 'Network Type:5G', 'Battery Capactity: 4000mA'],
+      seller: "Seller2",
+      stock : 300,
+      volume : 80,
+      datetime : new Date(),
+      purchaseNum : 2
+    },
+    {id : "3",
+      category : "Electronic",
+      subcategory : "Mobile",
+      manufactur : "Samsung",
+      item:'Galaxy s6',
+      price: 900,
+      tax : 0.05,
+      pictures: ['../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung3.jpg', '../../assets/pictures/samsung4.jpg'],
+      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      seller: "Seller1",
+      stock : 400,
+      volume : 120,
+      datetime : new Date(),
+      purchaseNum : 3
+    },
+    {id : "4",
+      category : "Electronic",
+      subcategory : "Mobile",
+      manufactur : "OPPO",
+      item:'A4S',
+      price: 500,
+      tax : 0.03,
+      pictures: ['../../assets/pictures/oppo2.jpg', '../../assets/pictures/oppo1.jpg'],
+      descriptions:['Screen Resolution:1080p', 'Network Type:5G', 'Battery Capactity: 5200mA'],
+      seller: "Seller2",
+      stock : 350,
+      volume : 81,
+      datetime : new Date(),
+      purchaseNum : 1
+    },
+    {id : "5",
+      category : "Electronic",
+      subcategory : "Mobile",
+      manufactur : "Samsung",
+      item:'Galaxy s3',
+      price: 700,
+      tax : 0.05,
+      pictures: ['../../assets/pictures/samsung3.jpg', '../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung4.jpg'],
+      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      seller: "Seller1",
+      stock : 400,
+      volume : 120,
+      datetime : new Date(),
+      purchaseNum : 2
+    },
+    {id : "6",
+      category : "Electronic",
+      subcategory : "Mobile",
+      manufactur : "Samsung",
+      item:'Galaxy s2',
+      price: 300,
+      tax : 0.05,
+      pictures: ['../../assets/pictures/samsung4.jpg', '../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung3.jpg'],
+      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      seller: "Seller1",
+      stock : 1000,
+      volume : 30,
+      datetime : new Date(),
+      purchaseNum : 6
+    },
+
+  ];
+
 }

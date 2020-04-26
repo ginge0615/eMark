@@ -32,8 +32,8 @@ export class LoginComponent  implements OnInit {
     }
 
     if (!hasError) {
-      window.localStorage["USER_NAME"] = this.userName;
-      window.localStorage["USER_TYPE"] = this.userType;
+      window.sessionStorage["USER_NAME"] = this.userName;
+      window.sessionStorage["USER_TYPE"] = this.userType;
       
       //TODO
       if (this.userType === "1") {
