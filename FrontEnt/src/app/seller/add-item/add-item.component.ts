@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { OptionInterface } from 'src/app/common/interface/option-interface';
+import { Option } from 'src/app/common/option';
 
 @Component({
   selector: 'app-add-item',
@@ -14,29 +14,29 @@ export class AddItemComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  categoryOptionList : OptionInterface[] = [
+  categoryOptionList : Option[] = [
     {value : "1", label : "Electronic"},
     {value : "2", label : "Dress"},
     {value : "3", label : "Book"},
   ];
 
-  selectedCategory : OptionInterface ;
+  selectedCategory : Option ;
 
-  subCategoryOptionList : OptionInterface[] = [
+  subCategoryOptionList : Option[] = [
     {value : "1", label : "Mobile"},
     {value : "2", label : "TV"},
     {value : "3", label : "MP4"},
   ];
 
-  selectedSubCategory : OptionInterface ;
+  selectedSubCategory : Option ;
 
-  manufacturerOptionList : OptionInterface[] = [
+  manufacturerOptionList : Option[] = [
     {value : "1", label : "Samsung"},
     {value : "2", label : "OPPO"},
     {value : "3", label : "XIAOMI"},
   ];
 
-  selectedManufacturer : OptionInterface ;
+  selectedManufacturer : Option ;
 
   itemNameValue : string;
   priceValue : number = 1;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalService } from 'src/app/common/service/global.service';
+import { GlobalService } from 'src/app/common/global.service';
 
 @Component({
   selector: 'app-buyer-main',

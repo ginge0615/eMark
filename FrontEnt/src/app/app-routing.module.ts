@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './common/component/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { SignupSellerComponent } from './seller/signup-seller/signup-seller.component';
 import { SignupBuyerComponent } from './buyer/signup-buyer/signup-buyer.component';
 import { ItemSearchComponent } from './buyer/item-search/item-search.component';
-import { TopBarComponent } from './common/component/top-bar/top-bar.component';
+import { TopBarComponent } from './common/top-bar/top-bar.component';
 import { BuyerMainComponent } from './buyer/buyer-main/buyer-main.component';
 import { ItemSpecificationsComponent } from './buyer/item-specifications/item-specifications.component';
 import { ShoppingCartComponent } from './buyer/shopping-cart/shopping-cart.component';

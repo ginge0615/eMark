@@ -1,27 +1,27 @@
 <div nz-row [nzGutter]="16">
     <div nz-col [nzSpan]="4" class="pic-fix-szie" nzOffset="1">
         <nz-carousel [nzEffect]="effect" nzAutoPlay>
-            <div nz-carousel-content *ngFor="let pic of array">
+            <div nz-carousel-content *ngFor="let pic of data.pictures">
                 <img src="{{pic}}" class="pic-fix-szie">
             </div>
         </nz-carousel>
     </div>
     <div nz-col [nzSpan]="6" nzOffset="1">
         <div nz-row>
-            <h6>{{item}}</h6>
+            <h6>{{data.item}}</h6>
         </div>
         <div nz-row style="margin-bottom: 10px;">
-            <div id="price">{{price}}</div>
+            <div id="price">{{data.price}}</div>
         </div>
         <div nz-row>
-            <h6>{{seller}}</h6>
+            <h6>{{data.seller}}</h6>
         </div>
         <div nz-row [nzGutter]="16">
             <div nz-col>
                 <h6>Sales volume</h6>
             </div>
             <div nz-col>
-                <h6 style="color: red;">{{salesVolume}}</h6>
+                <h6 style="color: red;">{{data.volume}}</h6>
             </div>
         </div>
         <div nz-row [nzGutter]="16" nzAlign="middle" style="margin-bottom: 10px;">
@@ -29,7 +29,7 @@
                 <h6>Number</h6>
             </div>
             <div nz-col>
-                <nz-input-number [(ngModel)]="buyNum" [nzMin]="1" [nzMax]="salesVolume" [nzStep]="1"></nz-input-number>
+                <nz-input-number [(ngModel)]="num" [nzMin]="1" [nzMax]="data.volume" [nzStep]="1"></nz-input-number>
             </div>
         </div>
         <div nz-row [nzGutter]="24">
@@ -45,12 +45,7 @@
 <nz-divider></nz-divider>
 <div nz-row [nzGutter]="16" style="height: 300px;">
     <div nz-col [nzSpan]="4" nzOffset="2">
-        <div nz-row *ngFor="let specification of specifications1">
-            {{specification}}
-        </div>
-    </div>
-    <div nz-col [nzSpan]="4" nzOffset="1">
-        <div nz-row *ngFor="let specification of specifications2">
+        <div nz-row *ngFor="let specification of data.descriptions">
             {{specification}}
         </div>
     </div>

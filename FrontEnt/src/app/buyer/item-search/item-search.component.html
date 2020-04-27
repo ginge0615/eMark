@@ -73,7 +73,7 @@
             <td>{{ data.seller }}</td>
             <td>{{ data.volume }}</td>
             <td>
-                <button nz-button routerLink="/items-pecifications/{{data.id}}" nzType="primary" nzSize="small" i18n="@@ViewDetails">View Details<i class="fas fa-angle-double-right"></i></button>
+                <button nz-button [routerLink]="['/items-pecifications', data.id ]" nzType="primary" nzSize="small" i18n="@@ViewDetails">View Details<i class="fas fa-angle-double-right"></i></button>
             </td>
         </tr>
     </tbody>

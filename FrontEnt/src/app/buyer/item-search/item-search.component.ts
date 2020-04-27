@@ -1,7 +1,7 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { OptionInterface } from 'src/app/common/interface/option-interface';
-import { Item } from 'src/app/common/interface/Item';
-import { GlobalService } from 'src/app/common/service/global.service';
+import { Option } from 'src/app/common/option';
+import { Item } from 'src/app/common/Item';
+import { GlobalService } from 'src/app/common/global.service';
 
 @Component({
   selector: 'app-item-search',
@@ -10,11 +10,11 @@ import { GlobalService } from 'src/app/common/service/global.service';
 })
 export class ItemSearchComponent implements OnInit {
   @Input() searchContent : string;
-  @Input() selectedManufacturer : OptionInterface;
+  @Input() selectedManufacturer : Option;
   @Input() priceFrom : number;
   @Input() priceTo : number;
 
-  manufacturerOptionList : OptionInterface[];
+  manufacturerOptionList : Option[];
   listOfColumn = [];
   listOfData: Item[];
   listCurrentData : Item[];
