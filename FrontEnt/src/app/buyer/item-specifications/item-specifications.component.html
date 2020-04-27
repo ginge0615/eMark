@@ -11,7 +11,7 @@
             <h6>{{data.item}}</h6>
         </div>
         <div nz-row style="margin-bottom: 10px;">
-            <div id="price">{{data.price}}</div>
+            <div id="price">{{data.price | currency}}</div>
         </div>
         <div nz-row>
             <h6>{{data.seller}}</h6>
@@ -43,15 +43,17 @@
     </div>
 </div>
 <nz-divider></nz-divider>
-<div nz-row [nzGutter]="16" style="height: 300px;">
-    <div nz-col [nzSpan]="4" nzOffset="2">
-        <div nz-row *ngFor="let specification of data.descriptions">
-            {{specification}}
-        </div>
+<div nz-row>
+    <div nz-col [nzSpan]="16" nzOffset="2">
+        <nz-descriptions nzTitle="Descriptions">
+            <nz-descriptions-item [nzTitle]="description.label" *ngFor="let description of data.descriptions">
+                {{description.value}}
+            </nz-descriptions-item>
+        </nz-descriptions>
     </div>
 </div>
 <div nz-row nzJustify="center">
     <div nz-col>
-        <button [routerLink]="['/']" class="btn btn-link btn-sm"><i class="fas fa-angle-double-left"></i>Back to Search</button>
+        <button (click)="goBack()" class="btn btn-link btn-sm"><i class="fas fa-angle-double-left"></i>Back</button>
     </div>
 </div>

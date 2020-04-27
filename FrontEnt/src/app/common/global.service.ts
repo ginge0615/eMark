@@ -23,6 +23,25 @@ export class GlobalService {
     return window.sessionStorage["USER_TYPE"] === "2";
   }
 
+  private cartItems : Item[];
+
+  public addToCart(item : Item) {
+    if (this.cartItems?.length > 0) {
+      for (let i of this.cartItems) {
+        if (i.id = item.id) {
+          i.purchaseNum += item.purchaseNum;
+          return;
+        }
+      }
+    }
+
+    this.cartItems.push(item);
+  }
+
+  public removeFromCart(item : Item) {
+    //todo
+  }
+
   //test
   public listItems : Item[] = [
     {id : "1",
@@ -33,7 +52,8 @@ export class GlobalService {
       price: 1000,
       tax : 0.05,
       pictures: ['../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung3.jpg', '../../assets/pictures/samsung4.jpg'],
-      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      descriptions:[{label:'Screen Resolution', value:'1080p'}, {label:'Network Type', value: '4G'}, {label : 'Battery Capactity', value: '3000mA'},
+                    {label:'Weight', value:'100g'}, {label:'Width', value: '300mm'}, {label : 'Height', value: '800mm'}],
       seller: "Seller1",
       stock : 500,
       volume : 100,
@@ -48,7 +68,7 @@ export class GlobalService {
       price: 800,
       tax : 0.05,
       pictures: ['../../assets/pictures/oppo1.jpg', '../../assets/pictures/oppo2.jpg'],
-      descriptions:['Screen Resolution:1080p', 'Network Type:5G', 'Battery Capactity: 4000mA'],
+      descriptions:[{label:'Screen Resolution', value:'1080p'}, {label:'Network Type', value: '4G'}, {label : 'Battery Capactity', value: '3000mA'}],
       seller: "Seller2",
       stock : 300,
       volume : 80,
@@ -63,7 +83,7 @@ export class GlobalService {
       price: 900,
       tax : 0.05,
       pictures: ['../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung3.jpg', '../../assets/pictures/samsung4.jpg'],
-      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      descriptions:[{label:'Screen Resolution', value:'1080p'}, {label:'Network Type', value: '4G'}, {label : 'Battery Capactity', value: '3000mA'}],
       seller: "Seller1",
       stock : 400,
       volume : 120,
@@ -78,7 +98,7 @@ export class GlobalService {
       price: 500,
       tax : 0.03,
       pictures: ['../../assets/pictures/oppo2.jpg', '../../assets/pictures/oppo1.jpg'],
-      descriptions:['Screen Resolution:1080p', 'Network Type:5G', 'Battery Capactity: 5200mA'],
+      descriptions:[{label:'Screen Resolution', value:'1080p'}, {label:'Network Type', value: '4G'}, {label : 'Battery Capactity', value: '3000mA'}],
       seller: "Seller2",
       stock : 350,
       volume : 81,
@@ -93,7 +113,7 @@ export class GlobalService {
       price: 700,
       tax : 0.05,
       pictures: ['../../assets/pictures/samsung3.jpg', '../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung4.jpg'],
-      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      descriptions:[{label:'Screen Resolution', value:'1080p'}, {label:'Network Type', value: '4G'}, {label : 'Battery Capactity', value: '3000mA'}],
       seller: "Seller1",
       stock : 400,
       volume : 120,
@@ -108,7 +128,7 @@ export class GlobalService {
       price: 300,
       tax : 0.05,
       pictures: ['../../assets/pictures/samsung4.jpg', '../../assets/pictures/samsung1.jpg', '../../assets/pictures/samsung2.jpg', '../../assets/pictures/samsung3.jpg'],
-      descriptions:['Screen Resolution:1080p', 'Network Type:4G', 'Battery Capactity: 3000mA'],
+      descriptions:[{label:'Screen Resolution', value:'1080p'}, {label:'Network Type', value: '4G'}, {label : 'Battery Capactity', value: '3000mA'}],
       seller: "Seller1",
       stock : 1000,
       volume : 30,

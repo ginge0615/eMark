@@ -17,6 +17,10 @@ export class ItemSpecificationsComponent implements OnInit {
 
   constructor(private routerInfo: ActivatedRoute, private global: GlobalService) { }
 
+  goBack() {
+    history.go(-1);
+  }
+
   ngOnInit() {
     this.routerInfo.paramMap.subscribe(params => {
       this.id= params.get('id');

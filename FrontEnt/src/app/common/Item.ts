@@ -1,3 +1,5 @@
+
+import {Option} from 'src/app/common/option';
 export interface Item {
   id : string;
   category : string;
@@ -7,7 +9,7 @@ export interface Item {
   price: number;
   tax : number;
   pictures: string[];
-  descriptions:string[];
+  descriptions:Option[];
   seller: string;
   stock : number;
   volume : number;

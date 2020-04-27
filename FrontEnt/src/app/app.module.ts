@@ -31,6 +31,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
 
 //MyCompents
@@ -96,7 +97,8 @@ import {ReportsComponent} from './seller/reports/reports.component';
       NzDatePickerModule,
       NzBadgeModule,
       NzRadioModule,
-      HttpClientJsonpModule, 
+      NzDescriptionsModule,
+      HttpClientJsonpModule,
       HttpClientModule
    ],
    providers: [],
