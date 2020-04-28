@@ -34,7 +34,7 @@
                             "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
                         ],
                         "scripts": [
-
+                            "./node_modules/jquery/dist/jquery.min.js"
                         ]
                     },
                     "configurations": {

@@ -13,7 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   totalTax : number = 0;
   totalPrice : number = 0;
   setOfCheckedId = new Set<string>();
-  listOfData: Item[];
+  listOfData: Item[] = this.global.cartItems;
 
   constructor(private global: GlobalService) {
   }
@@ -53,6 +53,12 @@ export class ShoppingCartComponent implements OnInit {
     this.allChecked  = this.listOfData.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.listOfData.some(item => this.setOfCheckedId.has(item.id)) && !this.allChecked ;
     this.updateTotalPriceSum();
+  }
+  
+
+  deleteItem(index : number) {
+    this.global.cartItems.splice(index, 1);
+    document.getElementById("tr" + index).style.display = "none";
   }
 
   ngOnInit(): void {

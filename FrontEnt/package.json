@@ -24,13 +24,15 @@
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@swimlane/ngx-datatable": "^17.0.0",
+    "@types/jquery": "^3.3.36",
     "bootstrap": "^4.4.1",
     "bootstrap-table": "^1.16.0",
-    "jquery": "^1.9.1",
+    "jquery": "^1.12.4",
     "ng-zorro-antd": "^9.0.1",
     "popper.js": "^1.16.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "typings": "^2.1.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

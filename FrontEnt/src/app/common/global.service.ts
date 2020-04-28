@@ -22,26 +22,7 @@ export class GlobalService {
   public isSeller() : boolean {
     return window.sessionStorage["USER_TYPE"] === "2";
   }
-
-  private cartItems : Item[];
-
-  public addToCart(item : Item) {
-    if (this.cartItems?.length > 0) {
-      for (let i of this.cartItems) {
-        if (i.id = item.id) {
-          i.purchaseNum += item.purchaseNum;
-          return;
-        }
-      }
-    }
-
-    this.cartItems.push(item);
-  }
-
-  public removeFromCart(item : Item) {
-    //todo
-  }
-
+ 
   //test
   public listItems : Item[] = [
     {id : "1",
@@ -58,7 +39,7 @@ export class GlobalService {
       stock : 500,
       volume : 100,
       datetime : new Date(),
-      purchaseNum : 1
+      purchaseNum : 0
     },
     {id : "2",
       category : "Electronic",
@@ -73,7 +54,7 @@ export class GlobalService {
       stock : 300,
       volume : 80,
       datetime : new Date(),
-      purchaseNum : 2
+      purchaseNum : 0
     },
     {id : "3",
       category : "Electronic",
@@ -88,7 +69,7 @@ export class GlobalService {
       stock : 400,
       volume : 120,
       datetime : new Date(),
-      purchaseNum : 3
+      purchaseNum : 0
     },
     {id : "4",
       category : "Electronic",
@@ -103,7 +84,7 @@ export class GlobalService {
       stock : 350,
       volume : 81,
       datetime : new Date(),
-      purchaseNum : 1
+      purchaseNum : 0
     },
     {id : "5",
       category : "Electronic",
@@ -118,7 +99,7 @@ export class GlobalService {
       stock : 400,
       volume : 120,
       datetime : new Date(),
-      purchaseNum : 2
+      purchaseNum : 0
     },
     {id : "6",
       category : "Electronic",
@@ -133,9 +114,11 @@ export class GlobalService {
       stock : 1000,
       volume : 30,
       datetime : new Date(),
-      purchaseNum : 6
+      purchaseNum : 0
     },
 
   ];
+
+  public cartItems : Item[] = [];
 
 }

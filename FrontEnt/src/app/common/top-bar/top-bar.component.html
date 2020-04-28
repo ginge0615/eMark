@@ -2,7 +2,7 @@
     <h1>eMart</h1>
 </a>
 <span>
-    <nz-badge [nzCount]="2" [nzOverflowCount]="999" *ngIf="global.isLogined() && global.isBuyer()" >
+    <nz-badge [nzCount]="global.cartItems.length" [nzOverflowCount]="999" *ngIf="global.isLogined() && global.isBuyer()" >
         <a [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i></a>
     </nz-badge>
     <a (click)="logout()" class="ml-2" i18n="@@Logout" *ngIf="global.isLogined()">Logout</a>
