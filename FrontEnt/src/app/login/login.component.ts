@@ -14,7 +14,7 @@ export class LoginComponent  implements OnInit {
   password: string;
 
   userName : string;
-  userType : string = "1"; //1:Buyer  2:Seller
+  userTypeValue : string = "1"; //1:Buyer  2:Seller
 
   submitForm(): void {
     console.info("uername=" + this.userName);
@@ -33,12 +33,12 @@ export class LoginComponent  implements OnInit {
 
     if (!hasError) {
       window.sessionStorage["USER_NAME"] = this.userName;
-      window.sessionStorage["USER_TYPE"] = this.userType;
+      window.sessionStorage["USER_TYPE"] = this.userTypeValue;
       
       //TODO
-      if (this.userType === "1") {
+      if (this.userTypeValue === "1") {
         this.router.navigate(['/emart-buyer']);
-      } else if(this.userType === "2") {
+      } else if(this.userTypeValue === "2") {
         this.router.navigate(['/emart-seller']);
       }
     }

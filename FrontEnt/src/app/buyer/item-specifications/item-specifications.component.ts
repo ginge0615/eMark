@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/common/Item';
 import { GlobalService } from 'src/app/common/global.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-item-specifications',
@@ -9,13 +10,15 @@ import { GlobalService } from 'src/app/common/global.service';
   styleUrls: ['./item-specifications.component.css']
 })
 export class ItemSpecificationsComponent implements OnInit {
+  validateForm: FormGroup;
+
   effect = 'scrollx';
 
   id: string;
   num: number = 1;
   data: Item;
 
-  constructor(private routerInfo: ActivatedRoute, private global: GlobalService) { }
+  constructor(private fb: FormBuilder, private routerInfo: ActivatedRoute, private global: GlobalService) { }
 
   goBack() {
     history.go(-1);
@@ -35,7 +38,14 @@ export class ItemSpecificationsComponent implements OnInit {
     this.global.cartItems.push(this.data);
   }
 
+  submitForm(): void {
+  }
+
   ngOnInit() {
+    this.validateForm = this.fb.group({
+      volume: [null, [Validators.required]],
+    });
+
     this.routerInfo.paramMap.subscribe(params => {
       this.id = params.get('id');
     });

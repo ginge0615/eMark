@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { AddItemComponent } from './add-item.component';
+import { ReactiveFormsModule} from '@angular/forms';
 
 describe('AddItemComponent', () => {
   let component: AddItemComponent;
@@ -11,7 +12,8 @@ describe('AddItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddItemComponent ]
+      declarations: [ AddItemComponent ],
+      imports:[ReactiveFormsModule]
     })
     .compileComponents();
   }));

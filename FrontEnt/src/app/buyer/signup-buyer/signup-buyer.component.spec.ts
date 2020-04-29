@@ -2,6 +2,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { ReactiveFormsModule} from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SignupBuyerComponent } from './signup-buyer.component';
 
@@ -11,7 +13,10 @@ describe('SignupBuyerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignupBuyerComponent ]
+      declarations: [ SignupBuyerComponent ],
+      imports:[ 
+        ReactiveFormsModule,RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
