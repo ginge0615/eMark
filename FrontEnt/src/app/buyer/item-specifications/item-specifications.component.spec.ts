@@ -6,6 +6,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ItemSpecificationsComponent } from './item-specifications.component';
+import { GlobalService } from 'src/app/common/global.service';
 
 describe('ItemSpecificationsComponent', () => {
   let component: ItemSpecificationsComponent;
@@ -30,4 +31,25 @@ describe('ItemSpecificationsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should add to cart', () => {
+    component.data = component.global.listItems[0];
+    component.addToCart();
+    expect(component.global.cartItems.length).toBe(1);
+
+  });
+
+  it('purchase number should be 1', () => {
+    component.data = component.global.listItems[0];
+    component.addToCart();
+    expect(component.data.purchaseNum).toBe(1);
+  });
+
+  it('purchase number should be 2', () => {
+    component.data = component.global.listItems[0];
+    component.addToCart();
+    component.addToCart();
+    expect(component.data.purchaseNum).toBe(2);
+  });
+  
 });

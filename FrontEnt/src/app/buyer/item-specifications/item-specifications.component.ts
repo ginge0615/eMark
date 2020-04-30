@@ -18,7 +18,7 @@ export class ItemSpecificationsComponent implements OnInit {
   num: number = 1;
   data: Item;
 
-  constructor(private fb: FormBuilder, private routerInfo: ActivatedRoute, private global: GlobalService) { }
+  constructor(private fb: FormBuilder, private routerInfo: ActivatedRoute, public global: GlobalService) { }
 
   goBack() {
     history.go(-1);
