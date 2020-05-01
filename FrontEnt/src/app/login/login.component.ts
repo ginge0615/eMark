@@ -34,7 +34,7 @@ export class LoginComponent  implements OnInit {
     if (!hasError) {
       window.sessionStorage["USER_NAME"] = this.userName;
       window.sessionStorage["USER_TYPE"] = this.userTypeValue;
-      
+
       //TODO
       if (this.userTypeValue === "1") {
         this.router.navigate(['/emart-buyer']);
