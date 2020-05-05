@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -49,6 +49,8 @@ import { AddItemComponent } from './seller/add-item/add-item.component';
 import { UploadPictureComponent } from './seller/add-item/upload-picture/upload-picture.component';
 import { ManageStockComponent } from './seller/manage-stock/manage-stock.component';
 import {ReportsComponent} from './seller/reports/reports.component';
+
+import {JwtInterceptor} from './interceptor/jwt.interceptor';
 
 @NgModule({
    declarations: [
@@ -101,7 +103,9 @@ import {ReportsComponent} from './seller/reports/reports.component';
       HttpClientJsonpModule,
       HttpClientModule
    ],
-   providers: [],
+   providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+   ],
    bootstrap: [
       AppComponent
    ]

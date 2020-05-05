@@ -11,7 +11,7 @@ export class AuthService {
   isLoggedIn() {
     if (this._isLoggedIn) return true;
 
-    if (window.sessionStorage["USER_NAME"]) {
+    if (window.sessionStorage["token"]) {
       this._isLoggedIn = true;
       return true;
     }
