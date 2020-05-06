@@ -32,6 +32,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 
 //MyCompents
@@ -51,6 +52,7 @@ import { ManageStockComponent } from './seller/manage-stock/manage-stock.compone
 import {ReportsComponent} from './seller/reports/reports.component';
 
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
+import { UserService } from './services/user.service'
 
 @NgModule({
    declarations: [
@@ -100,11 +102,13 @@ import {JwtInterceptor} from './interceptor/jwt.interceptor';
       NzBadgeModule,
       NzRadioModule,
       NzDescriptionsModule,
+      NzAlertModule,
       HttpClientJsonpModule,
       HttpClientModule
    ],
    providers: [
-      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      UserService
    ],
    bootstrap: [
       AppComponent

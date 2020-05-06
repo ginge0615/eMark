@@ -72,7 +72,7 @@ public interface BuyerMapper {
     })
     int updateByPrimaryKey(Buyer record);
     
-	@Select({"select * from buyer where username = #{username} and password = #{password}"})
+	@Select({"select * from buyer where username = #{username}"})
 	@Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
@@ -81,5 +81,5 @@ public interface BuyerMapper {
         @Result(column="mobile_phone", property="mobilePhone", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_datetime", property="createDatetime", jdbcType=JdbcType.TIMESTAMP)
     })
-	Buyer selectIdByNamePwd(String username, String password);
+	Buyer selectByName(String username);
 }

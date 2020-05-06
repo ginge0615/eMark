@@ -33,6 +33,7 @@
                 </nz-form-control>
             </nz-form-item>
             <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>
+            <nz-alert nzType="error" *ngIf="showError" nzMessage="Username or password incorrect!" nzShowIcon class="mt-2"></nz-alert>
         </div>
     </div>
 </form>
