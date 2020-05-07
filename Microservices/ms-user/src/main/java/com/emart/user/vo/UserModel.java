@@ -1,6 +1,6 @@
-package com.emart.user.bean;
+package com.emart.user.vo;
 
-public class User {
+public class UserModel {
 	private int id;
 	private String name;
 	private String password;

@@ -4,51 +4,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.emart.user.Const;
-import com.emart.user.bean.User;
-import com.emart.user.dao.BuyerMapper;
-import com.emart.user.dao.SellerMapper;
-import com.emart.user.entity.Buyer;
-import com.emart.user.entity.Seller;
+import com.emart.user.entity.BuyerEntity;
+import com.emart.user.entity.SellerEntity;
+import com.emart.user.repository.BuyerRepository;
+import com.emart.user.repository.SellerRepository;
+import com.emart.user.vo.UserModel;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private BuyerMapper buyerMapper;
+	private BuyerRepository buyerRepositor;
 	
 	@Autowired
-	private SellerMapper sellerMapper;
+	private SellerRepository sellerRepository;
 	
 	/**
-	 * Logon validate by username and password
-	 * @param user
-	 * @return token string
+	 * Login validate by username and password
+	 * @param user UserModel
+	 * @return true:login sucessful  false:login unsucessful
 	 */
 	@Override
-	public String loginValid(User user) {
-		String token = "";
-		String password = "";
+	public boolean loginValid(UserModel user) {
+		String password;
 		
 		if (Const.USER_TYPE_BUYER.equals(user.getRole())) {
-			Buyer buyer = buyerMapper.selectByName(user.getName());
+			BuyerEntity buyer = buyerRepositor.findByUsername(user.getName());
 			
-			if (buyer != null) {
-				password = buyer.getPassword();
+			if (buyer == null) {
+				return false;
 			}
+			
+			password = buyer.getPassword();
+			
 		} else {
-			Seller seller = sellerMapper.selectByName(user.getName());
+			SellerEntity seller = sellerRepository.findByUsername(user.getName());
 			
-			if (seller != null) {
-				password = seller.getPassword();
+			if (seller == null) {
+				return false;
 			}
-		}
-		
-		//create token
-		if (password.equals(user.getPassword())) {
 			
+			password = seller.getPassword();
 		}
 		
-		return token;
+		return password.equals(user.getPassword());
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.emart.user.service;
 
-import com.emart.user.bean.User;
+import com.emart.user.vo.UserModel;
 
 public interface UserService {
 	
-	public String loginValid(User user);
+	public boolean loginValid(UserModel user);
 }
