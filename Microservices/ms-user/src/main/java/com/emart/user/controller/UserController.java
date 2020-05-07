@@ -31,5 +31,13 @@ public class UserController {
 		user.setToken("aaaa");
 		return ResponseEntity.ok(user);
     }
+	
+	@PostMapping
+	public ResponseEntity<UserModel> signin(@RequestBody UserModel user) {
+		
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(user);
+	}
+	
 
 }
