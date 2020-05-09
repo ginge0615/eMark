@@ -22,3 +22,6 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+token:
+  secret: emart
+  expire-time: 720 #minutes

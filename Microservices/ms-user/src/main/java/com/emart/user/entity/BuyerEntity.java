@@ -76,7 +76,18 @@ public class BuyerEntity {
 		this.createDatetime = createDatetime;
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuffer buf = new StringBuffer();
+		buf.append("id=").append(this.id).append(" ");
+		buf.append("username=").append(this.username).append(" ");
+		buf.append("password=").append(this.password).append(" ");
+		buf.append("email=").append(this.email).append(" ");
+		buf.append("mobilePhone=").append(this.mobilePhone);
+		buf.append("createDatetime=").append(this.createDatetime);
+		
+		return buf.toString();
+	}
 
    
 }

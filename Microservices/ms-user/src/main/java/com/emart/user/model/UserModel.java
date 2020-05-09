@@ -1,4 +1,4 @@
-package com.emart.user.vo;
+package com.emart.user.model;
 
 public class UserModel {
 	private int id;
