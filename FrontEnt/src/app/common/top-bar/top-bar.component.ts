@@ -8,17 +8,17 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
+
   constructor(private router: Router, public global: GlobalService, private authService : AuthService) {
   }
 
   logout() {
-    window.sessionStorage.removeItem("USER_NAME");
-    window.sessionStorage.removeItem["USER_TYPE"];
+    window.sessionStorage.removeItem("token");
+    window.sessionStorage.removeItem("role");
     this.authService.logout
     this.router.navigate(['/']);
   }
 
   ngOnInit() {
   }
-
 }

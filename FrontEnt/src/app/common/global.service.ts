@@ -8,7 +8,7 @@ export class GlobalService {
   constructor() { }
 
   public isLogined() : boolean {
-    if (window.sessionStorage["USER_NAME"]) {
+    if (window.sessionStorage["token"]) {
       return true;
     }
 
@@ -16,11 +16,11 @@ export class GlobalService {
   }
 
   public isBuyer() : boolean {
-    return window.sessionStorage["USER_TYPE"] === "1";
+    return window.sessionStorage["role"] === "1";
   }
 
   public isSeller() : boolean {
-    return window.sessionStorage["USER_TYPE"] === "2";
+    return window.sessionStorage["role"] === "2";
   }
  
   //test

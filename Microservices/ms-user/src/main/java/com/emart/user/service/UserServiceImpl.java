@@ -38,14 +38,14 @@ public class UserServiceImpl implements UserService {
 		String password = "";
 		
 		if (Const.USER_TYPE_BUYER.equals(user.getRole())) {
-			BuyerEntity buyer = buyerRepositor.findByUsername(user.getName());
+			BuyerEntity buyer = buyerRepositor.findByUsername(user.getUsername());
 			
 			if (buyer != null) {
 				userId = buyer.getId();
 				password = buyer.getPassword();
 			}
 		} else {
-			SellerEntity seller = sellerRepository.findByUsername(user.getName());
+			SellerEntity seller = sellerRepository.findByUsername(user.getUsername());
 			
 			if (seller != null) {
 				userId = seller.getId();

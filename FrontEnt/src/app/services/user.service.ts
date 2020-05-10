@@ -18,8 +18,10 @@ export class UserService {
     return sessionStorage.getItem('token');
   }
 
-  postSignIn(user) {
-    return this.http.post(`user`, JSON.stringify(user), httpOptions);
+  public login(user) {
+    return this.http.post(`/user/login`, JSON.stringify(user), httpOptions);
   }
+
+  
 
 }

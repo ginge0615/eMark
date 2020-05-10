@@ -14,15 +14,12 @@ export class LoginComponent implements OnInit {
   validateForm: FormGroup;
   passwordVisible = false;
 
-  userName: string;
+  username: string;
   password: string;
   role: string;
   showError : boolean = false;
 
   submitForm(): void {
-    console.info("uername=" + this.userName);
-    console.info("password=" + this.password);
-
     let hasError: boolean = false;
     this.showError = false;
 
@@ -37,18 +34,19 @@ export class LoginComponent implements OnInit {
 
     if (!hasError) {
       let user = {
-        name: this.userName,
+        username: this.username,
         password: this.password,
         role: this.role
       };
 
-      this.userService.postSignIn(user).subscribe(
+      this.userService.login(user).subscribe(
         data => {
           const respData: any = data;
 
           if (respData.token) {
             //login sucessful
-            sessionStorage.setItem('token', respData.token);
+            window.sessionStorage.setItem('token', respData.token);
+            window.sessionStorage.setItem('role', this.role);
 
             if (this.role === "1") {
               this.router.navigate(['/emart-buyer']);
@@ -64,6 +62,7 @@ export class LoginComponent implements OnInit {
         res => {
           const response: any = res;
           console.log(response.status);
+          this.showError = true;
         }
       );
     }
@@ -83,12 +82,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, [Validators.required]],
       role: [null, [Validators.required]]
     });
 
-    this.userName = this.routeInfo.snapshot.queryParams["userName"];
+    this.username = this.routeInfo.snapshot.queryParams["userName"];
     this.role = "1"; //As Buyer
   }
 }

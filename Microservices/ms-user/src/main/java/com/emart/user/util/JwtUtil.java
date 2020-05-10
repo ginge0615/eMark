@@ -18,22 +18,22 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 public class JwtUtil {
 	private static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
 	
-	@Value("token.secret")
+	@Value("${token.secret}")
 	private String secret;
 	
 	/** Token expire time (minutes)*/
-	@Value("token.expire-time")
+	@Value("${token.expire-time}")
     private String expireTime;
     
-    private static JwtUtil util = new JwtUtil();
-    
-    public static JwtUtil getInstance() {
-    	return util;
-    }
-    
-    private JwtUtil() {
-    }
-    
+//    private static JwtUtil util = new JwtUtil();
+//    
+//    public static JwtUtil getInstance() {
+//    	return util;
+//    }
+//    
+//    private JwtUtil() {
+//    }
+//    
     /**
      * Generate token by user id.
      * @param userId
