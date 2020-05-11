@@ -3,7 +3,7 @@ package com.emart.buyer.model;
 import java.math.BigDecimal;
 
 public class CartModel {
-	private String id;
+	private Integer id;
 	private String category;
 	private String subcategory;
 	private String manufactur;
@@ -12,14 +12,13 @@ public class CartModel {
 	private BigDecimal price;
 	private int num;
 	private BigDecimal tax;
-	private String buyerId;
-	private String sellerId;
-	private String itemId;
-	
-	public String getId() {
+	private Integer buyerId;
+	private Integer sellerId;
+	private Integer itemId;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getCategory() {
@@ -64,28 +63,30 @@ public class CartModel {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getBuyerId() {
-		return buyerId;
-	}
-	public void setBuyerId(String buyerId) {
-		this.buyerId = buyerId;
-	}
-	public String getSellerId() {
-		return sellerId;
-	}
-	public void setSellerId(String sellerId) {
-		this.sellerId = sellerId;
-	}
-	public String getItemId() {
-		return itemId;
-	}
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
-	}
 	public BigDecimal getTax() {
 		return tax;
 	}
 	public void setTax(BigDecimal tax) {
 		this.tax = tax;
 	}
+	public Integer getBuyerId() {
+		return buyerId;
+	}
+	public void setBuyerId(Integer buyerId) {
+		this.buyerId = buyerId;
+	}
+	public Integer getSellerId() {
+		return sellerId;
+	}
+	public void setSellerId(Integer sellerId) {
+		this.sellerId = sellerId;
+	}
+	public Integer getItemId() {
+		return itemId;
+	}
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
+	}
+	
+	
 }

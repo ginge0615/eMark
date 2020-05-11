@@ -19,13 +19,6 @@ public interface ItemService {
 	 * @param id
 	 * @return ItemDetailModel
 	 */
-	public ItemDetailModel getItemDetail(String id);
-	
-	/**
-	 * Get purchase history
-	 * @param userId
-	 * @return List<ItemModel>
-	 */
-	public List<ItemModel> getPurchaseHistory(String userId);
-	
+	public ItemDetailModel getItemDetail(Integer id);
+
 }

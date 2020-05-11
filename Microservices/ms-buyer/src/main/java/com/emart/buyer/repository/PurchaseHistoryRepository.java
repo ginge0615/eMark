@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.emart.buyer.entity.CartEntity;
+import com.emart.buyer.entity.PurchaseHistoryEntity;
 
 @Repository
-public interface CartRepository extends JpaRepository<CartEntity, Integer>{
+public interface PurchaseHistoryRepository extends JpaRepository<CartEntity, Integer>{
 
-	public List<CartEntity> findByBuyerId(Integer buyerId);
+	public List<PurchaseHistoryEntity> findByBuyerId(String buyerId);
 
 }

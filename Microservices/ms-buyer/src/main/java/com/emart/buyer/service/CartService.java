@@ -10,7 +10,7 @@ public interface CartService {
 	 * @param userId
 	 * @return List<CartModel>
 	 */
-	public List<CartModel> getCart(String userId);
+	public List<CartModel> getCart(Integer userId);
 	
 	/**
 	 * Add item to buyer's cart.

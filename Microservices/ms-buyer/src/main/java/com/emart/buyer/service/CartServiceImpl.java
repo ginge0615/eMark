@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartService {
 	 * @return List<CartModel>
 	 */
 	@Override
-	public List<CartModel> getCart(String userId) {
+	public List<CartModel> getCart(Integer userId) {
 		List<CartEntity> lstEntity = cartRepositor.findByBuyerId(userId);
 		
 		if (CollectionUtils.isEmpty(lstEntity)) {

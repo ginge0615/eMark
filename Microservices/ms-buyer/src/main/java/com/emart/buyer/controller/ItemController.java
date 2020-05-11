@@ -43,8 +43,8 @@ public class ItemController {
 	 * @return ItemDetailModel
 	 */
 	@GetMapping("/{id}")
-    public ResponseEntity<ItemDetailModel> viewDetail(@PathVariable String itemId) {
-		ItemDetailModel item = service.getItemDetail(itemId);
+    public ResponseEntity<ItemDetailModel> viewDetail(@PathVariable String itemId) {		
+		ItemDetailModel item = service.getItemDetail(Integer.parseInt(itemId));
 		
 		if (item == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

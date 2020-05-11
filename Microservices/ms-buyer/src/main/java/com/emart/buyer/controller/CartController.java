@@ -30,7 +30,8 @@ public class CartController {
 	 */
 	@GetMapping("/{userId}")
     public ResponseEntity<List<CartModel>> getCart(@PathVariable String userId) {
-		List<CartModel> lst = service.getCart(userId);
+		
+		List<CartModel> lst = service.getCart(Integer.parseInt(userId));
 		
 		if (CollectionUtils.isEmpty(lst)) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

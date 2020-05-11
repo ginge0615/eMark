@@ -8,9 +8,9 @@ public interface PurchaseHistoryService {
 	
 	/**
 	 * Get purchase history
-	 * @param userId
+	 * @param buyerId
 	 * @return List<PurchaseHistoryModel>
 	 */
-	public List<PurchaseHistoryModel> getPurchaseHistory(String userId);
+	public List<PurchaseHistoryModel> getPurchaseHistory(String buyerId);
 	
 }
