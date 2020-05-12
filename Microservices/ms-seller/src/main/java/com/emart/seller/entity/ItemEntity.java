@@ -1,43 +1,39 @@
 package com.emart.seller.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="item")
-public class ItemEntity implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ItemEntity {
     private Integer id;
 
-	@Column(name="sell_id")
+    @Column(name="sell_id")
     private Integer sellId;
 
-	@Column(name="category_id")
+    @Column(name="category_id")
     private Integer categoryId;
 
-	@Column(name="subcategory_id")
+    @Column(name="subcategory_id")
     private Integer subcategoryId;
 
-	@Column(name="manufactur_id")
+    @Column(name="manufactur_id")
     private Integer manufacturId;
 
-	@Column(name="item_name")
+    @Column(name="item_name")
     private String itemName;
 
+    @Column(name="price")
     private BigDecimal price;
 
-    @Column(name="stock_number")
-    private Integer stockNumber;
+    @Column(name="stock")
+    private Integer stock;
 
-    private static final long serialVersionUID = 1L;
+    @Column(name="sales_volume")
+    private Integer salesVolume;
 
     public Integer getId() {
         return id;
@@ -95,11 +91,19 @@ public class ItemEntity implements Serializable {
         this.price = price;
     }
 
-    public Integer getStockNumber() {
-        return stockNumber;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setStockNumber(Integer stockNumber) {
-        this.stockNumber = stockNumber;
+    public void setStockNumber(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Integer getSalesVolume() {
+        return salesVolume;
+    }
+
+    public void setSalesVolume(Integer salesVolume) {
+        this.salesVolume = salesVolume;
     }
 }

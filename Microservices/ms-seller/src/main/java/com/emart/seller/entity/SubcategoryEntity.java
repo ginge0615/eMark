@@ -1,35 +1,27 @@
 package com.emart.seller.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="subcategory")
-public class SubcategoryEntity implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SubcategoryEntity {
     private Integer id;
 
-	@Column(name="subcategory_name")
+    @Column(name="subcategory_name")
     private String subcategoryName;
 
-	@Column(name="category_id")
+    @Column(name="category_id")
     private Integer categoryId;
 
-	@Column(name="brief_details")
+    @Column(name="brief_details")
     private String briefDetails;
 
-	@Column(name="GST")
+    @Column(name="GST")
     private BigDecimal gst;
-
-    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;

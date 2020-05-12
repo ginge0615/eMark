@@ -1,25 +1,16 @@
 package com.emart.seller.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="manufactur")
-public class ManufacturEntity implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ManufacturEntity {
     private Integer id;
 
-	@Column(name="manufactur_name")
+    @Column(name="manufactur_name")
     private String manufacturName;
-
-    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
