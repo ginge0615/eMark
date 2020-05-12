@@ -29,8 +29,8 @@ public class ItemEntity {
     @Column(name="price")
     private BigDecimal price;
 
-    @Column(name="stock_number")
-    private Integer stockNumber;
+    @Column(name="stock")
+    private Integer stock;
 
     @Column(name="sales_volume")
     private Integer salesVolume;
@@ -91,12 +91,12 @@ public class ItemEntity {
         this.price = price;
     }
 
-    public Integer getStockNumber() {
-        return stockNumber;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setStockNumber(Integer stockNumber) {
-        this.stockNumber = stockNumber;
+    public void setStockNumber(Integer stock) {
+        this.stock = stock;
     }
 
     public Integer getSalesVolume() {

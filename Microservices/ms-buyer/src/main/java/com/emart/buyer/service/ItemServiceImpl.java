@@ -11,13 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
 import com.emart.buyer.entity.DescriptionEntity;
-import com.emart.buyer.entity.ItemEntity;
 import com.emart.buyer.entity.ItemViewEntity;
 import com.emart.buyer.entity.PictureEntity;
 import com.emart.buyer.model.ItemDetailModel;
 import com.emart.buyer.model.ItemModel;
 import com.emart.buyer.repository.DescriptionRepository;
-import com.emart.buyer.repository.ItemRepository;
 import com.emart.buyer.repository.ItemViewRepository;
 import com.emart.buyer.repository.PictureRepository;
 
@@ -26,9 +24,6 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private ItemViewRepository itemViewRepositor;
-	
-	@Autowired
-	private ItemRepository itemRepositor;
 	
 	@Autowired
 	private PictureRepository pictureRepositor;
@@ -51,25 +46,16 @@ public class ItemServiceImpl implements ItemService {
 		List<ItemModel> lstModel = new ArrayList<ItemModel>(lstEntity.size());
 
 		//Convert entity to model   
-		lstEntity.stream().forEach(entity -> lstModel.add(toItemModel(entity)));
+		lstEntity.stream().forEach(entity -> {
+			ItemModel model = new ItemModel();
+			BeanUtils.copyProperties(entity, model);
+			lstModel.add(model);
+		});
 		
 		return lstModel;
 		
 	}
-	
-	/**
-	 * Convert entity to model   
-	 * @param entity
-	 * @return ItemModel
-	 */
-	private ItemModel toItemModel(ItemViewEntity entity) {
-		ItemModel model = new ItemModel();
-		
-		//Copy propeties from cart entity to cart model
-		BeanUtils.copyProperties(entity, model);
-		
-		return model;
-	}
+
 	
 	/**
 	 * Get item detail
@@ -79,14 +65,13 @@ public class ItemServiceImpl implements ItemService {
 	public ItemDetailModel getItemDetail(Integer id){
 		ItemDetailModel model = null;
 		
-		//Get item from Item table
-		Optional<ItemEntity> optEntity = itemRepositor.findById(id);
+		//Get item from Item view
+		Optional<ItemViewEntity> optEntity = itemViewRepositor.findById(id);
 		
 		if (optEntity.isPresent()) {
-			ItemEntity itemEntity = optEntity.get();
+			model = new ItemDetailModel();
 			
-			//Get item info from Item view
-			ItemViewEntity itemViewEntity = itemViewRepositor.findById(id).get();
+			ItemViewEntity entity = optEntity.get();			
 			
 			//Get pictures
 			List<PictureEntity> lstPictures = pictureRepositor.findByItemId(id);
@@ -94,15 +79,8 @@ public class ItemServiceImpl implements ItemService {
 			//Get descriptions
 			List<DescriptionEntity> lstescription = descptionRepositor.findByItemId(id);
 			
-			model = new ItemDetailModel();
-			model.setId(String.valueOf(id));
-			model.setCategory(String.valueOf(itemEntity.getCategoryId()));
-			model.setSubcategory(String.valueOf(itemEntity.getSubcategoryId()));
-			model.setManufactur(String.valueOf(itemEntity.getManufacturId()));
-			model.setSellerId(String.valueOf(itemEntity.getSellId()));
-			model.setSeller(itemViewEntity.getSeller());
-			model.setVolume(itemEntity.getSalesVolume());
-			model.setNum(1);
+			BeanUtils.copyProperties(entity, model);
+			model.setNumber(1);
 			model.setPictures((String[])lstPictures.toArray());
 			model.setDescriptions((String[])lstescription.toArray());
 		}

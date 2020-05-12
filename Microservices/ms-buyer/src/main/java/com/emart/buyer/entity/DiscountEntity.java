@@ -13,7 +13,7 @@ public class DiscountEntity {
     private Integer id;
 
     @Column(name="discount_code")
-    private Integer discountCode;
+    private String discountCode;
 
     private BigDecimal percentage;
 
@@ -33,11 +33,11 @@ public class DiscountEntity {
         this.id = id;
     }
 
-    public Integer getDiscountCode() {
+    public String getDiscountCode() {
         return discountCode;
     }
 
-    public void setDiscountCode(Integer discountCode) {
+    public void setDiscountCode(String discountCode) {
         this.discountCode = discountCode;
     }
 

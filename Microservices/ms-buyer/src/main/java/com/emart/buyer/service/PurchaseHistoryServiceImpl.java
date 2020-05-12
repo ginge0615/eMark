@@ -5,21 +5,23 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
+import com.emart.buyer.entity.ItemViewEntity;
 import com.emart.buyer.entity.PurchaseHistoryEntity;
-import com.emart.buyer.model.ItemDetailModel;
 import com.emart.buyer.model.PurchaseHistoryModel;
+import com.emart.buyer.repository.ItemViewRepository;
 import com.emart.buyer.repository.PurchaseHistoryRepository;
 
 public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 	private static final Logger log = LoggerFactory.getLogger(PurchaseHistoryServiceImpl.class);
 
 	@Autowired
-	private PurchaseHistoryRepository repository;
+	private PurchaseHistoryRepository historyRepository;
 	@Autowired
-	private ItemService itemService;
+	private ItemViewRepository itemViewRepositor;
 	
 	/**
 	 * Get purchase history
@@ -27,7 +29,7 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 	 * @return List<PurchaseHistoryModel>
 	 */
 	public List<PurchaseHistoryModel> getPurchaseHistory(String buyerId) {
-		List<PurchaseHistoryEntity> lstEntity = repository.findByBuyerId(buyerId);
+		List<PurchaseHistoryEntity> lstEntity = historyRepository.findByBuyerId(buyerId);
 		
 		if (CollectionUtils.isEmpty(lstEntity)) {
 			return null;
@@ -36,20 +38,22 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 		List<PurchaseHistoryModel> lstModel = new ArrayList<PurchaseHistoryModel>(lstEntity.size());
 
 		//Convert entity to model   
-		lstEntity.stream().forEach(entity -> lstModel.add(toModel(entity)));
+		lstEntity.stream().forEach(entity -> {
+			PurchaseHistoryModel model = new PurchaseHistoryModel();
+			
+			//Get item from item view
+			ItemViewEntity itemViewEntity =  itemViewRepositor.findById(entity.getItemId()).get();
+			
+			//Copy propeties from ItemViewEntity to cart model
+			BeanUtils.copyProperties(itemViewEntity, model);
+			//Copy propeties from cart entity to cart model
+			BeanUtils.copyProperties(entity, model);
+			
+			lstModel.add(model);
+		});
 		
 		return lstModel;	
 	}
-	
-	private PurchaseHistoryModel toModel(PurchaseHistoryEntity entity) {
-		PurchaseHistoryModel model = new PurchaseHistoryModel();
-		model.setId(String.valueOf(entity.getId()));
-		
-		//TODO
-		ItemDetailModel itemModel =  itemService.getItemDetail(entity.getItemId());
-		
-		
-		return model;
-	}
+
 
 }

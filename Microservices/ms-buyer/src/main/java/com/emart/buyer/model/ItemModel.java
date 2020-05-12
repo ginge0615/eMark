@@ -11,7 +11,7 @@ public class ItemModel {
 	private String item;
 	private BigDecimal price;
 	private String seller;
-	private int volume;
+	private int salesVolume;
 	
 	public String getId() {
 		return id;
@@ -61,11 +61,11 @@ public class ItemModel {
 	public void setSeller(String seller) {
 		this.seller = seller;
 	}
-	public int getVolume() {
-		return volume;
+	public int getSalesVolume() {
+		return salesVolume;
 	}
-	public void setVolume(int volume) {
-		this.volume = volume;
+	public void setSalesVolume(int salesVolume) {
+		this.salesVolume = salesVolume;
 	}
 	
 }

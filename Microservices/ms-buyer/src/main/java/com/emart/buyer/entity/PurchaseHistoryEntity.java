@@ -28,10 +28,9 @@ public class PurchaseHistoryEntity {
 	@Column(name="item_id")
     private Integer itemId;
 
-    private Integer num;
+    private Integer number;
 
-    @Column(name="purchase_datetime")
-    private Date purchaseDatetime;
+    private Date datetime;
 
     public Integer getId() {
         return id;
@@ -73,19 +72,21 @@ public class PurchaseHistoryEntity {
         this.itemId = itemId;
     }
 
-    public Integer getNum() {
-        return num;
-    }
+	public Integer getNumber() {
+		return number;
+	}
 
-    public void setNum(Integer num) {
-        this.num = num;
-    }
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
 
-    public Date getPurchaseDatetime() {
-        return purchaseDatetime;
-    }
+	public Date getDatetime() {
+		return datetime;
+	}
 
-    public void setPurchaseDatetime(Date purchaseDatetime) {
-        this.purchaseDatetime = purchaseDatetime;
-    }
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
+
+  
 }

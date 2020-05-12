@@ -2,6 +2,7 @@ package com.emart.buyer.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
 import com.emart.buyer.entity.CartEntity;
+import com.emart.buyer.entity.ItemViewEntity;
 import com.emart.buyer.model.CartModel;
 import com.emart.buyer.model.ItemDetailModel;
 import com.emart.buyer.repository.CartRepository;
+import com.emart.buyer.repository.ItemViewRepository;
 
 public class CartServiceImpl implements CartService {
 	private static final Logger log = LoggerFactory.getLogger(CartServiceImpl.class);
@@ -21,7 +24,7 @@ public class CartServiceImpl implements CartService {
 	private CartRepository cartRepositor;
 	
 	@Autowired
-	private ItemService itemService;
+	private ItemViewRepository itemViewRepositor;
 	
 	/**
 	 * Get cart
@@ -40,39 +43,24 @@ public class CartServiceImpl implements CartService {
 		List<CartModel> lstModel = new ArrayList<CartModel>(lstEntity.size());
 
 		//Convert entity to model   
-		lstEntity.stream().forEach(entity -> lstModel.add(toModel(entity)));
+		lstEntity.stream().forEach(entity -> {
+			CartModel model = new CartModel();
+			
+			//Get item from item view
+			ItemViewEntity itemViewEntity = itemViewRepositor.findById(entity.getItemId()).get();
+			
+			//Copy propeties from ItemViewEntity to cart model
+			BeanUtils.copyProperties(itemViewEntity, model);
+			//Copy propeties from cart entity to cart model
+			BeanUtils.copyProperties(entity, model);
+			
+			lstModel.add(model);
+			
+		});
 		
 		return lstModel;		
 	}
 	
-	/**
-	 * Convert entity to model   
-	 * @param entity
-	 * @return CartModel
-	 */
-	private CartModel toModel(CartEntity entity) {
-		CartModel model = new CartModel();
-		
-		//Copy propeties from cart entity to cart model
-		BeanUtils.copyProperties(entity, model);
-		
-		//Get item detail by item id
-		ItemDetailModel itemDetail = itemService.getItemDetail(model.getItemId());
-		
-		if (itemDetail != null) {
-			//Copy propeties from item detail model to cart model
-			BeanUtils.copyProperties(itemDetail, model);
-
-			//Set cover photo with first picture
-			if (itemDetail.getPictures().length > 0) {
-				model.setPicture(itemDetail.getPictures()[0]);
-			}
-		} else {
-			log.error("Item detail not found! Item id=" + model.getItemId() );
-		}
-		
-		return model;
-	}
 
 	/**
 	 * Add item to buyer's cart.

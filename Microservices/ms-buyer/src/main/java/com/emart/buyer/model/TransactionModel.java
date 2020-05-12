@@ -7,7 +7,7 @@ public class TransactionModel {
 	private String sellerId;
 	private String itemId;
 	private BigDecimal price;
-	private int num;
+	private int number;
 	private String transactionType;
 	private BigDecimal transactionAmount;
 	
@@ -35,11 +35,11 @@ public class TransactionModel {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	public int getNum() {
-		return num;
+	public int getNumber() {
+		return number;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 	public String getTransactionType() {
 		return transactionType;
