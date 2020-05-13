@@ -2,8 +2,8 @@ package com.emart.model;
 
 import java.math.BigDecimal;
 
-public class ItemModel {
-	private String id;
+public class ItemModel extends MessageModel{
+	private Integer id;
 	private String picture;
 	private String category;
 	private String subcategory;
@@ -12,11 +12,12 @@ public class ItemModel {
 	private BigDecimal price;
 	private String seller;
 	private int salesVolume;
+	private int stock;
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getPicture() {
@@ -66,6 +67,12 @@ public class ItemModel {
 	}
 	public void setSalesVolume(int salesVolume) {
 		this.salesVolume = salesVolume;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	
 }

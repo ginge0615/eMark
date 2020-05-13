@@ -12,6 +12,7 @@ public class ItemModel {
 	private BigDecimal price;
 	private String seller;
 	private int salesVolume;
+	private int stock;
 	
 	public String getId() {
 		return id;
@@ -66,6 +67,12 @@ public class ItemModel {
 	}
 	public void setSalesVolume(int salesVolume) {
 		this.salesVolume = salesVolume;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	
 }

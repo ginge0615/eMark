@@ -1,6 +1,7 @@
 package com.emart.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="item")
-public class ItemEntity {
+@Table(name="report_view")
+public class ReportEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,26 +20,19 @@ public class ItemEntity {
     @Column(name="sell_id")
     private Integer sellId;
 
-    @Column(name="category_id")
-    private Integer categoryId;
-
-    @Column(name="subcategory_id")
-    private Integer subcategoryId;
-
-    @Column(name="manufactur_id")
-    private Integer manufacturId;
-
     @Column(name="item_name")
     private String itemName;
 
     @Column(name="price")
     private BigDecimal price;
-
-    @Column(name="stock")
-    private Integer stock;
+    
+    private Date datetime;
 
     @Column(name="sales_volume")
     private Integer salesVolume;
+    
+    @Column(name="transaction_amount")
+    private Integer transactionAmount;
 
     public Integer getId() {
         return id;
@@ -54,30 +48,6 @@ public class ItemEntity {
 
     public void setSellId(Integer sellId) {
         this.sellId = sellId;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Integer getSubcategoryId() {
-        return subcategoryId;
-    }
-
-    public void setSubcategoryId(Integer subcategoryId) {
-        this.subcategoryId = subcategoryId;
-    }
-
-    public Integer getManufacturId() {
-        return manufacturId;
-    }
-
-    public void setManufacturId(Integer manufacturId) {
-        this.manufacturId = manufacturId;
     }
 
     public String getItemName() {
@@ -96,14 +66,6 @@ public class ItemEntity {
         this.price = price;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStockNumber(Integer stock) {
-        this.stock = stock;
-    }
-
     public Integer getSalesVolume() {
         return salesVolume;
     }
@@ -111,4 +73,20 @@ public class ItemEntity {
     public void setSalesVolume(Integer salesVolume) {
         this.salesVolume = salesVolume;
     }
+
+	public Date getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
+
+	public Integer getTransactionAmount() {
+		return transactionAmount;
+	}
+
+	public void setTransactionAmount(Integer transactionAmount) {
+		this.transactionAmount = transactionAmount;
+	}
 }

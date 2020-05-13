@@ -2,7 +2,6 @@ package com.emart.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,6 @@ import org.springframework.util.CollectionUtils;
 import com.emart.entity.CartEntity;
 import com.emart.entity.ItemViewEntity;
 import com.emart.model.CartModel;
-import com.emart.model.ItemDetailModel;
 import com.emart.repository.CartRepository;
 import com.emart.repository.ItemViewRepository;
 
