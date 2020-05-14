@@ -2,6 +2,8 @@ package com.emart.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.emart.exception.BusinessException;
 import com.emart.model.ItemDetailModel;
 import com.emart.model.ItemModel;

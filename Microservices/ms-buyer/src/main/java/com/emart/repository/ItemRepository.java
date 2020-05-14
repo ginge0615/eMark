@@ -1,5 +1,7 @@
 package com.emart.repository;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +20,8 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Integer>{
 	 * @return
 	 */
 	@Modifying
-	@Query(value="update item set stock = stock - :num, sales_volume = sales_volume + :num where id = :id and stock >= :num")
-	public int updateStock(@Param("id") Integer id, @Param("num") Integer number);
+//	@Query(value="update item set stock = stock - ?2, sales_volume = sales_volume + ?2 where id = ?1 and stock >= ?2")
+	@Transactional
+	@Query(value="select count(*) from item",nativeQuery = true)
+	public int updateStock(int id, int number);
 } 

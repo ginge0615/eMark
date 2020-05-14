@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.emart.entity.DescriptionEntity;
@@ -17,6 +18,7 @@ import com.emart.repository.DescriptionRepository;
 import com.emart.repository.ItemViewRepository;
 import com.emart.repository.PictureRepository;
 
+@Service
 public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private ItemViewRepository itemViewRepositor;

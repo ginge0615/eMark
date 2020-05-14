@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.emart.entity.DescriptionEntity;
@@ -20,6 +21,7 @@ import com.emart.repository.ItemRepository;
 import com.emart.repository.ItemViewRepository;
 import com.emart.repository.PictureRepository;
 
+@Service
 public abstract class ItemServiceImpl implements ItemService {
 	
 	@Autowired
@@ -41,6 +43,7 @@ public abstract class ItemServiceImpl implements ItemService {
 	 * @param model
 	 * @return added item mode
 	 */
+	@Override
 	public ItemDetailModel addItem(ItemDetailModel model) {
 		if (model == null) {
 			return null;
@@ -115,6 +118,7 @@ public abstract class ItemServiceImpl implements ItemService {
 	 * @return true:sucessful  false:failue
 	 * @throws BusinessException
 	 */
+	@Override
 	public void updateStock(Integer itemId, int stock) throws BusinessException {
 		Optional<ItemEntity> optEntity = itemRepository.findById(itemId);
 		

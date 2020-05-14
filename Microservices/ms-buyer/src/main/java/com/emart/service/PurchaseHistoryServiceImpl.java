@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.emart.entity.ItemViewEntity;
@@ -13,6 +14,7 @@ import com.emart.model.PurchaseHistoryModel;
 import com.emart.repository.ItemViewRepository;
 import com.emart.repository.PurchaseHistoryRepository;
 
+@Service
 public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 	@Autowired
 	private PurchaseHistoryRepository historyRepository;

@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 
@@ -22,6 +23,7 @@ import com.emart.repository.ItemRepository;
 import com.emart.repository.PurchaseHistoryRepository;
 import com.emart.repository.TransactionRepository;
 
+@Service
 public class TransactionServiceImpl implements TransactionService {
 	@Autowired
 	ItemRepository itemRepository;
