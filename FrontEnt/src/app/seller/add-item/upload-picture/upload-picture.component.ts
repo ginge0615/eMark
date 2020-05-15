@@ -18,7 +18,7 @@ function getBase64(file: File): Promise<string | ArrayBuffer | null> {
         nzAction="./"
         nzListType="picture-card"
         [(nzFileList)]="fileList"
-        [nzShowButton]="fileList.length < 8"
+        [nzShowButton]="fileList.length < 4"
         [nzPreview]="handlePreview"
         [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
       >
@@ -59,23 +59,7 @@ export class UploadPictureComponent {
       status: 'done',
       url: '../../../assets/pictures/samsung2.jpg'
     },
-    {
-      uid: '-3',
-      name: 'image.png',
-      status: 'done',
-      url: '../../../assets/pictures/samsung3.jpg'
-    },
-    {
-      uid: '-4',
-      name: 'image.png',
-      status: 'done',
-      url: '../../../assets/pictures/samsung4.jpg'
-    },
-    {
-      uid: '-5',
-      name: 'image.png',
-      status: 'error'
-    }
+
   ];
   previewImage: string | undefined = '';
   previewVisible = false;

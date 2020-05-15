@@ -3,8 +3,6 @@ package com.emart.controller;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +18,6 @@ import com.emart.service.ReportService;
 @RestController
 @RequestMapping(value = "/report")
 public class ReportController {
-	private static final Logger log = LoggerFactory.getLogger(ReportController.class);
-	
 	@Autowired
 	private ReportService service;
     

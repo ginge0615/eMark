@@ -45,13 +45,6 @@
                     </nz-input-number>
                 </nz-form-control>
             </nz-form-item>
-            <nz-form-item>
-                <nz-form-label [nzSpan]="labelSize" nzFor="tax" nzRequired>Tax</nz-form-label>
-                <nz-form-control [nzSpan]="controlSize" [nzValidateStatus]="validateForm.controls['tax']" nzErrorTip="Please input tax!">
-                    <nz-input-number [(ngModel)]="taxValue" formControlName="tax" [nzMin]="0" [nzMax]="100" [nzStep]="1" [nzFormatter]="formatterPercent" [nzParser]="parserPercent" ngDefaultControl>
-                    </nz-input-number>
-                </nz-form-control>
-            </nz-form-item>
         </div>
         <div nz-col nzSpan="10">
             <div nz-row>

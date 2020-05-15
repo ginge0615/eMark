@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emart.exception.BusinessException;
-import com.emart.model.ItemDetailModel;
 import com.emart.model.MessageModel;
 import com.emart.model.TransactionModel;
 import com.emart.service.TransactionService;

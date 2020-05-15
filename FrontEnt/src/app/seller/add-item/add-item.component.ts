@@ -41,7 +41,6 @@ export class AddItemComponent implements OnInit {
   itemNameValue : string;
   priceValue : number = 1;
   stockValue : number = 1;
-  taxValue : number = 0;
 
   compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
   formatterDollar = (value: number) => `$ ${value}`;
@@ -93,7 +92,6 @@ export class AddItemComponent implements OnInit {
       itemName: new FormControl(null, [Validators.required]),
       price: new FormControl(null, [Validators.required]),
       stock: new FormControl(null, [Validators.required]),
-      tax: new FormControl(null, [Validators.required]),
     });
 
     this.addField();
