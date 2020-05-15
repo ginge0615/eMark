@@ -22,7 +22,7 @@ import com.emart.repository.ItemViewRepository;
 import com.emart.repository.PictureRepository;
 
 @Service
-public abstract class ItemServiceImpl implements ItemService {
+public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private ItemRepository itemRepository;

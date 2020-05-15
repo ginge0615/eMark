@@ -2,6 +2,7 @@ package com.emart.service;
 
 import java.math.BigDecimal;
 
+import com.emart.exception.BusinessException;
 import com.emart.model.TransactionModel;
 
 public interface TransactionService {
@@ -9,9 +10,9 @@ public interface TransactionService {
 	/**
 	 * Checkout
 	 * @param models TransactionModel[]
-	 * @return true:checkout sucessful, false:checkout failure
+	 * @throws BusinessException 
 	 */
-	public boolean checkout(TransactionModel[] models);
+	public void checkout(TransactionModel[] models) throws BusinessException;
 	
 	/**
 	 * Get discount by code.

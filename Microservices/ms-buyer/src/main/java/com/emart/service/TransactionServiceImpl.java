@@ -9,14 +9,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 
 import com.emart.entity.DiscountEntity;
 import com.emart.entity.PurchaseHistoryEntity;
 import com.emart.entity.TransactionEntity;
+import com.emart.exception.BusinessException;
 import com.emart.model.TransactionModel;
 import com.emart.repository.DiscountRepository;
 import com.emart.repository.ItemRepository;
@@ -37,32 +35,23 @@ public class TransactionServiceImpl implements TransactionService {
 	@Autowired
 	DiscountRepository discountRepository;
 	
-	@Autowired
-	private DataSourceTransactionManager dataSourceTransactionManager;
-	
-	@Autowired
-	private TransactionDefinition transactionDefinition;
-	
 	
 	/**
 	 * Checkout
 	 * @param models TransactionModel[]
-	 * @return true:checkout sucessful, false:checkout failure
+	 * @throws BusinessException 
 	 */
 	@Transactional
-	public boolean checkout(TransactionModel[] models) {
+	public void checkout(TransactionModel[] models) throws BusinessException {
 		Date datetime = new Date();
-		
-		TransactionStatus transactionStatus = dataSourceTransactionManager.getTransaction(transactionDefinition);
 		
 		for (TransactionModel model : models) {
 			//Update stock if stock is larger than purchase number.
 			int updatedCnt = itemRepository.updateStock(Integer.parseInt(model.getItemId()), model.getNumber());
 			
-			//If the inventory is insufficient, rollback
+			//If the inventory is insufficient, throw exception and rollback
 			if (updatedCnt == 0) {
-				dataSourceTransactionManager.rollback(transactionStatus);
-				return false;
+				throw new BusinessException("E003");
 			}
 			
 			//Create transaction
@@ -81,10 +70,6 @@ public class TransactionServiceImpl implements TransactionService {
 			historyRepository.save(historyEntity);
 			
 		}
-
-		dataSourceTransactionManager.commit(transactionStatus);
-		return true;
-		
 	}
 	
 	/**

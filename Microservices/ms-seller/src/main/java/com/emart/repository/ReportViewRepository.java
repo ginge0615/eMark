@@ -22,8 +22,7 @@ public interface ReportViewRepository extends JpaRepository<ReportViewEntity, In
 	@Query(value="select * from report_view where seller_id = ?1 " + 
 	             "and ( item like %?2% or ?2 is null)" +
 	             "and ( datetime >= ?3 or ?3 is null)" +
-	             "and ( datetime <= ?4 or ?4 is null)"
-	 )
+	             "and ( datetime <= ?4 or ?4 is null)",nativeQuery = true)
 	public List<ReportViewEntity> searchReport(Integer sellerId, String item, Date fromDate, Date toDate);
 
 }
