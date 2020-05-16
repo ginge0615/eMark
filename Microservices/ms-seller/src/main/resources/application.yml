@@ -2,7 +2,7 @@ server:
    port: 8083
 spring:
    application:
-      name: ms-buyer
+      name: ms-seller
    profiles:
       active: test
    zipkin:

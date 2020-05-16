@@ -24,10 +24,10 @@ import net.sf.json.JSONArray;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
-public class CategoryControllerTest {
+public class ManufacturControllerTest {
 	
 	@Autowired
-	private CategoryController uc;
+	private ManufacturController uc;
 	
 	private MockMvc mvc; 
 	 
@@ -37,23 +37,12 @@ public class CategoryControllerTest {
 	}
 	
 	@Test
-	public void testGetAllCategories() throws Exception {
-		RequestBuilder request = get("/category").contentType(MediaType.APPLICATION_JSON);
+	public void testGetAllManufacturs() throws Exception {
+		RequestBuilder request = get("/manufactur").contentType(MediaType.APPLICATION_JSON);
 				
 		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
 		
 		String responseString = mvcResult.getResponse().getContentAsString();
 		Assert.assertTrue(JSONArray.fromObject(responseString).size() > 0);
 	}
-	
-	@Test
-	public void testGetSubCategories() throws Exception {
-		RequestBuilder request = get("/category/1").contentType(MediaType.APPLICATION_JSON);
-				
-		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
-		
-		String responseString = mvcResult.getResponse().getContentAsString();
-		Assert.assertTrue(JSONArray.fromObject(responseString).size() > 0);
-	}
-
 }

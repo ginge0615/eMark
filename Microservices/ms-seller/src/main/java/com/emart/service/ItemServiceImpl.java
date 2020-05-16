@@ -66,7 +66,7 @@ public class ItemServiceImpl implements ItemService {
 		model.setId(entity.getId());
 		
 		//Insert into item_picture table
-		for (int i = 0; i < model.getPictures().length - 1; i++) {
+		for (int i = 0; i < model.getPictures().length; i++) {
 			PictureEntity pictureEntity = new PictureEntity();
 			pictureEntity.setItemId(model.getId());
 			pictureEntity.setSeq(i + 1);
@@ -75,7 +75,7 @@ public class ItemServiceImpl implements ItemService {
 		}
 		
 		// Insert into item_description table
-		for (int i = 0; i < model.getDescriptions().length - 1; i++) {
+		for (int i = 0; i < model.getDescriptions().length; i++) {
 			DescriptionEntity descEntity = new DescriptionEntity();
 			descEntity.setItemId(model.getId());
 			descEntity.setSeq(i + 1);

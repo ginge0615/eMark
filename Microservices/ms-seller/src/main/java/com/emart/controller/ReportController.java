@@ -1,6 +1,6 @@
 package com.emart.controller;
 
-import java.util.Date;
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +33,22 @@ public class ReportController {
     public ResponseEntity<List<ReportModel>> searchReports(
     		@RequestParam(value="sellId") Integer sellId,
     		@RequestParam(value="item") String item,
-    		@RequestParam(value="fromDate") Date fromDate, 
-    		@RequestParam(value="toDate") Date toDate) {
+    		@RequestParam(value="fromDate") String fromDate, 
+    		@RequestParam(value="toDate") String toDate) {
 		
-		List<ReportModel> lst = service.search(sellId, item, fromDate, toDate);
-		
-		if (CollectionUtils.isEmpty(lst)) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		
-		return ResponseEntity.ok(lst);
+		List<ReportModel> lst;
+		try {
+			lst = service.search(sellId, item, fromDate, toDate);
+			
+			if (CollectionUtils.isEmpty(lst)) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			}
+			
+			return ResponseEntity.ok(lst);
+			
+		} catch (ParseException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}		
     }
 	
 }

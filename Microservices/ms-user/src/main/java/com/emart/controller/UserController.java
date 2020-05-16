@@ -33,7 +33,7 @@ public class UserController {
 	@PostMapping("/login")
     public ResponseEntity<UserModel> login(@RequestBody UserModel user) {
 		//Validate user by username and password and get user id.
-		int userId = userService.validateByUsernameAndPassword(user);
+		Integer userId = userService.validateByUsernameAndPassword(user);
 		if (userId > 0) {
 			//If passed, generate Token.
 			user.setId(userId);
@@ -41,36 +41,38 @@ public class UserController {
 			return ResponseEntity.ok(user);
 		} else {
 			//Validate failure
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(user);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
     }
 	
 	/**
 	 * Singin as buyer 
 	 * @param buyer BuyerModel
-	 * @return BuyerModel
+	 * @return id, if failure then 0
 	 */
 	@PostMapping("/signinasbuyer")
-	public ResponseEntity<BuyerModel> signinAsBuyer(@RequestBody BuyerModel buyer) {
-		if (userService.signinAsBuyer(buyer)) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(buyer);
+	public ResponseEntity<Integer> signinAsBuyer(@RequestBody BuyerModel buyer) {
+		Integer id = userService.signinAsBuyer(buyer);
+		if (id > 0) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(id);
 		}
 		
-		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(id);
 	}
 	
 	/**
 	 * Singin as seller 
 	 * @param seller SellerModel
-	 * @return SellerModel
+	 * @return id, if failure then 0
 	 */
 	@PostMapping("/signinasseller")
-	public ResponseEntity<SellerModel> signinAsBuyer(@RequestBody SellerModel seller) {
-		if (userService.signinAsSeller(seller)) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(seller);
+	public ResponseEntity<Integer> signinAsBuyer(@RequestBody SellerModel seller) {
+		Integer id = userService.signinAsSeller(seller);
+		if (id > 0) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(id);
 		}
 		
-		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(id);
 	}
 	
 	/**
@@ -78,7 +80,7 @@ public class UserController {
 	 * @param token string
 	 * @return user id, if not passed return 0
 	 */
-	@GetMapping("/{token}")
+	@GetMapping("/{token:.+}")
 	public ResponseEntity<Integer> validateToken(@PathVariable String token) {
 		int userId = jwt.verifyToken(token);
 		

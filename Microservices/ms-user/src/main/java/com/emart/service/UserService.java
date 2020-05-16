@@ -11,19 +11,19 @@ public interface UserService {
 	 * @param user UserModel
 	 * @return user id
 	 */
-	public int validateByUsernameAndPassword(UserModel user);
+	public Integer validateByUsernameAndPassword(UserModel user);
 	
 	/**
 	 * Singin as buyer
 	 * @param buyer
-	 * @return true:sucessful  false:failure
+	 * @return id
 	 */
-	public boolean signinAsBuyer(BuyerModel buyer);
+	public Integer signinAsBuyer(BuyerModel buyer);
 	
 	/**
 	 * Singin as seller
 	 * @param seller
-	 * @return true:sucessful  false:failure
+	 * @return id
 	 */
-	public boolean signinAsSeller(SellerModel seller);
+	public Integer signinAsSeller(SellerModel seller);
 }

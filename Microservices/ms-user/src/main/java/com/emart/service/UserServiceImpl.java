@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
 	 * @return user id, return 0 if user can not found or password is incorrect.
 	 */
 	@Override
-	public int validateByUsernameAndPassword(UserModel user) {
-		int userId = 0;
+	public Integer validateByUsernameAndPassword(UserModel user) {
+		Integer userId = 0;
 		String password = "";
 		
 		if (Const.USER_TYPE_BUYER.equals(user.getRole())) {
@@ -63,43 +63,42 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * Singin as buyer
 	 * @param buyer BuyerModel
-	 * @return BuyerEntity
+	 * @return id, if failure then 0
 	 */
 	@Override
-	public boolean signinAsBuyer(BuyerModel buyer) {
+	public Integer signinAsBuyer(BuyerModel buyer) {
 		BuyerEntity entity = new BuyerEntity();
 		BeanUtils.copyProperties(buyer, entity);
-		entity.setCreateDatetime(Calendar.getInstance().getTime());
 		
 		try {
-			buyerRepositor.save(entity);
+			entity = buyerRepositor.save(entity);
 		} catch (Exception e) {
 			log.error(e.toString());
-			return false;
+			return 0;
 		}
 		
-		return true;
+		return entity.getId();
 	}
 
 	/**
 	 * Singin as seller
 	 * @param seller
-	 * @return true:sucessful  false:failure
+	 * @return id, if failure then 0
 	 */
 	@Override
-	public boolean signinAsSeller(SellerModel seller) {
+	public Integer signinAsSeller(SellerModel seller) {
 		SellerEntity entity = new SellerEntity();
 		BeanUtils.copyProperties(seller, entity);
 		entity.setCreateDatetime(Calendar.getInstance().getTime());
 		
 		try {
-			sellerRepository.save(entity);
+			entity = sellerRepository.save(entity);
 		} catch (Exception e) {
 			log.error(e.toString());
-			return false;
+			return 0;
 		}
 		
-		return true;
+		return entity.getId();
 	}
 
 }

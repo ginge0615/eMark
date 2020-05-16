@@ -1,6 +1,7 @@
 package com.emart.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Assert;
@@ -18,16 +19,17 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
-public class CategoryControllerTest {
+public class ReportControllerTest {
 	
 	@Autowired
-	private CategoryController uc;
+	private ReportController uc;
 	
 	private MockMvc mvc; 
 	 
@@ -37,23 +39,18 @@ public class CategoryControllerTest {
 	}
 	
 	@Test
-	public void testGetAllCategories() throws Exception {
-		RequestBuilder request = get("/category").contentType(MediaType.APPLICATION_JSON);
+	public void testSearchReports() throws Exception {
+		
+		RequestBuilder request = get("/report").contentType(MediaType.TEXT_PLAIN)
+				.param("sellId", "1")
+				.param("item", "A6");
 				
 		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
 		
 		String responseString = mvcResult.getResponse().getContentAsString();
-		Assert.assertTrue(JSONArray.fromObject(responseString).size() > 0);
-	}
-	
-	@Test
-	public void testGetSubCategories() throws Exception {
-		RequestBuilder request = get("/category/1").contentType(MediaType.APPLICATION_JSON);
-				
-		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
 		
-		String responseString = mvcResult.getResponse().getContentAsString();
-		Assert.assertTrue(JSONArray.fromObject(responseString).size() > 0);
+		JSONArray jsonArray = JSONArray.fromObject(responseString);
+		Assert.assertTrue(jsonArray.size() > 0);
 	}
 
 }
