@@ -22,3 +22,5 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+picture:
+  upload-path: C://eMart//pictures
