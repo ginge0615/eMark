@@ -28,7 +28,7 @@ public class ItemViewEntity{
     private Integer manufacturId;
 
     @Column(name="item_name")
-    private String item;
+    private String itemName;
 
     @Column(name="price")
     private BigDecimal price;
@@ -90,14 +90,6 @@ public class ItemViewEntity{
 
 	public void setManufacturId(Integer manufacturId) {
 		this.manufacturId = manufacturId;
-	}
-
-	public String getItem() {
-		return item;
-	}
-
-	public void setItemName(String item) {
-		this.item = item;
 	}
 
 	public BigDecimal getPrice() {
@@ -170,5 +162,13 @@ public class ItemViewEntity{
 
 	public void setSearchContext(String searchContext) {
 		this.searchContext = searchContext;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 }

@@ -8,7 +8,7 @@ public class ItemModel extends MessageModel{
 	private String category;
 	private String subcategory;
 	private String manufactur;
-	private String item;
+	private String itemName;
 	private BigDecimal price;
 	private String seller;
 	private Integer salesVolume = 0;
@@ -44,12 +44,7 @@ public class ItemModel extends MessageModel{
 	public void setManufactur(String manufactur) {
 		this.manufactur = manufactur;
 	}
-	public String getItem() {
-		return item;
-	}
-	public void setItem(String item) {
-		this.item = item;
-	}
+
 	public BigDecimal getPrice() {
 		return price;
 	}
@@ -73,6 +68,12 @@ public class ItemModel extends MessageModel{
 	}
 	public void setStock(Integer stock) {
 		this.stock = stock;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 	
 }

@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.emart.model.ItemDetailModel;
-import com.emart.model.ItemModel;
 
 import net.sf.json.JSONObject;
 
@@ -49,7 +48,7 @@ public class ItemControllerTest {
 		model.setCategory("1");
 		model.setSubcategory("1");
 		model.setManufactur("2");
-		model.setItem("A6S");
+		model.setItemName("A6S");
 		model.setNumber(0);
 		model.setPrice(new BigDecimal(100.2));
 		model.setStock(500);
@@ -103,12 +102,8 @@ public class ItemControllerTest {
 	
 	@Test
 	public void testUpdateStock() throws Exception {
-		ItemModel model = new ItemModel();
-		model.setId(1);
-		model.setStock(200);
-		
 		RequestBuilder request = put("/item/stock").contentType(MediaType.APPLICATION_JSON)
-				.content(JSONObject.fromObject(model).toString());
+				.param("id", "1").param("stock", "100");
 		
 		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
 		String responseString = mvcResult.getResponse().getContentAsString();

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emart.exception.BusinessException;
@@ -89,9 +90,9 @@ public class ItemController {
 	 * @return message
 	 */
 	@PutMapping("/stock")
-	public ResponseEntity<MessageModel> updateStock(@RequestBody ItemModel model) {
+	public ResponseEntity<MessageModel> updateStock(@RequestParam(value="id") Integer id, @RequestParam(value="stock") Integer stock) {
 		try {
-			service.updateStock(model.getId(), model.getStock());
+			service.updateStock(id, stock);
 		} catch (BusinessException e) {
 			log.error(e.toString());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessageModel());

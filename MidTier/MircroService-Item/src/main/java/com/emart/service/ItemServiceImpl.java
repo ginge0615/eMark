@@ -129,7 +129,7 @@ public class ItemServiceImpl implements ItemService {
 		entity.setCategoryId(Integer.parseInt(model.getCategory()));
 		entity.setSubcategoryId(Integer.parseInt(model.getSubcategory()));
 		entity.setManufacturId(Integer.parseInt(model.getManufactur()));
-		entity.setItemName(model.getItem());
+		entity.setItemName(model.getItemName());
 		entity.setPrice(model.getPrice());
 		entity.setStockNumber(model.getStock());
 		entity.setSalesVolume(0);
