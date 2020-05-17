@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1" targetRuntime="MyBatis3Simple">
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+	<commentGenerator>
+		<property name="suppressAllComments" value="true" />
+		<property name="suppressDate" value="true" />
+	</commentGenerator>
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/emart-main"
+			userId="root" password="root">
+		</jdbcConnection>
+	<javaTypeResolver>
+        <property name="forceBigDecimals" value="true"/>
+    </javaTypeResolver>
+	<javaModelGenerator targetPackage="com.emart.buyer.entity" targetProject="MircroService-Transaction" >
+		<property name="enableSubPackages" value="true"/>
+        <property name="trimStrings" value="true"/>
+	</javaModelGenerator>
+	<table tableName="seller" 
+		domainObjectName="SellerEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+  <table tableName="buyer" 
+		domainObjectName="BuyerEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+  <table tableName="category" 
+		domainObjectName="CategoryEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+  
+  <table tableName="discount" 
+		domainObjectName="DiscountEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+  
+  <table tableName="item_description" 
+		domainObjectName="DescriptionEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+  
+  <table tableName="item_picture" 
+		domainObjectName="PictureEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+  
+  <table tableName="manufactur" 
+		domainObjectName="ManufacturEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+  
+  <table tableName="subcategory" 
+		domainObjectName="SubcategoryEntity" 
+		enableCountByExample="false" 
+		enableUpdateByExample="false"
+ 		enableDeleteByExample="false" 
+ 		enableSelectByExample="false" 
+ 		selectByExampleQueryId="false">
+  </table>
+
+  </context>
+</generatorConfiguration>
