@@ -40,56 +40,56 @@ public class UserControllerTest {
 		mvc = MockMvcBuilders.standaloneSetup(uc).build(); 
 	}
 	
-//	@Test
-//	public void testSigninAsBuyer() throws Exception {
-//		//Signin is sucessful
-//		BuyerModel model = new BuyerModel();
-//		model.setUsername("buyer1");
-//		model.setPassword("123456");
-//		model.setEmail("test@sina.com");
-//		model.setMobilePhone("13314285689");
-//		
-//		RequestBuilder request = post("/user/signinasbuyer").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
-//				
-//		MvcResult mvcResult = mvc.perform(request).andExpect(status().isCreated()).andReturn();
-//		String responseString = mvcResult.getResponse().getContentAsString();
-//		Assert.assertNotEquals("0", responseString);
-//		
-//		//Repeat signin
-//		request = post("/user/signinasbuyer").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
-//		
-//		mvcResult = mvc.perform(request).andExpect(status().isNotAcceptable()).andReturn();
-//		responseString = mvcResult.getResponse().getContentAsString();
-//		Assert.assertEquals("0", responseString);
-//	}
-//	
-//	@Test
-//	public void testSigninAsSeller() throws Exception {
-//		//Signin is sucessful
-//		SellerModel model = new SellerModel();
-//		model.setUsername("seller1");
-//		model.setPassword("123456");
-//		model.setEmail("test@sina.com");
-//		model.setContactNumber("13314285689");
-//		model.setCompanyName("ibm");
-//		model.setBriefAboutCompany("test");
-//		model.setGstin("gstin");
-//		model.setPostalAddress("postaddress");
-//		model.setWebsite("http://www.emart.com");
-//		
-//		RequestBuilder request = post("/user/signinasseller").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
-//				
-//		MvcResult mvcResult = mvc.perform(request).andExpect(status().isCreated()).andReturn();
-//		String responseString = mvcResult.getResponse().getContentAsString();
-//		Assert.assertNotEquals("0", responseString);
-//		
-//		//Repeat signin
-//		request = post("/user/signinasseller").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
-//		
-//		mvcResult = mvc.perform(request).andExpect(status().isNotAcceptable()).andReturn();
-//		responseString = mvcResult.getResponse().getContentAsString();
-//		Assert.assertEquals("0", responseString);
-//	}
+	@Test
+	public void testSigninAsBuyer() throws Exception {
+		//Signin is sucessful
+		BuyerModel model = new BuyerModel();
+		model.setUsername("buyer1");
+		model.setPassword("123456");
+		model.setEmail("test@sina.com");
+		model.setMobilePhone("13314285689");
+		
+		RequestBuilder request = post("/user/signinasbuyer").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
+				
+		MvcResult mvcResult = mvc.perform(request).andExpect(status().isCreated()).andReturn();
+		String responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertNotEquals("0", responseString);
+		
+		//Repeat signin
+		request = post("/user/signinasbuyer").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
+		
+		mvcResult = mvc.perform(request).andExpect(status().isNotAcceptable()).andReturn();
+		responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertEquals("0", responseString);
+	}
+	
+	@Test
+	public void testSigninAsSeller() throws Exception {
+		//Signin is sucessful
+		SellerModel model = new SellerModel();
+		model.setUsername("seller1");
+		model.setPassword("123456");
+		model.setEmail("test@sina.com");
+		model.setContactNumber("13314285689");
+		model.setCompanyName("ibm");
+		model.setBriefAboutCompany("test");
+		model.setGstin("gstin");
+		model.setPostalAddress("postaddress");
+		model.setWebsite("http://www.emart.com");
+		
+		RequestBuilder request = post("/user/signinasseller").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
+				
+		MvcResult mvcResult = mvc.perform(request).andExpect(status().isCreated()).andReturn();
+		String responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertNotEquals("0", responseString);
+		
+		//Repeat signin
+		request = post("/user/signinasseller").contentType(MediaType.APPLICATION_JSON).content(JSONObject.fromObject(model).toString());
+		
+		mvcResult = mvc.perform(request).andExpect(status().isNotAcceptable()).andReturn();
+		responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertEquals("0", responseString);
+	}
 	
 	@Test
 	public void testBuyerLogin() throws Exception {
