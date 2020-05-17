@@ -19,8 +19,7 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Integer>{
 	 * @return
 	 */
 	@Modifying
-//	@Query(value="update item set stock = stock - ?2, sales_volume = sales_volume + ?2 where id = ?1 and stock >= ?2")
+	@Query(value="update item set stock = stock - ?2, sales_volume = sales_volume + ?2 where id = ?1 and stock >= ?2", nativeQuery = true)
 	@Transactional
-	@Query(value="select count(*) from item",nativeQuery = true)
 	public int updateStock(int id, int number);
 } 

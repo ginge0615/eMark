@@ -25,7 +25,7 @@ public class PurchaseHistoryController {
 	 * @return List<PurchaseHistoryModel>
 	 */
 	@GetMapping("/{userId}")
-    public ResponseEntity<List<PurchaseHistoryModel>> getPurchaseHistory(@PathVariable String userId) {
+    public ResponseEntity<List<PurchaseHistoryModel>> getPurchaseHistory(@PathVariable Integer userId) {
 		List<PurchaseHistoryModel> lst = service.getPurchaseHistory(userId);
 		
 		if (CollectionUtils.isEmpty(lst)) {

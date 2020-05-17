@@ -1,6 +1,5 @@
 package com.emart.entity;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -23,60 +22,47 @@ public class TransactionEntity {
 	@Column(name="seller_id")
     private Integer sellerId;
 
-	@Column(name="transaction_type")
-    private String transactionType;
+    private String type;
 
-	@Column(name="transaction_datetime")
-    private Date transactionDatetime;
-	
-	@Column(name="transaction_amount")
-    private BigDecimal transactionAmount;
+    private Date datetime;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getBuyerId() {
-        return buyerId;
-    }
-
-    public void setBuyerId(Integer buyerId) {
-        this.buyerId = buyerId;
-    }
-
-    public Integer getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(Integer sellerId) {
-        this.sellerId = sellerId;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType == null ? null : transactionType.trim();
-    }
-
-    public Date getTransactionDatetime() {
-        return transactionDatetime;
-    }
-
-    public void setTransactionDatetime(Date transactionDatetime) {
-        this.transactionDatetime = transactionDatetime;
-    }
-
-	public BigDecimal getTransactionAmount() {
-		return transactionAmount;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setTransactionAmount(BigDecimal transactionAmount) {
-		this.transactionAmount = transactionAmount;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getBuyerId() {
+		return buyerId;
+	}
+
+	public void setBuyerId(Integer buyerId) {
+		this.buyerId = buyerId;
+	}
+
+	public Integer getSellerId() {
+		return sellerId;
+	}
+
+	public void setSellerId(Integer sellerId) {
+		this.sellerId = sellerId;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Date getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
 	}
 }

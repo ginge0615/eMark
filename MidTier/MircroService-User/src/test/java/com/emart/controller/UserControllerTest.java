@@ -44,7 +44,7 @@ public class UserControllerTest {
 	public void testSigninAsBuyer() throws Exception {
 		//Signin is sucessful
 		BuyerModel model = new BuyerModel();
-		model.setUsername("buyer1");
+		model.setUsername("buyer3");
 		model.setPassword("123456");
 		model.setEmail("test@sina.com");
 		model.setMobilePhone("13314285689");
@@ -67,7 +67,7 @@ public class UserControllerTest {
 	public void testSigninAsSeller() throws Exception {
 		//Signin is sucessful
 		SellerModel model = new SellerModel();
-		model.setUsername("seller1");
+		model.setUsername("seller3");
 		model.setPassword("123456");
 		model.setEmail("test@sina.com");
 		model.setContactNumber("13314285689");

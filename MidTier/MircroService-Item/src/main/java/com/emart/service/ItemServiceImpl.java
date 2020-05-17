@@ -77,18 +77,35 @@ public class ItemServiceImpl implements ItemService {
 		if (optEntity.isPresent()) {
 			model = new ItemDetailModel();
 			
-			ItemViewEntity entity = optEntity.get();			
+			ItemViewEntity entity = optEntity.get();
+			BeanUtils.copyProperties(entity, model);
+			model.setNumber(1);
 			
 			//Get pictures
 			List<PictureEntity> lstPictures = pictureRepository.findByItemId(id);
 			
-			//Get descriptions
-			List<DescriptionEntity> lstescription = descriptionRepository.findByItemId(id);
+			if (!CollectionUtils.isEmpty(lstPictures)) {
+				String[] picturesArray = new String[lstPictures.size()];
+				
+				for (int i = 0; i < lstPictures.size(); i++) {
+					picturesArray[i] = lstPictures.get(i).getPicturePath();
+				}
+				
+				model.setPictures(picturesArray);
+			}
 			
-			BeanUtils.copyProperties(entity, model);
-			model.setNumber(1);
-			model.setPictures((String[])lstPictures.toArray());
-			model.setDescriptions((String[])lstescription.toArray());
+			//Get descriptions
+			List<DescriptionEntity> lstDescription = descriptionRepository.findByItemId(id);
+			
+			if (!CollectionUtils.isEmpty(lstDescription)) {
+				String[] descriptionsArray = new String[lstDescription.size()];
+				
+				for (int i = 0; i < lstDescription.size(); i++) {
+					descriptionsArray[i] = lstDescription.get(i).getDescription();
+				}
+				
+				model.setDescriptions(descriptionsArray);
+			}
 		}
 		
 		return model;
@@ -145,13 +162,13 @@ public class ItemServiceImpl implements ItemService {
 
 	/**
 	 * Find all items by seller id.
-	 * @param sellId
+	 * @param sellerId
 	 * @return items
 	 */
 	@Override
-	public List<ItemModel> findAllItems(Integer sellId) {
+	public List<ItemModel> findAllItems(Integer sellerId) {
 		//Find all items from item view with sell id.
-		List<ItemViewEntity> lstItemViewEntity = itemViewRepository.findBySellId(sellId);
+		List<ItemViewEntity> lstItemViewEntity = itemViewRepository.findBySellerId(sellerId);
 		
 		if (CollectionUtils.isEmpty(lstItemViewEntity)) {
 			return null;

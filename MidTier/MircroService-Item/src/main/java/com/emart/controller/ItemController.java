@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,15 +34,9 @@ public class ItemController {
 	 * @param context
 	 * @return List<ItemModel>
 	 */
-	@GetMapping("/search/{context}")
+	@GetMapping("/{context}")
     public ResponseEntity<List<ItemModel>> search(@PathVariable String context) {
-		List<ItemModel> lst = service.search(context);
-		
-		if (CollectionUtils.isEmpty(lst)) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		
-		return ResponseEntity.ok(lst);
+		return ResponseEntity.ok(service.search(context));
     }
 	
 	/**
@@ -52,14 +45,8 @@ public class ItemController {
 	 * @return ItemDetailModel
 	 */
 	@GetMapping("/detail/{id}")
-    public ResponseEntity<ItemDetailModel> viewDetail(@PathVariable String itemId) {		
-		ItemDetailModel item = service.getItemDetail(Integer.parseInt(itemId));
-		
-		if (item == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		
-		return ResponseEntity.ok(item);
+    public ResponseEntity<ItemDetailModel> viewDetail(@PathVariable String id) {
+		return ResponseEntity.ok(service.getItemDetail(Integer.parseInt(id)));
     }
 	
 	
@@ -68,15 +55,9 @@ public class ItemController {
 	 * @param sellerId
 	 * @return List<ItemModel>
 	 */
-	@GetMapping("/all/{sellId}")
+	@GetMapping("/all/{sellerId}")
     public ResponseEntity<List<ItemModel>> getAllItemsBySeller(@PathVariable Integer sellerId) {
-		List<ItemModel> lstModel = service.findAllItems(sellerId);
-		
-		if (lstModel == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		
-		return ResponseEntity.ok(lstModel);
+		return ResponseEntity.ok(service.findAllItems(sellerId));
     }
     
 	/**
@@ -104,14 +85,13 @@ public class ItemController {
 	
 	/**
 	 * Update stock
-	 * @param itemId
-	 * @param stock
+	 * @param ItemModel
 	 * @return message
 	 */
-	@PutMapping("/stock/{itemId}/{stock}")
-	public ResponseEntity<MessageModel> updateStock(@PathVariable Integer itemId, @PathVariable Integer stock) {
+	@PutMapping("/stock")
+	public ResponseEntity<MessageModel> updateStock(@RequestBody ItemModel model) {
 		try {
-			service.updateStock(itemId, stock);
+			service.updateStock(model.getId(), model.getStock());
 		} catch (BusinessException e) {
 			log.error(e.toString());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessageModel());

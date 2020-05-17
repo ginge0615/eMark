@@ -11,11 +11,11 @@ import com.emart.entity.ItemViewEntity;
 public interface ItemViewRepository extends JpaRepository<ItemViewEntity, Integer>{
 
 	/**
-	 * Get all items by sell id
-	 * @param sellId
+	 * Get all items by seller id
+	 * @param sellerId
 	 * @return List<ItemViewEntity>
 	 */
-	public List<ItemViewEntity> findBySellId(Integer sellId);
+	public List<ItemViewEntity> findBySellerId(Integer sellerId);
 	
 	/**
 	 * Search item

@@ -14,10 +14,12 @@ public interface CartService {
 	
 	/**
 	 * Add item to buyer's cart.
-	 * @param model CartModel
-	 * @exception IllegalArgumentException
+	 * @param buyerId
+	 * @param itemId
+	 * @param number
+	 * @throws IllegalArgumentException
 	 */
-	public void add(CartModel model) throws IllegalArgumentException;
+	public void add(Integer buyerId, Integer itemId, Integer number) throws IllegalArgumentException;
 	
 	/**
 	 * Delete item from buyer's cart.

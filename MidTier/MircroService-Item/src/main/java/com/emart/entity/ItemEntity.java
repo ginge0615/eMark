@@ -1,6 +1,7 @@
 package com.emart.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,6 +40,9 @@ public class ItemEntity {
 
     @Column(name="sales_volume")
     private Integer salesVolume;
+    
+    @Column(name="create_datetime")
+    private Date createDatetime;
 
     public Integer getId() {
         return id;
@@ -111,4 +115,16 @@ public class ItemEntity {
     public void setSalesVolume(Integer salesVolume) {
         this.salesVolume = salesVolume;
     }
+
+	public Date getCreateDatetime() {
+		return createDatetime;
+	}
+
+	public void setCreateDatetime(Date createDatetime) {
+		this.createDatetime = createDatetime;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 }

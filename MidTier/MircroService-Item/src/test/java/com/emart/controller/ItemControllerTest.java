@@ -1,6 +1,8 @@
 package com.emart.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.math.BigDecimal;
@@ -20,6 +22,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.emart.model.ItemDetailModel;
+import com.emart.model.ItemModel;
 
 import net.sf.json.JSONObject;
 
@@ -64,5 +67,52 @@ public class ItemControllerTest {
 		JSONObject jsonObject = JSONObject.fromObject(responseString);
 		ItemDetailModel modelResult = (ItemDetailModel) JSONObject.toBean(jsonObject, ItemDetailModel.class);
 		Assert.assertTrue(modelResult.getId() > 0);
+	}
+	
+	
+	@Test
+	public void testSearch() throws Exception {
+		String context = "A6";
+		RequestBuilder request = get("/item/" + context).contentType(MediaType.APPLICATION_JSON);
+		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
+		String responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertTrue(responseString.length() > 0);
+		System.out.println(responseString);
+		
+	}
+	
+	@Test
+	public void testViewDetail() throws Exception {
+		RequestBuilder request = get("/item/detail/1").contentType(MediaType.APPLICATION_JSON);
+		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
+		String responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertTrue(responseString.length() > 0);
+		System.out.println(responseString);
+		
+	}
+	
+	@Test
+	public void testGetAllItemsBySeller() throws Exception {
+		RequestBuilder request = get("/item/all/1").contentType(MediaType.APPLICATION_JSON);
+		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
+		String responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertTrue(responseString.length() > 0);
+		System.out.println(responseString);
+		
+	}
+	
+	@Test
+	public void testUpdateStock() throws Exception {
+		ItemModel model = new ItemModel();
+		model.setId(1);
+		model.setStock(200);
+		
+		RequestBuilder request = put("/item/stock").contentType(MediaType.APPLICATION_JSON)
+				.content(JSONObject.fromObject(model).toString());
+		
+		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
+		String responseString = mvcResult.getResponse().getContentAsString();
+		Assert.assertTrue(responseString.length() == 0);
+		
 	}
 }

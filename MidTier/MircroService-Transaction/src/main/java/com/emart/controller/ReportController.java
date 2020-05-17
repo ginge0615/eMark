@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emart.model.ReportModel;
-import com.emart.service.ReportService;
+import com.emart.service.PurchaseHistoryService;
 
 @RestController
 @RequestMapping(value = "/report")
 public class ReportController {
 	@Autowired
-	private ReportService service;
+	private PurchaseHistoryService service;
     
 	/**
 	 * Search reports
@@ -36,9 +36,8 @@ public class ReportController {
     		@RequestParam(value="fromDate") String fromDate, 
     		@RequestParam(value="toDate") String toDate) {
 		
-		List<ReportModel> lst;
 		try {
-			lst = service.search(sellId, item, fromDate, toDate);
+			List<ReportModel> lst = service.getReport(sellId, item, fromDate, toDate);
 			
 			if (CollectionUtils.isEmpty(lst)) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

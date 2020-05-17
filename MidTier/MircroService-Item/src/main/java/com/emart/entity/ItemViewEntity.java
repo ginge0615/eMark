@@ -15,8 +15,8 @@ public class ItemViewEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="sell_id")
-    private Integer sellId;
+    @Column(name="seller_id")
+    private Integer sellerId;
 
     @Column(name="category_id")
     private Integer categoryId;
@@ -28,7 +28,7 @@ public class ItemViewEntity{
     private Integer manufacturId;
 
     @Column(name="item_name")
-    private String itemName;
+    private String item;
 
     @Column(name="price")
     private BigDecimal price;
@@ -43,15 +43,87 @@ public class ItemViewEntity{
     
     private String picture;
 
-    private String categroy;
+    private String category;
 
-    private String subcategroy;
+    private String subcategory;
 
     private String manufactur;    
 
     @Column(name="search_context")
     private String searchContext;
 
+    public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getSellerId() {
+		return sellerId;
+	}
+
+	public void setSellerId(Integer sellerId) {
+		this.sellerId = sellerId;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public Integer getSubcategoryId() {
+		return subcategoryId;
+	}
+
+	public void setSubcategoryId(Integer subcategoryId) {
+		this.subcategoryId = subcategoryId;
+	}
+
+	public Integer getManufacturId() {
+		return manufacturId;
+	}
+
+	public void setManufacturId(Integer manufacturId) {
+		this.manufacturId = manufacturId;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItemName(String item) {
+		this.item = item;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
+	public Integer getSalesVolume() {
+		return salesVolume;
+	}
+
+	public void setSalesVolume(Integer salesVolume) {
+		this.salesVolume = salesVolume;
+	}
+	
 	public String getSeller() {
 		return seller;
 	}
@@ -68,20 +140,20 @@ public class ItemViewEntity{
 		this.picture = picture;
 	}
 
-	public String getCategroy() {
-		return categroy;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCategroy(String categroy) {
-		this.categroy = categroy;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getSubcategroy() {
-		return subcategroy;
+	public String getSubcategory() {
+		return subcategory;
 	}
 
-	public void setSubcategroy(String subcategroy) {
-		this.subcategroy = subcategroy;
+	public void setSubcategory(String subcategory) {
+		this.subcategory = subcategory;
 	}
 
 	public String getManufactur() {

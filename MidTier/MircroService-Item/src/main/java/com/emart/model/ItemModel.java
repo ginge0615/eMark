@@ -11,8 +11,8 @@ public class ItemModel extends MessageModel{
 	private String item;
 	private BigDecimal price;
 	private String seller;
-	private int salesVolume;
-	private int stock;
+	private Integer salesVolume = 0;
+	private Integer stock = 0;
 	
 	public Integer getId() {
 		return id;
@@ -62,16 +62,16 @@ public class ItemModel extends MessageModel{
 	public void setSeller(String seller) {
 		this.seller = seller;
 	}
-	public int getSalesVolume() {
+	public Integer getSalesVolume() {
 		return salesVolume;
 	}
-	public void setSalesVolume(int salesVolume) {
+	public void setSalesVolume(Integer salesVolume) {
 		this.salesVolume = salesVolume;
 	}
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 	

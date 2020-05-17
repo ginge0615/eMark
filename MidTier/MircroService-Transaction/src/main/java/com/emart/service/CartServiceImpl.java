@@ -2,6 +2,7 @@ package com.emart.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,14 +48,17 @@ public class CartServiceImpl implements CartService {
 			CartModel model = new CartModel();
 			
 			//Get item from item view
-			ItemViewEntity itemViewEntity = itemViewRepositor.findById(entity.getItemId()).get();
+			Optional<ItemViewEntity> optItemViewEntity = itemViewRepositor.findById(entity.getItemId());
 			
-			//Copy propeties from ItemViewEntity to cart model
-			BeanUtils.copyProperties(itemViewEntity, model);
-			//Copy propeties from cart entity to cart model
-			BeanUtils.copyProperties(entity, model);
+			if (optItemViewEntity.isPresent()) {
+				//Copy propeties from ItemViewEntity to cart model
+				BeanUtils.copyProperties(optItemViewEntity.get(), model);
+				//Copy propeties from cart entity to cart model
+				BeanUtils.copyProperties(entity, model);
+				
+				lstModel.add(model);
+			}
 			
-			lstModel.add(model);
 			
 		});
 		
@@ -64,15 +68,17 @@ public class CartServiceImpl implements CartService {
 
 	/**
 	 * Add item to buyer's cart.
-	 * @param model CartModel
-	 * @exception IllegalArgumentException
+	 * @param buyerId
+	 * @param itemId
+	 * @param number
+	 * @throws IllegalArgumentException
 	 */
 	@Override
-	public void add(CartModel model) throws IllegalArgumentException {
+	public void add(Integer buyerId, Integer itemId, Integer number) throws IllegalArgumentException {
 		CartEntity entity = new CartEntity();
-		
-		//Copy propeties from cart model to cart entity
-		BeanUtils.copyProperties(model, entity);
+		entity.setBuyerId(buyerId);
+		entity.setItemId(itemId);
+		entity.setNumber(number);
 		
 		//Add to cart
 		cartRepositor.save(entity);

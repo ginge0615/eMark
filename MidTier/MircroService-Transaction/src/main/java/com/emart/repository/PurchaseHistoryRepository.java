@@ -10,6 +10,7 @@ import com.emart.entity.PurchaseHistoryEntity;
 @Repository
 public interface PurchaseHistoryRepository extends JpaRepository<PurchaseHistoryEntity, Integer>{
 
-	public List<PurchaseHistoryEntity> findByBuyerId(String buyerId);
-
+	public List<PurchaseHistoryEntity> findByBuyerId(Integer buyerId);
+	
+	public List<PurchaseHistoryEntity> findBySellerId(Integer sellerId);
 }

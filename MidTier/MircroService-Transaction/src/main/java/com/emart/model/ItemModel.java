@@ -3,21 +3,21 @@ package com.emart.model;
 import java.math.BigDecimal;
 
 public class ItemModel {
-	private String id;
+	private Integer id;
 	private String picture;
 	private String category;
 	private String subcategory;
 	private String manufactur;
-	private String item;
+	private String itemName;
 	private BigDecimal price;
 	private String seller;
-	private int salesVolume;
-	private int stock;
+	private Integer salesVolume;
+	private Integer stock;
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getPicture() {
@@ -44,12 +44,7 @@ public class ItemModel {
 	public void setManufactur(String manufactur) {
 		this.manufactur = manufactur;
 	}
-	public String getItem() {
-		return item;
-	}
-	public void setItem(String item) {
-		this.item = item;
-	}
+
 	public BigDecimal getPrice() {
 		return price;
 	}
@@ -72,6 +67,18 @@ public class ItemModel {
 		return stock;
 	}
 	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public void setSalesVolume(Integer salesVolume) {
+		this.salesVolume = salesVolume;
+	}
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 	

@@ -24,10 +24,10 @@ import net.sf.json.JSONArray;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
-public class ReportControllerTest {
+public class PurchaseHistoryControllerTest {
 	
 	@Autowired
-	private ReportController uc;
+	private PurchaseHistoryController uc;
 	
 	private MockMvc mvc; 
 	 
@@ -37,13 +37,9 @@ public class ReportControllerTest {
 	}
 	
 	@Test
-	public void testSearchReports() throws Exception {
+	public void testGetPurchaseHistory() throws Exception {
 		
-		RequestBuilder request = get("/report").contentType(MediaType.APPLICATION_JSON)
-				.param("sellId", "1")
-				.param("item", "A5")
-				.param("fromDate", "20200301")
-				.param("toDate", "20201231");
+		RequestBuilder request = get("/history/1").contentType(MediaType.APPLICATION_JSON);
 				
 		MvcResult mvcResult = mvc.perform(request).andExpect(status().isOk()).andReturn();
 		
@@ -51,6 +47,7 @@ public class ReportControllerTest {
 		
 		JSONArray jsonArray = JSONArray.fromObject(responseString);
 		Assert.assertTrue(jsonArray.size() > 0);
+		System.out.println(responseString);
 	}
 
 }

@@ -20,7 +20,7 @@ public class CartEntity{
 	@Column(name="item_id")
     private Integer itemId;
 
-    private Integer num;
+    private Integer number;
 
     public Integer getId() {
         return id;
@@ -46,11 +46,11 @@ public class CartEntity{
         this.itemId = itemId;
     }
 
-    public Integer getNum() {
-        return num;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setNum(Integer num) {
-        this.num = num;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 }

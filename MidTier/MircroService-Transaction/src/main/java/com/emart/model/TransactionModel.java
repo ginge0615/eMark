@@ -3,30 +3,30 @@ package com.emart.model;
 import java.math.BigDecimal;
 
 public class TransactionModel {
-	private String buyerId;
-	private String sellerId;
-	private String itemId;
+	private Integer buyerId;
+	private Integer sellerId;
+	private Integer itemId;
 	private BigDecimal price;
-	private int number;
-	private String transactionType;
+	private Integer purchaseNumber;
+	private String type;
 	private BigDecimal transactionAmount;
 	
-	public String getBuyerId() {
+	public Integer getBuyerId() {
 		return buyerId;
 	}
-	public void setBuyerId(String buyerId) {
+	public void setBuyerId(Integer buyerId) {
 		this.buyerId = buyerId;
 	}
-	public String getSellerId() {
+	public Integer getSellerId() {
 		return sellerId;
 	}
-	public void setSellerId(String sellerId) {
+	public void setSellerId(Integer sellerId) {
 		this.sellerId = sellerId;
 	}
-	public String getItemId() {
+	public Integer getItemId() {
 		return itemId;
 	}
-	public void setItemId(String itemId) {
+	public void setItemId(Integer itemId) {
 		this.itemId = itemId;
 	}
 	public BigDecimal getPrice() {
@@ -35,17 +35,17 @@ public class TransactionModel {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	public int getNumber() {
-		return number;
+	public Integer getPurchaseNumber() {
+		return purchaseNumber;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public void setPurchaseNumber(Integer purchaseNumber) {
+		this.purchaseNumber = purchaseNumber;
 	}
-	public String getTransactionType() {
-		return transactionType;
+	public String getType() {
+		return type;
 	}
-	public void setTransactionType(String transactionType) {
-		this.transactionType = transactionType;
+	public void setType(String type) {
+		this.type = type;
 	}
 	public BigDecimal getTransactionAmount() {
 		return transactionAmount;
@@ -53,4 +53,6 @@ public class TransactionModel {
 	public void setTransactionAmount(BigDecimal transactionAmount) {
 		this.transactionAmount = transactionAmount;
 	}
+	
+	
 }

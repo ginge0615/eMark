@@ -1,5 +1,6 @@
 package com.emart.service;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.transaction.Transactional;
@@ -35,11 +36,12 @@ public class TransactionServiceImpl implements TransactionService {
 	 */
 	@Transactional
 	public void checkout(TransactionModel[] models) throws BusinessException {
-		Date datetime = new Date();
+		
+		Date now = Calendar.getInstance().getTime();
 		
 		for (TransactionModel model : models) {
 			//Update stock if stock is larger than purchase number.
-			int updatedCnt = itemRepository.updateStock(Integer.parseInt(model.getItemId()), model.getNumber());
+			int updatedCnt = itemRepository.updateStock(model.getItemId(), model.getPurchaseNumber());
 			
 			//If the inventory is insufficient, throw exception and rollback
 			if (updatedCnt == 0) {
@@ -49,7 +51,7 @@ public class TransactionServiceImpl implements TransactionService {
 			//Create transaction
 			TransactionEntity entity = new TransactionEntity();
 			BeanUtils.copyProperties(model, entity);
-			entity.setTransactionDatetime(datetime);
+			entity.setDatetime(now);
 			
 			entity = transactionRepository.save(entity);
 			
@@ -57,7 +59,7 @@ public class TransactionServiceImpl implements TransactionService {
 			PurchaseHistoryEntity historyEntity = new PurchaseHistoryEntity();
 			BeanUtils.copyProperties(model, historyEntity);
 			historyEntity.setTransactionId(entity.getId());
-			historyEntity.setDatetime(datetime);
+			historyEntity.setDatetime(now);
 			
 			historyRepository.save(historyEntity);
 			

@@ -1,22 +1,19 @@
 package com.emart.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class ReportModel {
     private Integer id;
    
-    private Integer sellId;
+    private Integer sellerId;
    
     private String itemName;
 
     private BigDecimal price;
-    
-    private Date datetime;
 
     private Integer salesVolume;
     
-    private Integer transactionAmount;
+    private BigDecimal transactionAmount;
 
     public Integer getId() {
         return id;
@@ -26,12 +23,12 @@ public class ReportModel {
         this.id = id;
     }
 
-    public Integer getSellId() {
-        return sellId;
+    public Integer getSellerId() {
+        return sellerId;
     }
 
-    public void setSellId(Integer sellId) {
-        this.sellId = sellId;
+    public void setSellerId(Integer sellerId) {
+        this.sellerId = sellerId;
     }
 
     public String getItemName() {
@@ -58,19 +55,11 @@ public class ReportModel {
         this.salesVolume = salesVolume;
     }
 
-	public Date getDatetime() {
-		return datetime;
-	}
-
-	public void setDatetime(Date datetime) {
-		this.datetime = datetime;
-	}
-
-	public Integer getTransactionAmount() {
+	public BigDecimal getTransactionAmount() {
 		return transactionAmount;
 	}
 
-	public void setTransactionAmount(Integer transactionAmount) {
+	public void setTransactionAmount(BigDecimal transactionAmount) {
 		this.transactionAmount = transactionAmount;
 	}
 }
