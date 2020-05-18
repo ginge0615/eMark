@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.emart.model.PictureModel;
-import com.emart.service.ItemService;
 
 @RestController
 @RequestMapping(value = "/picture")
 public class PictureController {
 	private static final Logger log = LoggerFactory.getLogger(PictureController.class);
-	
-	@Autowired
-	private ItemService service;
 	
 	@Value("${picture.upload-path}")
 	private String uploadPath;
