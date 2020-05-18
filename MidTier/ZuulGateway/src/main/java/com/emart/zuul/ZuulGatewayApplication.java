@@ -1,17 +1,17 @@
-package com.emart;
+package com.emart.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-@EnableTransactionManagement
 @SpringBootApplication
+@EnableZuulProxy
 @EnableDiscoveryClient
-public class MsBootApplication {
+public class ZuulGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsBootApplication.class, args);
+		SpringApplication.run(ZuulGatewayApplication.class, args);
 	}
 
 }

@@ -1,5 +1,5 @@
 server:
-   port: 8082
+   port: 8083
 spring:
    application:
       name: MircroService-Transaction
@@ -22,3 +22,9 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/

@@ -1,0 +1,18 @@
+server:
+  port: 9001
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      maxFileSize: "1024MB"
+      maxRequestSize: "10240MB"
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    registerWithEureka: false
+    fetchRegistry: false

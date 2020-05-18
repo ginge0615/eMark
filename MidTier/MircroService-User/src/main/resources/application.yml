@@ -25,3 +25,9 @@ logging:
 token:
   secret: emart
   expire-time: 720 #minutes
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/

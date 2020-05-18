@@ -1,5 +1,5 @@
 server:
-   port: 8083
+   port: 8082
 spring:
    application:
       name: MircroService-Item
@@ -22,5 +22,11 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/
 picture:
   upload-path: C://eMart//pictures//
