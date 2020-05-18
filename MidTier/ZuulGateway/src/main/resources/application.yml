@@ -11,15 +11,8 @@ eureka:
       defaultZone: http://localhost:9001/eureka/
 zuul:
   routes:
-    gateway-user:
-      path: /user/**
-      serviceId: MircroService-User
-    gateway-item:
-      path: /item/**
-      serviceId: MircroService-Item
-    gateway-transaction:
-      path: /transaction/**
-      serviceId: MircroService-Transaction
-    gateway-mast:
-      path: /mast/**
-      serviceId: MircroService-Mast
+    MircroService-User: /user/**
+    MircroService-Item: /item/**
+    MircroService-Transaction: /transaction/**
+    MircroService-Mast: /mast/**
+  noTokenValid: /user
