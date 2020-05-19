@@ -19,7 +19,7 @@ export class UserService {
   }
 
   public login(user) {
-    return this.http.post(`/user/login`, JSON.stringify(user), httpOptions);
+    return this.http.post(`/emart/user/login`, JSON.stringify(user), httpOptions);
   }
 
   
