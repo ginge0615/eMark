@@ -10,9 +10,30 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:9001/eureka/
 zuul:
+  shouldNotFilter: /user,/picture
   routes:
-    MircroService-User: /user/**
-    MircroService-Item: /item/**
-    MircroService-Transaction: /transaction/**
-    MircroService-Mast: /mast/**
-  noTokenValid: /user
+    user:
+      path: /user/**
+      service-id: MircroService-User
+      strip-prefix: false
+    item:
+      path: /item/**
+      service-id: MircroService-Item
+      strip-prefix: false
+    transaction:
+      path: /transaction/**
+      service-id: MircroService-Transaction
+      strip-prefix: false
+    mast:
+      path: /mast/**
+      service-id: MircroService-Mast
+      strip-prefix: false
+    picture:
+      path: /picture/**
+      service-id: MircroService-Item
+      strip-prefix: false
+token:
+  secret: emart
+logging:
+  level:
+    root: info

@@ -24,16 +24,7 @@ public class JwtUtil {
 	/** Token expire time (minutes)*/
 	@Value("${token.expire-time}")
     private String expireTime;
-    
-//    private static JwtUtil util = new JwtUtil();
-//    
-//    public static JwtUtil getInstance() {
-//    	return util;
-//    }
-//    
-//    private JwtUtil() {
-//    }
-//    
+   
     /**
      * Generate token by user id.
      * @param userId
