@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from 'src/app/common/Item';
-import { GlobalService } from 'src/app/common/global.service';
+import { Item } from 'src/app/models/Item';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-manage-stock',

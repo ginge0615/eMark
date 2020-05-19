@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
-import { Item } from 'src/app/common/Item';
-import { GlobalService } from 'src/app/common/global.service';
+import { Item } from 'src/app/models/Item';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-reports',

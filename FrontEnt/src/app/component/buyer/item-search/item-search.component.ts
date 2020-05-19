@@ -1,7 +1,7 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { Option } from 'src/app/common/option';
-import { Item } from 'src/app/common/Item';
-import { GlobalService } from 'src/app/common/global.service';
+import { Option } from 'src/app/models/option';
+import { Item } from 'src/app/models/Item';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-item-search',

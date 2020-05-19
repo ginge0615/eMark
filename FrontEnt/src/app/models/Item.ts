@@ -1,5 +1,5 @@
 
-import {Option} from 'src/app/common/option';
+import {Option} from 'src/app/models/option';
 export interface Item {
   id : string;
   category : string;

@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user.service'
-import { User } from '../models/user'
+import { UserService } from 'src/app/services/user.service'
+import { User } from 'src/app/models/user'
 
 @Component({
   selector: 'app-login',

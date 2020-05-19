@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Option } from 'src/app/common/option';
+import { Option } from 'src/app/models/option';
 
 @Component({
   selector: 'app-add-item',

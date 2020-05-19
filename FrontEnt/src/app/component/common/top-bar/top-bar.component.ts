@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalService } from 'src/app/common/global.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',

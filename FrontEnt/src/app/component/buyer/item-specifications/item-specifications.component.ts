@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Item } from 'src/app/common/Item';
-import { GlobalService } from 'src/app/common/global.service';
+import { Item } from 'src/app/models/Item';
+import { GlobalService } from 'src/app/services/global.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
