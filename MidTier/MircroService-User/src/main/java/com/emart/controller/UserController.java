@@ -21,9 +21,6 @@ import com.emart.util.JwtUtil;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private JwtUtil jwt;
     
 	/**
 	 * Buyer or seller login by username and password. 
@@ -37,7 +34,7 @@ public class UserController {
 		if (userId > 0) {
 			//If passed, generate Token.
 			user.setId(userId);
-			user.setToken(jwt.generateToken(userId));
+			user.setToken(JwtUtil.generateToken(userId));
 			return ResponseEntity.ok(user);
 		} else {
 			//Validate failure
@@ -74,21 +71,4 @@ public class UserController {
 		
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(id);
 	}
-	
-	/**
-	 * Validate token
-	 * @param token string
-	 * @return user id, if not passed return 0
-	 */
-	@GetMapping("/{token:.+}")
-	public ResponseEntity<Integer> validateToken(@PathVariable String token) {
-		int userId = jwt.verifyToken(token);
-		
-		if (userId > 0) {
-			return ResponseEntity.ok(userId);
-		} else {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(userId);
-		}
-	}
-
 }
