@@ -1,5 +1,6 @@
 package com.emart.service;
 
+import com.emart.exception.BusinessException;
 import com.emart.model.BuyerModel;
 import com.emart.model.SellerModel;
 import com.emart.model.UserModel;
@@ -15,15 +16,18 @@ public interface UserService {
 	
 	/**
 	 * Singin as buyer
-	 * @param buyer
-	 * @return id
+	 * @param buyer BuyerModel
+	 * @throws BusinessException
+	 * @throws IllegalArgumentException
+	 * 
 	 */
-	public Integer signinAsBuyer(BuyerModel buyer);
+	public void signinAsBuyer(BuyerModel buyer) throws BusinessException, IllegalArgumentException;
 	
 	/**
 	 * Singin as seller
 	 * @param seller
-	 * @return id
+	 * @throws BusinessException
+	 * @throws IllegalArgumentException
 	 */
-	public Integer signinAsSeller(SellerModel seller);
+	public void signinAsSeller(SellerModel seller) throws BusinessException, IllegalArgumentException;
 }

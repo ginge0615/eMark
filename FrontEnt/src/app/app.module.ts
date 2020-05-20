@@ -33,6 +33,7 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 
 //MyCompents
@@ -50,6 +51,7 @@ import { AddItemComponent } from './component/seller/add-item/add-item.component
 import { UploadPictureComponent } from './component/seller/add-item/upload-picture/upload-picture.component';
 import { ManageStockComponent } from './component/seller/manage-stock/manage-stock.component';
 import {ReportsComponent} from './component/seller/reports/reports.component';
+import { ServerErrorComponent } from  './component/common/server-error/server-error.component'
 
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import { UserService } from './services/user.service'
@@ -70,7 +72,8 @@ import { UserService } from './services/user.service'
       AddItemComponent,
       UploadPictureComponent,
       ManageStockComponent,
-      ReportsComponent
+      ReportsComponent,
+      ServerErrorComponent
    ],
    imports: [
       AppRoutingModule,
@@ -103,6 +106,7 @@ import { UserService } from './services/user.service'
       NzRadioModule,
       NzDescriptionsModule,
       NzAlertModule,
+      NzResultModule,
       HttpClientJsonpModule,
       HttpClientModule
    ],

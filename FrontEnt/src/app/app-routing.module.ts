@@ -8,6 +8,7 @@ import { BuyerMainComponent } from './component/buyer/buyer-main/buyer-main.comp
 import { ItemSpecificationsComponent } from './component/buyer/item-specifications/item-specifications.component';
 import { ShoppingCartComponent } from './component/buyer/shopping-cart/shopping-cart.component';
 import { SellerMainComponent } from './component/seller/seller-main/seller-main.component';
+import { ServerErrorComponent } from  './component/common/server-error/server-error.component'
 
 import { AuthGuard } from './services/auth.guard';
 
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'singup-seller', component: SignupSellerComponent },
   { path: 'items-pecifications/:id', component: ItemSpecificationsComponent },
   { path: 'cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
+  { path: 'server-error/:code', component: ServerErrorComponent},
+  { path: '**', component: ServerErrorComponent }
 
 ];
 

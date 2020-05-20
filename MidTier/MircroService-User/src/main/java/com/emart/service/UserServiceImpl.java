@@ -1,6 +1,7 @@
 package com.emart.service;
 
 import java.util.Calendar;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.emart.Const;
 import com.emart.entity.BuyerEntity;
 import com.emart.entity.SellerEntity;
+import com.emart.exception.BusinessException;
 import com.emart.model.BuyerModel;
 import com.emart.model.SellerModel;
 import com.emart.model.UserModel;
@@ -38,18 +40,18 @@ public class UserServiceImpl implements UserService {
 		String password = "";
 		
 		if (Const.USER_TYPE_BUYER.equals(user.getRole())) {
-			BuyerEntity buyer = buyerRepositor.findByUsername(user.getUsername());
+			Optional<BuyerEntity> buyer = buyerRepositor.findByUsername(user.getUsername());
 			
-			if (buyer != null) {
-				userId = buyer.getId();
-				password = buyer.getPassword();
+			if (buyer.isPresent()) {
+				userId = buyer.get().getId();
+				password = buyer.get().getPassword();
 			}
 		} else {
-			SellerEntity seller = sellerRepository.findByUsername(user.getUsername());
+			Optional<SellerEntity> seller = sellerRepository.findByUsername(user.getUsername());
 			
-			if (seller != null) {
-				userId = seller.getId();
-				password = seller.getPassword();
+			if (seller.isPresent()) {
+				userId = seller.get().getId();
+				password = seller.get().getPassword();
 			}
 		}
 		
@@ -63,42 +65,61 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * Singin as buyer
 	 * @param buyer BuyerModel
-	 * @return id, if failure then 0
+	 * @throws BusinessException
+	 * @throws IllegalArgumentException
 	 */
 	@Override
-	public Integer signinAsBuyer(BuyerModel buyer) {
+	public void signinAsBuyer(BuyerModel buyer) throws BusinessException, IllegalArgumentException {
 		BuyerEntity entity = new BuyerEntity();
 		BeanUtils.copyProperties(buyer, entity);
-		
-		try {
-			entity = buyerRepositor.save(entity);
-		} catch (Exception e) {
-			log.error(e.toString());
-			return 0;
+
+		// If the buyer with same usename is exist, error
+		if (buyerRepositor.findByUsername(buyer.getUsername()).isPresent()) {
+			throw new BusinessException("E003","user name");
 		}
-		
-		return entity.getId();
+
+		// If the buyer with same email is exist, error
+		if (buyerRepositor.existsByEmail(buyer.getEmail())) {
+			throw new BusinessException("E003", "email");
+		}
+
+		// If the buyer with same email is exist, error
+		if (buyerRepositor.existsByMobilePhone(buyer.getMobilePhone())) {
+			throw new BusinessException("E003", "mobile phone");
+		}
+
+		buyerRepositor.save(entity);
+
 	}
 
 	/**
 	 * Singin as seller
 	 * @param seller
-	 * @return id, if failure then 0
+	 * @throws BusinessException
+	 * @throws IllegalArgumentException
 	 */
 	@Override
-	public Integer signinAsSeller(SellerModel seller) {
+	public void signinAsSeller(SellerModel seller) throws BusinessException, IllegalArgumentException {
 		SellerEntity entity = new SellerEntity();
 		BeanUtils.copyProperties(seller, entity);
 		entity.setCreateDatetime(Calendar.getInstance().getTime());
-		
-		try {
-			entity = sellerRepository.save(entity);
-		} catch (Exception e) {
-			log.error(e.toString());
-			return 0;
+
+		// If the buyer with same usename is exist, error
+		if (sellerRepository.findByUsername(seller.getUsername()).isPresent()) {
+			throw new BusinessException("E003", "user name");
 		}
-		
-		return entity.getId();
+
+		// If the buyer with same email is exist, error
+		if (sellerRepository.existsByEmail(seller.getEmail())) {
+			throw new BusinessException("E003", "email");
+		}
+
+		// If the buyer with same email is exist, error
+		if (sellerRepository.existsByCompanyName(seller.getCompanyName())) {
+			throw new BusinessException("E003", "company name");
+		}
+
+		sellerRepository.save(entity);
 	}
 
 }

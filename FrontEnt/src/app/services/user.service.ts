@@ -22,6 +22,14 @@ export class UserService {
     return this.http.post(`/emart/user/login`, JSON.stringify(user), httpOptions);
   }
 
+  public signinAsBuyer(buyer) {
+    return this.http.post(`/emart/user/signinasbuyer`, JSON.stringify(buyer), httpOptions);
+  }
+
+  public signinAsSeller(seller) {
+    return this.http.post(`/emart/user/signinasseller`, JSON.stringify(seller), httpOptions);
+  }
+
   
 
 }

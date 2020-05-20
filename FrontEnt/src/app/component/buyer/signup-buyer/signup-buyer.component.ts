@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, } from '@angular/router';
+import { Router } from '@angular/router';
+import { BuyerModel } from 'src/app/models/BuyerModel';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup-buyer',
@@ -10,7 +12,10 @@ import { Router, } from '@angular/router';
 export class SignupBuyerComponent implements OnInit {
   validateForm: FormGroup;
 
-  @Input() username : string;
+  @Input() model : BuyerModel = new BuyerModel();
+  showMsg : boolean = false;
+  msgType : string;
+  msg : string;
 
   submitForm(): void {
     let hasError : boolean = false;
@@ -23,10 +28,35 @@ export class SignupBuyerComponent implements OnInit {
       }
     }
 
-    if (!hasError) {
-      this.router.navigate(['/login'], { queryParams: { userName: this.username } });
-    }
+    if (hasError) return;
 
+    this.userService.signinAsBuyer(this.model).subscribe(
+      data => {
+        const respData: any = data;
+
+        this.showMsg = true;
+        this.msgType = "success";
+        this.msg = "Create account is successful.";
+
+        // this.router.navigate(['/login'], { queryParams: { userName: this.model.username } });
+      },
+      res => {
+        const response: any = res;
+
+        //Not Acceptable
+        if (response.status === 406) {
+          this.showMsg = true;
+          this.msgType = "error";
+
+          this.msg = "test"
+          console.info(response.messageCode + ":" + response.args);
+
+        } else {
+          this.router.navigate(['/server-error',response.status]);
+        }
+
+      }
+    );
   }
 
   updateConfirmValidator(): void {
@@ -43,7 +73,7 @@ export class SignupBuyerComponent implements OnInit {
     return {};
   };
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({

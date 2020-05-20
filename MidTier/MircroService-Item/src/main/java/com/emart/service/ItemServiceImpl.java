@@ -198,16 +198,10 @@ public class ItemServiceImpl implements ItemService {
 		
 		if (!optEntity.isPresent()) {
 			//Could not find the item
-			throw new BusinessException("E001");
+			throw new BusinessException("E001", "item");
 		}
 		
 		ItemEntity entity = optEntity.get();
-		
-		//If sales volume is lager then stock, error
-		if (entity.getSalesVolume() > stock) {
-			throw new BusinessException("E002");
-		}
-		
 		entity.setStockNumber(stock);
 		itemRepository.save(entity);
 		

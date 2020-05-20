@@ -45,7 +45,7 @@ public class TransactionServiceImpl implements TransactionService {
 			
 			//If the inventory is insufficient, throw exception and rollback
 			if (updatedCnt == 0) {
-				throw new BusinessException("E003");
+				throw new BusinessException("E002");
 			}
 			
 			//Create transaction

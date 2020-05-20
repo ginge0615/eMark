@@ -3,14 +3,14 @@ package com.emart.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.emart.exception.BusinessException;
 import com.emart.model.BuyerModel;
+import com.emart.model.MessageModel;
 import com.emart.model.SellerModel;
 import com.emart.model.UserModel;
 import com.emart.service.UserService;
@@ -38,37 +38,44 @@ public class UserController {
 			return ResponseEntity.ok(user);
 		} else {
 			//Validate failure
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		}
     }
 	
 	/**
 	 * Singin as buyer 
 	 * @param buyer BuyerModel
-	 * @return id, if failure then 0
+	 * @return MessageModel
 	 */
 	@PostMapping("/signinasbuyer")
-	public ResponseEntity<Integer> signinAsBuyer(@RequestBody BuyerModel buyer) {
-		Integer id = userService.signinAsBuyer(buyer);
-		if (id > 0) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(id);
+	public ResponseEntity<MessageModel> signinAsBuyer(@RequestBody BuyerModel buyer) {
+		
+		try {
+			userService.signinAsBuyer(buyer);
+		} catch (BusinessException e) {
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new MessageModel(e));
+		} catch (IllegalArgumentException e) {
+			
 		}
 		
-		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(id);
+		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+		
 	}
 	
 	/**
 	 * Singin as seller 
 	 * @param seller SellerModel
-	 * @return id, if failure then 0
+	 * @return MessageModel
 	 */
 	@PostMapping("/signinasseller")
-	public ResponseEntity<Integer> signinAsBuyer(@RequestBody SellerModel seller) {
-		Integer id = userService.signinAsSeller(seller);
-		if (id > 0) {
-			return ResponseEntity.status(HttpStatus.CREATED).body(id);
+	public ResponseEntity<MessageModel> signinAsBuyer(@RequestBody SellerModel seller) {
+		
+		try {
+			userService.signinAsSeller(seller);
+		} catch (BusinessException e) {
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new MessageModel(e));
 		}
 		
-		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(id);
+		return ResponseEntity.status(HttpStatus.CREATED).body(null);
 	}
 }

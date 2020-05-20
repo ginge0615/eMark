@@ -2,8 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service'
-import { User } from 'src/app/models/user'
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -61,8 +60,14 @@ export class LoginComponent implements OnInit {
         },
         res => {
           const response: any = res;
-          console.log(response.status);
-          this.showError = true;
+
+          //UNAUTHORIZED
+          if (response.status === 401) {
+            this.showError = true;
+          } else {
+            this.router.navigate(['/server-error',response.status]);
+          }
+          
         }
       );
     }
