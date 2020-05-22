@@ -102,7 +102,6 @@ public class UserServiceImpl implements UserService {
 	public void signinAsSeller(SellerModel seller) throws BusinessException, IllegalArgumentException {
 		SellerEntity entity = new SellerEntity();
 		BeanUtils.copyProperties(seller, entity);
-		entity.setCreateDatetime(Calendar.getInstance().getTime());
 
 		// If the buyer with same usename is exist, error
 		if (sellerRepository.findByUsername(seller.getUsername()).isPresent()) {

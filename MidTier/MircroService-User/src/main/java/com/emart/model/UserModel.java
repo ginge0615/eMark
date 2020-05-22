@@ -6,6 +6,7 @@ public class UserModel {
 	private String password;
 	private String role;
 	private String token;
+	private String message;
 
 	public int getId() {
 		return id;
@@ -40,6 +41,12 @@ public class UserModel {
 	}
 	public void setToken(String token) {
 		this.token = token;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 

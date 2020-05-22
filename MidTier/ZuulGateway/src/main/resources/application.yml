@@ -38,3 +38,6 @@ token:
 logging:
   level:
     root: info
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 30000

@@ -41,7 +41,8 @@ public class UserController {
 			return ResponseEntity.ok(user);
 		} else {
 			//Validate failure
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+			user.setMessage(this.msgSource.getMessage("E001", null, null));
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(user);
 		}
     }
 	
@@ -73,12 +74,16 @@ public class UserController {
 	 * @return Message
 	 */
 	@PostMapping("/signinasseller")
-	public ResponseEntity<String> signinAsBuyer(@RequestBody SellerModel seller) {
+	public ResponseEntity<String> signinAsSeller(@RequestBody SellerModel seller) {
 		
 		try {
 			userService.signinAsSeller(seller);
 		} catch (BusinessException e) {
-			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+					.body(msgSource.getMessage(e.getMessageCode(), e.getArgs(), null));
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(msgSource.getMessage("E500", null, null));
 		}
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(null);

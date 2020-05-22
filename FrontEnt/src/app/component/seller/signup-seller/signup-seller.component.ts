@@ -1,6 +1,9 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, } from '@angular/router';
+import { Router } from '@angular/router';
+import { SellerModel } from 'src/app/models/SellerModel';
+import { UserService } from 'src/app/services/user.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-signup-seller',
@@ -10,7 +13,31 @@ import { Router, } from '@angular/router';
 export class SignupSellerComponent implements OnInit {
   validateForm: FormGroup;
 
-  @Input() username : string;
+  @Input() model : SellerModel = new SellerModel();
+  
+  constructor(private fb: FormBuilder, 
+    private router: Router, 
+    private userService: UserService,
+    private msgService : MessageService) {
+
+      this.msgService.hideMessage();
+
+    }
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      username: [null, [Validators.required]],
+      email: [null, [Validators.email, Validators.required]],
+      password: [null, [Validators.required]],
+      checkPassword: [null, [Validators.required, this.confirmationValidator]],
+      company: [null, [Validators.required]],
+      contact: [null, [Validators.required]],
+      gstin: [null, [Validators.required]],
+      postal: [null, [Validators.required]],
+      website: [null, null],
+      brief: [null, null],
+    });
+  }
 
   submitForm(): void {
     let hasError : boolean = false;
@@ -23,9 +50,27 @@ export class SignupSellerComponent implements OnInit {
       }
     }
 
-    if (!hasError) {
-      this.router.navigate(['/login'], { queryParams: { userName: this.username } });
-    }
+    if (hasError) return;
+
+    this.msgService.hideMessage();
+
+    this.userService.signinAsSeller(this.model).subscribe(
+      data => {
+        //successful
+        const respData: any = data;
+        this.router.navigate(['/singup-success']);
+      },
+      res => {
+        //error
+        const response: any = res;
+
+        if (response.status === 406) {
+          this.msgService.showErrorMsg(response.error);
+        } else {
+          this.router.navigate(['/server-error',response.status]);
+        }
+      }
+    );
   }
 
   updateConfirmValidator(): void {
@@ -41,19 +86,4 @@ export class SignupSellerComponent implements OnInit {
     }
     return {};
   };
-
-  constructor(private fb: FormBuilder, private router: Router) {}
-
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      username: [null, [Validators.required]],
-      email: [null, [Validators.email, Validators.required]],
-      password: [null, [Validators.required]],
-      checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      company: [null, [Validators.required]],
-      contact: [null, [Validators.required]],
-      gstin: [null, [Validators.required]],
-      postal: [null, [Validators.required]],
-    });
-  }
 }

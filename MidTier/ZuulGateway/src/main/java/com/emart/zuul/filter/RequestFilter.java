@@ -48,7 +48,7 @@ public class RequestFilter extends ZuulFilter {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		String url = request.getRequestURI();
-		logger.debug(">>>url=" + url);
+		logger.info(">>>url=" + url);
 		
 		List<String> lstNoTokenValid = Arrays.asList(shouldNotFilter.split(","));
 		
@@ -63,7 +63,7 @@ public class RequestFilter extends ZuulFilter {
 
 	@Override
 	public Object run() throws ZuulException {
-		logger.debug(">>>run start");
+		logger.info(">>>run start");
 		RequestContext ctx = RequestContext.getCurrentContext();
 	    HttpServletRequest request = ctx.getRequest();
 	    
@@ -75,9 +75,12 @@ public class RequestFilter extends ZuulFilter {
 	    
 	    String token = request.getHeader("Authorization");
 	    
-	    if (StringUtils.isEmpty(token)) {
+	    if (StringUtils.isEmpty(token) || token.length() <= 7) {
             setUnauthorizedResponse(ctx, INVALID_TOKEN);
         } else {
+        	//Remove the header 'Bearer ' from token
+        	token = token.substring(7);
+        	
             if (JwtUtil.verifyToken(token) > 0) {
             	ctx.setSendZuulResponse(true);
             } else {

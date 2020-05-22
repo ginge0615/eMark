@@ -8,19 +8,19 @@
                     <span>Username</span>
                 </nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your username!">
-                    <input nz-input id="username" formControlName="username" [(ngModel)]="username" />
+                    <input nz-input id="username" formControlName="username" [(ngModel)]="model.username" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" i18n="@@signup.Email">Email address</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-                    <input nz-input formControlName="email" id="email" />
+                    <input nz-input formControlName="email" id="email" [(ngModel)]="model.email" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired i18n="@@signup.Password">Password</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
-                    <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()" />
+                    <input nz-input type="password" id="password" formControlName="password" [(ngModel)]="model.password" (ngModelChange)="updateConfirmValidator()" />
                     <p style="font-size: 0.7em" i18n="@@signup.passwordInputTips">Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
                 </nz-form-control>
             </nz-form-item>
@@ -45,37 +45,37 @@
             </span>
                 </nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your company name!">
-                    <input nz-input id="company" formControlName="company" />
+                    <input nz-input id="company" formControlName="company" [(ngModel)]="model.companyName" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="contact" nzRequired>Contact number</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['contact']" nzErrorTip="Please input your contact number!">
-                    <input formControlName="contact" id="'contact'" nz-input />
+                    <input formControlName="contact" id="'contact'" nz-input [(ngModel)]="model.contactNumber" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gstin" nzRequired>GSTIN</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input GSTIN!">
-                    <input nz-input id="gstin" formControlName="gstin" />
+                    <input nz-input id="gstin" formControlName="gstin" [(ngModel)]="model.gstin" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="postal" nzRequired>Postal address</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input postal address!">
-                    <input nz-input id="postal" formControlName="postal" />
+                    <input nz-input id="postal" formControlName="postal" [(ngModel)]="model.postalAddress" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24">Website</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24">
-                    <input nz-input id="website" />
+                    <input nz-input id="website" formControlName="website" [(ngModel)]="model.website" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="brief">Brief about company</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24">
-                    <textarea nz-input id="brief"></textarea>
+                    <textarea nz-input id="brief" formControlName="brief" [(ngModel)]="model.briefAboutCompany"></textarea>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item nz-row class="register-area">
