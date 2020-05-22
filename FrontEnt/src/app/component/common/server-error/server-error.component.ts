@@ -16,7 +16,6 @@ export class ServerErrorComponent implements OnInit {
   ngOnInit() {
     this.errorCode = this.activedRoute.snapshot.queryParams["code"];
 
-
     switch (this.errorCode) {
       case 403:
         this.errorMsg = "Sorry, you are not authorized to access this page."

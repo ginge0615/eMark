@@ -3,10 +3,11 @@ server:
 spring:
    application:
       name: MircroService-User
+   messages:
+       basename: i18n/messages
+       encoding: UTF-8
    profiles:
       active: test
-   zipkin:
-      baseUrl: http://localhost:8080
    datasource:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/emart-main?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai

@@ -1,6 +1,7 @@
 package com.emart.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.emart.exception.BusinessException;
 import com.emart.model.BuyerModel;
-import com.emart.model.MessageModel;
 import com.emart.model.SellerModel;
 import com.emart.model.UserModel;
 import com.emart.service.UserService;
@@ -21,6 +21,9 @@ import com.emart.util.JwtUtil;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MessageSource msgSource;
     
 	/**
 	 * Buyer or seller login by username and password. 
@@ -45,17 +48,19 @@ public class UserController {
 	/**
 	 * Singin as buyer 
 	 * @param buyer BuyerModel
-	 * @return MessageModel
+	 * @return Message
 	 */
 	@PostMapping("/signinasbuyer")
-	public ResponseEntity<MessageModel> signinAsBuyer(@RequestBody BuyerModel buyer) {
+	public ResponseEntity<String> signinAsBuyer(@RequestBody BuyerModel buyer) {
 		
 		try {
 			userService.signinAsBuyer(buyer);
 		} catch (BusinessException e) {
-			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new MessageModel(e));
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+					.body(msgSource.getMessage(e.getMessageCode(), e.getArgs(), null));
 		} catch (IllegalArgumentException e) {
-			
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(msgSource.getMessage("E500", null, null));
 		}
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(null);
@@ -65,15 +70,15 @@ public class UserController {
 	/**
 	 * Singin as seller 
 	 * @param seller SellerModel
-	 * @return MessageModel
+	 * @return Message
 	 */
 	@PostMapping("/signinasseller")
-	public ResponseEntity<MessageModel> signinAsBuyer(@RequestBody SellerModel seller) {
+	public ResponseEntity<String> signinAsBuyer(@RequestBody SellerModel seller) {
 		
 		try {
 			userService.signinAsSeller(seller);
 		} catch (BusinessException e) {
-			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new MessageModel(e));
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
 		}
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(null);

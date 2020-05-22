@@ -52,6 +52,8 @@ import { UploadPictureComponent } from './component/seller/add-item/upload-pictu
 import { ManageStockComponent } from './component/seller/manage-stock/manage-stock.component';
 import {ReportsComponent} from './component/seller/reports/reports.component';
 import { ServerErrorComponent } from  './component/common/server-error/server-error.component'
+import { MessageBarComponent } from  './component/common/message-bar/message-bar.component'
+import { SignupSuccessComponent } from './component/common/signup-success/signup-success.component'
 
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import { UserService } from './services/user.service'
@@ -73,7 +75,9 @@ import { UserService } from './services/user.service'
       UploadPictureComponent,
       ManageStockComponent,
       ReportsComponent,
-      ServerErrorComponent
+      ServerErrorComponent,
+      MessageBarComponent,
+      SignupSuccessComponent
    ],
    imports: [
       AppRoutingModule,

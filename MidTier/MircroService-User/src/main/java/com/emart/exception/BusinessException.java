@@ -1,9 +1,15 @@
 package com.emart.exception;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+
 import com.emart.model.MessageModel;
 
 public class BusinessException extends Throwable {
 	private static final long serialVersionUID = 8539109213573501920L;
+	
+	@Autowired
+	private MessageSource msgSource;
 	
 	private String messageCode;
 	private String[] args;
@@ -31,21 +37,8 @@ public class BusinessException extends Throwable {
 		this.args = args;
 	}
 	
-	public MessageModel getMessageModel() {
-		MessageModel model = new MessageModel();
-		model.setMessageCode(messageCode);
-		model.setArgs(args);
-		return model;
-	}
-	
 	@Override
-	public String toString() {
-		StringBuffer buf = new StringBuffer();
-		buf.append("[message code]=").append(this.messageCode);
-		
-		if (this.args != null) {
-			buf.append("[args]=").append(this.args);
-		}
-		return buf.toString();
+	public String getMessage() {
+		return msgSource.getMessage(messageCode, args, null);
 	}
 }

@@ -1,0 +1,6 @@
+<div nz-row nzJustify="center" nzAlign="top">
+    <div nz-col nzSpan="24" class="messageBar">
+        <nz-alert *ngIf="msgService.isShowMessage()" [nzType]="msgService.getMessageType()" [nzMessage]="msgService.getMessage()" nzCloseable (nzOnClose)="msgService.hideMessage()">
+        </nz-alert>
+    </div>
+</div>
