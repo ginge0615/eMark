@@ -24,8 +24,16 @@ zuul:
       path: /transaction/**
       service-id: MircroService-Transaction
       strip-prefix: false
-    mast:
-      path: /mast/**
+    discount:
+      path: /discount/**
+      service-id: MircroService-Mast
+      strip-prefix: false
+    category:
+      path: /category/**
+      service-id: MircroService-Mast
+      strip-prefix: false
+    manufactur:
+      path: /manufactur/**
       service-id: MircroService-Mast
       strip-prefix: false
     picture:

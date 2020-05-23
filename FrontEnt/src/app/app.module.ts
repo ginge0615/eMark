@@ -34,6 +34,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 //MyCompents
@@ -111,6 +112,7 @@ import { UserService } from './services/user.service'
       NzDescriptionsModule,
       NzAlertModule,
       NzResultModule,
+      NzMessageModule,
       HttpClientJsonpModule,
       HttpClientModule
    ],

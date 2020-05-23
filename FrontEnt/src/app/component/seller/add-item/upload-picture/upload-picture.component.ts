@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UploadFile } from 'ng-zorro-antd/upload';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
@@ -10,28 +11,10 @@ function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   });
 }
 
+
 @Component({
   selector: 'app-upload-picture',
-  template: `
-    <div class="clearfix">
-      <nz-upload
-        nzAction="./"
-        nzListType="picture-card"
-        [(nzFileList)]="fileList"
-        [nzShowButton]="fileList.length < 4"
-        [nzPreview]="handlePreview"
-        [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
-      >
-        <i nz-icon nzType="plus"></i>
-        <div class="ant-upload-text">Upload</div>
-      </nz-upload>
-      <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
-        <ng-template #modalContent>
-          <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
-        </ng-template>
-      </nz-modal>
-    </div>
-  `,
+  templateUrl: './upload-picture.component.html',
   styles: [
     `
       i[nz-icon] {
@@ -46,21 +29,11 @@ function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   ]
 })
 export class UploadPictureComponent {
-  fileList = [
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: '../../../assets/pictures/samsung1.jpg'
-    },
-    {
-      uid: '-2',
-      name: 'image.png',
-      status: 'done',
-      url: '../../../assets/pictures/samsung2.jpg'
-    },
+  fileList = [];
+  picturesPath = [];
 
-  ];
+  constructor(private msg: NzMessageService) {}
+
   previewImage: string | undefined = '';
   previewVisible = false;
 
@@ -71,4 +44,24 @@ export class UploadPictureComponent {
     this.previewImage = file.url || file.preview;
     this.previewVisible = true;
   };
+
+  private getBase64Response(img: File, callback: (img: string) => void): void {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result!.toString()));
+    reader.readAsDataURL(img);
+  }
+
+  handleUploadPictureChange(info: { file: UploadFile }): void {
+    switch (info.file.status) {
+      case 'uploading':
+        break;
+      case 'done':
+        console.info(">>>>>path=" + info.file.response.path);
+        this.picturesPath.push(info.file.response.path);
+        break;
+      case 'error':
+        this.msg.error('Network error');
+        break;
+    }
+  }
 }

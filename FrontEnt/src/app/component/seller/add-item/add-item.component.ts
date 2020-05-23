@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Option } from 'src/app/models/option';
+import { OptionsService } from 'src/app/services/options.service'
 
 @Component({
   selector: 'app-add-item',
@@ -14,39 +15,91 @@ export class AddItemComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  categoryOptionList : Option[] = [
-    {value : "1", label : "Electronic"},
-    {value : "2", label : "Dress"},
-    {value : "3", label : "Book"},
-  ];
+  categoryOptionList: Option[] = [];
 
-  selectedCategory : Option ;
+  selectedCategory: Option;
 
-  subCategoryOptionList : Option[] = [
-    {value : "1", label : "Mobile"},
-    {value : "2", label : "TV"},
-    {value : "3", label : "MP4"},
-  ];
+  subCategoryOptionList: Option[] = [];
 
-  selectedSubCategory : Option ;
+  selectedSubCategory: Option;
 
-  manufacturerOptionList : Option[] = [
-    {value : "1", label : "Samsung"},
-    {value : "2", label : "OPPO"},
-    {value : "3", label : "XIAOMI"},
-  ];
+  manufacturerOptionList: Option[] = [];
 
-  selectedManufacturer : Option ;
+  selectedManufacturer: Option;
 
-  itemNameValue : string;
-  priceValue : number = 1;
-  stockValue : number = 1;
+  itemNameValue: string;
+  priceValue: number = 1;
+  stockValue: number = 1;
 
   compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
   formatterDollar = (value: number) => `$ ${value}`;
   parserDollar = (value: string) => value.replace('$ ', '');
   formatterPercent = (value: number) => `${value} %`;
   parserPercent = (value: string) => value.replace(' %', '');
+
+  constructor(private fb: FormBuilder, private optionsService: OptionsService) { }
+
+  ngOnInit() {
+    this.validateForm = this.fb.group({
+      category: new FormControl(null, [Validators.required]),
+      subCategory: new FormControl(null, [Validators.required]),
+      manufacturer: new FormControl(null, [Validators.required]),
+      itemName: new FormControl(null, [Validators.required]),
+      price: new FormControl(null, [Validators.required]),
+      stock: new FormControl(null, [Validators.required]),
+    });
+
+    this.initOptions();
+
+    this.addField();
+  }
+
+  private initOptions() {
+    //Init Category Options
+    this.optionsService.getCategoryOptions().subscribe(
+      data => {
+        //successful
+        const respData: any = data;
+        this.categoryOptionList = respData;
+      },
+      res => {
+        //error
+        const response: any = res;
+      }
+    );
+
+    //Init Manufactur Options
+    this.optionsService.getManufacturOptions().subscribe(
+      data => {
+        //successful
+        const respData: any = data;
+        this.manufacturerOptionList = respData;
+      },
+      res => {
+        //error
+        const response: any = res;
+      }
+    );
+  }
+
+  changeCategory(selectedOption: Option): void {
+    if (selectedOption) {
+      console.info("selected category=" + selectedOption.value);
+
+      this.optionsService.getSubCategoryOptions(selectedOption.value).subscribe(
+        data => {
+          //successful
+          const respData: any = data;
+          this.subCategoryOptionList = respData;
+        },
+        res => {
+          //error
+          const response: any = res;
+        }
+      );
+    }
+  }
+
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -81,20 +134,4 @@ export class AddItemComponent implements OnInit {
       this.validateForm.removeControl(i.controlInstance);
     }
   }
-
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.validateForm = this.fb.group({
-      category: new FormControl(null, [Validators.required]),
-      subCategory: new FormControl(null, [Validators.required]),
-      manufacturer: new FormControl(null, [Validators.required]),
-      itemName: new FormControl(null, [Validators.required]),
-      price: new FormControl(null, [Validators.required]),
-      stock: new FormControl(null, [Validators.required]),
-    });
-
-    this.addField();
-  }
-
 }

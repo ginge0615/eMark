@@ -13,7 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.emart.util.JwtUtil;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -26,6 +29,9 @@ public class RequestFilter extends ZuulFilter {
 	
 	@Value("${zuul.shouldNotFilter}")
 	private String shouldNotFilter;
+	
+	@Value("${token.secret}")
+    private String secret;
 
 	@Override
 	public String filterType() {
@@ -64,6 +70,7 @@ public class RequestFilter extends ZuulFilter {
 	@Override
 	public Object run() throws ZuulException {
 		logger.info(">>>run start");
+		logger.info("secret=" + secret);
 		RequestContext ctx = RequestContext.getCurrentContext();
 	    HttpServletRequest request = ctx.getRequest();
 	    
@@ -81,7 +88,7 @@ public class RequestFilter extends ZuulFilter {
         	//Remove the header 'Bearer ' from token
         	token = token.substring(7);
         	
-            if (JwtUtil.verifyToken(token) > 0) {
+            if (verifyToken(token) > 0) {
             	ctx.setSendZuulResponse(true);
             } else {
             	ctx.setSendZuulResponse(false);
@@ -102,5 +109,23 @@ public class RequestFilter extends ZuulFilter {
         requestContext.setSendZuulResponse(false);
         requestContext.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
         requestContext.setResponseBody(msg);
+    }
+    
+    /**
+     * Verify token
+     * @param token
+     * @return user id, if not passed, return 0
+     */
+    public int verifyToken(String token){
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT jwt = verifier.verify(token);
+            int userId = jwt.getClaim("userId").asInt();
+            return userId;
+        } catch (Exception e){
+        	logger.error(e.toString());
+            return 0;
+        }
     }
 }
