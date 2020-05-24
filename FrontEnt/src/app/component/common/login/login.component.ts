@@ -70,7 +70,8 @@ export class LoginComponent implements OnInit {
 
           //login sucessful
           window.sessionStorage.setItem('token', respData.token);
-          window.sessionStorage.setItem('role', this.role);
+          window.sessionStorage.setItem('userId', respData.id);
+          window.sessionStorage.setItem('role', respData.role);
 
           if (this.role === "1") {
             this.router.navigate(['/emart-buyer']);

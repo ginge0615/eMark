@@ -48,7 +48,17 @@
         </div>
         <div nz-col nzSpan="10">
             <div nz-row>
-                <app-upload-picture></app-upload-picture>
+                <div class="clearfix">
+                    <nz-upload nzAction="/picture" nzListType="picture-card" [(nzFileList)]="pictureControls" [nzShowButton]="pictureControls.length < 4" [nzPreview]="handlePreview" [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'" (nzChange)="handleUploadPictureChange($event)">
+                        <i nz-icon nzType="plus" style="font-size: 32px;color: #999;"></i>
+                        <div class="ant-upload-text">Upload</div>
+                    </nz-upload>
+                    <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible = false">
+                        <ng-template #modalContent>
+                            <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+                        </ng-template>
+                    </nz-modal>
+                </div>
             </div>
             <div nz-row>
                 <button nz-button nzType="primary" class="sell-button">Save & Sell Item</button>
@@ -58,9 +68,9 @@
     <nz-divider nzText="Description" nzOrientation="left"></nz-divider>
     <div nz-row>
         <div nz-col nzSpan="12">
-            <nz-form-item *ngFor="let control of listOfControl; let i = index">
+            <nz-form-item *ngFor="let control of descriptionControls; let i = index">
                 <nz-form-control [nzOffset]="labelSize" [nzSpan]="controlSize" nzErrorTip="Please input description or delete this field.">
-                    <input class="description-input" nz-input [attr.id]="control.id" [formControlName]="control.controlInstance" />
+                    <input class="description-input" [(ngModel)]="control.value" nz-input [attr.id]="control.id" [formControlName]="control.controlInstance" />
                     <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeField(control, $event)"></i>
                 </nz-form-control>
             </nz-form-item>

@@ -3,6 +3,7 @@ package com.emart.model;
 public class MessageModel {
 	private String messageCode;
 	private String[] args;
+	private String message;
 	
 	public MessageModel() {
 		
@@ -28,5 +29,13 @@ public class MessageModel {
 	}
 	public void setArgs(String[] args) {
 		this.args = args;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

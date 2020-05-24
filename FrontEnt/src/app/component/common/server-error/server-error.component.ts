@@ -19,11 +19,13 @@ export class ServerErrorComponent implements OnInit {
     switch (this.errorCode) {
       case 403:
         this.errorMsg = "Sorry, you are not authorized to access this page."
-      case 500:
-          this.errorMsg = "Sorry, there is an error on server."
-      default:
-        this.errorCode = 404;
+        break;
+      case 404:
         this.errorMsg = "Sorry, the page you visited does not exist."
+        break;
+      default:
+          this.errorCode = 500;
+          this.errorMsg = "Sorry, there is an error on server."
     }
 
   }

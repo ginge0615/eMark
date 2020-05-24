@@ -1,6 +1,7 @@
 package com.emart.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -115,12 +116,11 @@ public class ItemServiceImpl implements ItemService {
 	/**
 	 * Add item
 	 * @param model
-	 * @return added item mode
 	 */
 	@Override
-	public ItemDetailModel addItem(ItemDetailModel model) {
+	public void addItem(ItemDetailModel model) {
 		if (model == null) {
-			return null;
+			return;
 		}
 		
 		//Insert into item table
@@ -133,6 +133,7 @@ public class ItemServiceImpl implements ItemService {
 		entity.setPrice(model.getPrice());
 		entity.setStockNumber(model.getStock());
 		entity.setSalesVolume(0);
+		entity.setCreateDatetime(new Date());
 		
 		entity = itemRepository.save(entity);
 		
@@ -156,8 +157,6 @@ public class ItemServiceImpl implements ItemService {
 			descEntity.setDescription(model.getDescriptions()[i]);
 			descriptionRepository.save(descEntity);
 		}
-
-		return model;
 	}
 
 	/**

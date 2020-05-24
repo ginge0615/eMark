@@ -2,7 +2,7 @@ package com.emart.model;
 
 import java.math.BigDecimal;
 
-public class ItemModel extends MessageModel{
+public class ItemModel {
 	private Integer id;
 	private String picture;
 	private String category;

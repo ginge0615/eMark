@@ -64,24 +64,19 @@ public class ItemController {
 	/**
 	 * Add item
 	 * @param ItemDetailModel
-	 * @return ItemDetailModel
+	 * @return MessageModel
 	 */
 	@PostMapping
-    public ResponseEntity<ItemDetailModel> add(@RequestBody ItemDetailModel model) {
-		ItemDetailModel rtnModel = null;
-		
+    public ResponseEntity<MessageModel> add(@RequestBody ItemDetailModel model) {
 		try {
-			rtnModel = service.addItem(model);
+			service.addItem(model);
 		} catch (BusinessException e) {
 			log.error(e.toString());
-			
-			rtnModel = new ItemDetailModel();
-			rtnModel.setMessageCode(e.getMessageCode());
-			rtnModel.setArgs(e.getArgs());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(rtnModel);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 		
-		return ResponseEntity.ok(rtnModel);
+		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+				
     }
 	
 	/**

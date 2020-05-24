@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { UploadPictureComponent } from './upload-picture.component';
+import { AdditemSuccessComponent } from './additem-success.component';
 
-describe('UploadPictureComponent', () => {
-  let component: UploadPictureComponent;
-  let fixture: ComponentFixture<UploadPictureComponent>;
+describe('AdditemSuccessComponent', () => {
+  let component: AdditemSuccessComponent;
+  let fixture: ComponentFixture<AdditemSuccessComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadPictureComponent ]
+      declarations: [ AdditemSuccessComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UploadPictureComponent);
+    fixture = TestBed.createComponent(AdditemSuccessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

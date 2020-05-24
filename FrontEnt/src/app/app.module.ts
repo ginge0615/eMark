@@ -49,12 +49,12 @@ import { ShoppingCartComponent } from './component/buyer/shopping-cart/shopping-
 import { PurchaseHistoryComponent } from './component/buyer/purchase-history/purchase-history.component';
 import { SellerMainComponent } from './component/seller/seller-main/seller-main.component';
 import { AddItemComponent } from './component/seller/add-item/add-item.component';
-import { UploadPictureComponent } from './component/seller/add-item/upload-picture/upload-picture.component';
 import { ManageStockComponent } from './component/seller/manage-stock/manage-stock.component';
 import {ReportsComponent} from './component/seller/reports/reports.component';
-import { ServerErrorComponent } from  './component/common/server-error/server-error.component'
-import { MessageBarComponent } from  './component/common/message-bar/message-bar.component'
-import { SignupSuccessComponent } from './component/common/signup-success/signup-success.component'
+import { ServerErrorComponent } from  './component/common/server-error/server-error.component';
+import { MessageBarComponent } from  './component/common/message-bar/message-bar.component';
+import { SignupSuccessComponent } from './component/common/signup-success/signup-success.component';
+import { AdditemSuccessComponent } from './component/seller/add-item/additem-success/additem-success.component';
 
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import { UserService } from './services/user.service'
@@ -73,12 +73,12 @@ import { UserService } from './services/user.service'
       PurchaseHistoryComponent,
       SellerMainComponent,
       AddItemComponent,
-      UploadPictureComponent,
       ManageStockComponent,
       ReportsComponent,
       ServerErrorComponent,
       MessageBarComponent,
-      SignupSuccessComponent
+      SignupSuccessComponent,
+      AdditemSuccessComponent
    ],
    imports: [
       AppRoutingModule,

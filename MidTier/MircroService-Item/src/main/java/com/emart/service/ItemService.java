@@ -28,7 +28,7 @@ public interface ItemService {
 	 * @return added item mode
 	 * @throws BusinessException
 	 */
-	public ItemDetailModel addItem(ItemDetailModel model) throws BusinessException;
+	public void addItem(ItemDetailModel model) throws BusinessException;
 	
 	/**
 	 * Find all items by seller id.

@@ -34,3 +34,8 @@ nz-input-number {
     height: 80px;
     font-size: large;
 }
+
+.ant-upload-text {
+    margin-top: 8px;
+    color: #666;
+}
