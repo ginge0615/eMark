@@ -41,7 +41,7 @@ public class ItemViewEntity{
     
     private String seller;
     
-    private String picture;
+    private String cover;
 
     private String category;
 
@@ -124,14 +124,6 @@ public class ItemViewEntity{
 		this.seller = seller;
 	}
 
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-
 	public String getCategory() {
 		return category;
 	}
@@ -170,5 +162,13 @@ public class ItemViewEntity{
 
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 }

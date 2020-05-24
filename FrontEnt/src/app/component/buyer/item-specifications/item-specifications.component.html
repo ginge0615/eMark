@@ -9,7 +9,7 @@
         </div>
         <div nz-col [nzSpan]="6" nzOffset="1">
             <div nz-row>
-                <h6>{{data?.item}}</h6>
+                <h6>{{data?.itemName}}</h6>
             </div>
             <div nz-row style="margin-bottom: 10px;">
                 <div id="price">{{data?.price | currency}}</div>
@@ -22,7 +22,7 @@
                     <h6>Sales volume</h6>
                 </div>
                 <div nz-col>
-                    <h6 style="color: red;">{{data?.volume}}</h6>
+                    <h6 style="color: red;">{{data?.salesVolume}}</h6>
                 </div>
             </div>
             <div nz-row [nzGutter]="16" nzAlign="middle" style="margin-bottom: 10px;">
@@ -32,7 +32,7 @@
                 <div nz-col>
                     <nz-form-item>
                         <nz-form-control>
-                            <nz-input-number formControlName="volume" [(ngModel)]="num" [nzMin]="1" [nzMax]="data?.volume" [nzStep]="1" ngDefaultControl></nz-input-number>
+                            <nz-input-number formControlName="volume" [(ngModel)]="num" [nzMin]="1" [nzMax]="data?.salesVolume" [nzStep]="1" ngDefaultControl></nz-input-number>
                         </nz-form-control>
                     </nz-form-item>
                 </div>

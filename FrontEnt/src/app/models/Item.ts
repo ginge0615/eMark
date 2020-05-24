@@ -2,17 +2,18 @@
 import {Option} from 'src/app/models/option';
 export interface Item {
   id : string;
+  cover: string;
   category : string;
   subcategory : string;
   manufactur : string;
-  item: string;
+  itemName: string;
   price: number;
-  tax : number;
-  pictures: string[];
-  descriptions:Option[];
   seller: string;
+  salesVolume : number;
   stock : number;
-  volume : number;
-  datetime : Date;
   purchaseNum : number;
+  tax : number;
+  pictures : string[];
+  descriptions:Option[];
+  datetime : Date;
 }

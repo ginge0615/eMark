@@ -7,7 +7,9 @@ import { MessageService } from 'src/app/services/message.service';
 import { UploadFile } from 'ng-zorro-antd/upload';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ItemService } from 'src/app/services/item.service';
+import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
+
 
 function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
@@ -61,6 +63,7 @@ export class AddItemComponent implements OnInit {
     private msgService: MessageService,
     private msgPopup: NzMessageService,
     private itemService : ItemService,
+    private globalService : GlobalService,
     private router: Router) {
     this.msgService.hideMessage();
   }
@@ -167,7 +170,7 @@ export class AddItemComponent implements OnInit {
       manufactur:this.selectedManufacturer.value,
       itemName:this.itemNameValue,
       price:this.priceValue,
-      seller:window.sessionStorage.getItem("userId"),
+      seller: this.globalService.getUserId(),
       stock:this.stockValue,
       pictures:pictures,
       descriptions:descriptions

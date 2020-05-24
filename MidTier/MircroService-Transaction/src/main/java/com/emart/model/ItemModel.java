@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class ItemModel {
 	private Integer id;
-	private String picture;
+	private String cover;
 	private String category;
 	private String subcategory;
 	private String manufactur;
@@ -19,12 +19,6 @@ public class ItemModel {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getPicture() {
-		return picture;
-	}
-	public void setPicture(String picture) {
-		this.picture = picture;
 	}
 	public String getCategory() {
 		return category;
@@ -80,6 +74,12 @@ public class ItemModel {
 	}
 	public void setStock(Integer stock) {
 		this.stock = stock;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 	
 }

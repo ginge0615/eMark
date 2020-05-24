@@ -27,7 +27,7 @@ export class ItemSearchComponent implements OnInit {
     this.listOfColumn = [
       {
         title: 'Item',
-        compare: (a: Item, b: Item) => a.manufactur.localeCompare(b.manufactur) != 0 ? a.manufactur.localeCompare(b.manufactur): a.item.localeCompare(b.item),
+        compare: (a: Item, b: Item) => a.manufactur.localeCompare(b.manufactur) != 0 ? a.manufactur.localeCompare(b.manufactur): a.itemName.localeCompare(b.itemName),
       },
       {
         title: 'Price',
@@ -39,7 +39,7 @@ export class ItemSearchComponent implements OnInit {
       },
       {
         title: 'Sales volume',
-        compare: (a: Item, b: Item) => a.volume - b.volume,
+        compare: (a: Item, b: Item) => a.salesVolume - b.salesVolume,
       },
       {
         title: ''
