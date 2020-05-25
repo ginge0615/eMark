@@ -14,6 +14,6 @@ export interface Item {
   purchaseNum : number;
   tax : number;
   pictures : string[];
-  descriptions:Option[];
+  descriptions:string[];
   datetime : Date;
 }

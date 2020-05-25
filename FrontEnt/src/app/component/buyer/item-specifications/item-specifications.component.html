@@ -9,13 +9,24 @@
         </div>
         <div nz-col [nzSpan]="6" nzOffset="1">
             <div nz-row>
-                <h6>{{data?.itemName}}</h6>
+                <h6>
+                    <nz-space [nzSize]="16">
+                        <nz-space-item>
+                            {{ data?.manufactur }}
+                        </nz-space-item>
+                        <nz-space-item>
+                            {{ data?.itemName }}
+                        </nz-space-item>
+                    </nz-space>
+                </h6>
             </div>
             <div nz-row style="margin-bottom: 10px;">
                 <div id="price">{{data?.price | currency}}</div>
             </div>
             <div nz-row>
-                <h6>{{data?.seller}}</h6>
+                <div nz-col>
+                    <h6>{{data?.seller}}</h6>
+                </div>
             </div>
             <div nz-row [nzGutter]="16">
                 <div nz-col>
@@ -25,14 +36,14 @@
                     <h6 style="color: red;">{{data?.salesVolume}}</h6>
                 </div>
             </div>
-            <div nz-row [nzGutter]="16" nzAlign="middle" style="margin-bottom: 10px;">
+            <div nz-row [nzGutter]="16" nzAlign="middle">
                 <div nz-col>
                     <h6>Number</h6>
                 </div>
                 <div nz-col>
                     <nz-form-item>
-                        <nz-form-control>
-                            <nz-input-number formControlName="volume" [(ngModel)]="num" [nzMin]="1" [nzMax]="data?.salesVolume" [nzStep]="1" ngDefaultControl></nz-input-number>
+                        <nz-form-control nzErrorTip="Please input number!">
+                            <nz-input-number class="mt-3" formControlName="purchaseNum" [(ngModel)]="data.purchaseNum" [nzMin]="1" [nzMax]="data?.stock" [nzStep]="1"></nz-input-number>
                         </nz-form-control>
                     </nz-form-item>
                 </div>
@@ -52,7 +63,7 @@
 <div nz-row>
     <div nz-col [nzSpan]="16" nzOffset="2">
         <nz-descriptions nzTitle="Descriptions">
-            <nz-descriptions-item [nzTitle]="description.label" *ngFor="let description of data?.descriptions">
+            <nz-descriptions-item [nzTitle]="description.label" *ngFor="let description of descriptions">
                 {{description.value}}
             </nz-descriptions-item>
         </nz-descriptions>

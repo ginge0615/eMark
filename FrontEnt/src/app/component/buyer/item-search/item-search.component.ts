@@ -5,8 +5,6 @@ import { OptionsService } from 'src/app/services/options.service';
 import { MessageService } from 'src/app/services/message.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ItemService } from 'src/app/services/item.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-search',
@@ -28,9 +26,7 @@ export class ItemSearchComponent implements OnInit {
   constructor(private optionsService: OptionsService,
     private msgService: MessageService,
     private msgPopup: NzMessageService,
-    private itemService: ItemService,
-    private globalService: GlobalService,
-    private router: Router) {
+    private itemService: ItemService) {
     this.msgService.hideMessage();
   }
 
@@ -111,7 +107,7 @@ export class ItemSearchComponent implements OnInit {
         res => {
           //error
           const response: any = res;
-          this.msgPopup.error("Failure to search items.");
+          this.msgPopup.error("Failure to search items. Please change the search context.");
         }
       );
 

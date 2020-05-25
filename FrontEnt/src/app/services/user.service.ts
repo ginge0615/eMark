@@ -17,15 +17,15 @@ export class UserService {
   }
 
   public login(user) {
-    return this.http.post(`/user/login`, JSON.stringify(user), httpOptions);
+    return this.http.post("/remote/user/login", JSON.stringify(user), httpOptions);
   }
 
   public signinAsBuyer(buyer) {
-    return this.http.post(`/user/signinasbuyer`, JSON.stringify(buyer), httpOptions);
+    return this.http.post("/remote/user/signinasbuyer", JSON.stringify(buyer), httpOptions);
   }
 
   public signinAsSeller(seller) {
-    return this.http.post(`/user/signinasseller`, JSON.stringify(seller), httpOptions);
+    return this.http.post("/remote/user/signinasseller", JSON.stringify(seller), httpOptions);
   }
 
   

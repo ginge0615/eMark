@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,18 +45,13 @@ public class CartController {
 
 	/**
 	 * Add item to buyer's cart.
-	 * @param buyerId
-	 * @param itemId
-	 * @param number
+	 * @param CartModel
 	 * @return
 	 */
 	@PostMapping
-	public ResponseEntity<MessageModel> add(
-			@RequestParam(value="buyerId") Integer buyerId,
-			@RequestParam(value="itemId") Integer itemId,
-			@RequestParam(value="number") Integer number) {
+	public ResponseEntity<MessageModel> add(@RequestBody CartModel model) {
 		try {
-			service.add(buyerId, itemId, number);
+			service.add(model.getBuyerId(), model.getItemId(), model.getNumber());
 			return ResponseEntity.ok(null);
 		} catch (IllegalArgumentException e) {
 			MessageModel msg = new MessageModel();

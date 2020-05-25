@@ -20,8 +20,24 @@ zuul:
       path: /item/**
       service-id: MircroService-Item
       strip-prefix: false
+    picture:
+      path: /picture/**
+      service-id: MircroService-Item
+      strip-prefix: false
     transaction:
       path: /transaction/**
+      service-id: MircroService-Transaction
+      strip-prefix: false
+    cart:
+      path: /cart/**
+      service-id: MircroService-Transaction
+      strip-prefix: false
+    history:
+      path: /history/**
+      service-id: MircroService-Transaction
+      strip-prefix: false
+    report:
+      path: /report/**
       service-id: MircroService-Transaction
       strip-prefix: false
     discount:
@@ -35,10 +51,6 @@ zuul:
     manufactur:
       path: /manufactur/**
       service-id: MircroService-Mast
-      strip-prefix: false
-    picture:
-      path: /picture/**
-      service-id: MircroService-Item
       strip-prefix: false
 token:
   secret: emart
