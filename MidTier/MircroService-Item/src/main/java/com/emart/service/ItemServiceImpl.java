@@ -37,6 +37,29 @@ public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private DescriptionRepository descriptionRepository;
 	
+	/**
+	 * Get all items
+	 * @return List<ItemModel>
+	 */
+	public List<ItemModel> getAllItems() {
+		List<ItemViewEntity> lstEntity = itemViewRepository.findAll();
+		
+		if (CollectionUtils.isEmpty(lstEntity)) {
+			return null;
+		}
+		
+		List<ItemModel> lstModel = new ArrayList<ItemModel>(lstEntity.size());
+
+		//Convert entity to model   
+		lstEntity.stream().forEach(entity -> {
+			ItemModel model = new ItemModel();
+			BeanUtils.copyProperties(entity, model);
+			lstModel.add(model);
+		});
+		
+		return lstModel;
+	}
+	
 	
 	/**
 	 * Search item

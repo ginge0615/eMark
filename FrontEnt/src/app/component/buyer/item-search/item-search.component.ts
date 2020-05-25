@@ -1,7 +1,12 @@
-import { Component, OnInit , Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Option } from 'src/app/models/option';
 import { Item } from 'src/app/models/Item';
+import { OptionsService } from 'src/app/services/options.service';
+import { MessageService } from 'src/app/services/message.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { ItemService } from 'src/app/services/item.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-search',
@@ -9,25 +14,51 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./item-search.component.css']
 })
 export class ItemSearchComponent implements OnInit {
-  @Input() searchContent : string;
-  @Input() selectedManufacturer : Option;
-  @Input() priceFrom : number;
-  @Input() priceTo : number;
+  @Input() selectedManufacturer: Option;
+  @Input() priceFrom: number;
+  @Input() priceTo: number;
 
-  manufacturerOptionList : Option[];
+  manufacturerOptionList: Option[];
   listOfColumn = [];
   listOfData: Item[];
-  listCurrentData : Item[];
+  listCurrentData: Item[];
 
   compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
 
-  constructor(private global: GlobalService) { }
+  constructor(private optionsService: OptionsService,
+    private msgService: MessageService,
+    private msgPopup: NzMessageService,
+    private itemService: ItemService,
+    private globalService: GlobalService,
+    private router: Router) {
+    this.msgService.hideMessage();
+  }
 
   ngOnInit() {
+    this.initOptions();
+    this.initTable();
+  }
+
+  private initOptions() {
+    //Init Manufactur Options
+    this.optionsService.getManufacturOptions().subscribe(
+      data => {
+        //successful
+        const respData: any = data;
+        this.manufacturerOptionList = respData;
+      },
+      res => {
+        //error
+        const response: any = res;
+      }
+    );
+  }
+
+  private initTable() {
     this.listOfColumn = [
       {
         title: 'Item',
-        compare: (a: Item, b: Item) => a.manufactur.localeCompare(b.manufactur) != 0 ? a.manufactur.localeCompare(b.manufactur): a.itemName.localeCompare(b.itemName),
+        compare: (a: Item, b: Item) => a.manufactur.localeCompare(b.manufactur) != 0 ? a.manufactur.localeCompare(b.manufactur) : a.itemName.localeCompare(b.itemName),
       },
       {
         title: 'Price',
@@ -45,38 +76,69 @@ export class ItemSearchComponent implements OnInit {
         title: ''
       }
     ];
-    
-    //test
-    this.manufacturerOptionList  = [
-      {value : "1", label : "Samsung"},
-      {value : "2", label : "OPPO"},
-      {value : "3", label : "XIAOMI"},
-    ];
-    this.listOfData = this.global.listItems;
-    this.listCurrentData = this.listOfData;
+
+    this.getAllItems();
   }
 
-  search() {
-    //TODO
+  getAllItems() {
+    this.itemService.getAllItems().subscribe(
+      data => {
+        //successful
+        const respData: any = data;
+        this.listOfData = respData;
+        this.listCurrentData = this.listOfData;
+      },
+      res => {
+        //error
+        const response: any = res;
+        this.msgPopup.error("Failure to get items.");
+      }
+    );
+
+  }
+
+  search(context: string) {
+
+    //If search context is not empty
+    if (context && context.trim().length > 0) {
+      this.itemService.search(context).subscribe(
+        data => {
+          //successful
+          const respData: any = data;
+          this.listOfData = respData;
+          this.listCurrentData = this.listOfData;
+        },
+        res => {
+          //error
+          const response: any = res;
+          this.msgPopup.error("Failure to search items.");
+        }
+      );
+
+    } else {
+      //If search context is empty
+      this.getAllItems();
+    }
+
   }
 
   filter() {
     this.listCurrentData = [];
-    isObjectData : Boolean;
+    isObjectData: Boolean;
 
     for (let data of this.listOfData) {
       let isObjectData = true;
 
       if (this.selectedManufacturer?.label) {
-         isObjectData = data.subcategory === this.selectedManufacturer.label;
+        isObjectData = data.manufactur === this.selectedManufacturer.label;
       }
 
       if (isObjectData && this.priceFrom) {
-          isObjectData = data.price >= this.priceFrom;
+        isObjectData = data.price >= this.priceFrom;
       }
 
       if (isObjectData && this.priceTo) {
-          isObjectData = data.price <= this.priceTo;
+        isObjectData = data.price <= this.priceTo;
       }
 
       if (isObjectData) {

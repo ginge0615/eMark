@@ -10,7 +10,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:9001/eureka/
 zuul:
-  shouldNotFilter: /user,/picture
+  shouldNotFilter: /user/**,/picture/**,/item,/item/search/**,/item/detail/**,/manufactur
   routes:
     user:
       path: /user/**

@@ -59,8 +59,14 @@ public class RequestFilter extends ZuulFilter {
 		List<String> lstNoTokenValid = Arrays.asList(shouldNotFilter.split(","));
 		
 		for (String noTolenValid : lstNoTokenValid) {
-			if (url.startsWith(noTolenValid)) {
-				return false;
+			if (noTolenValid.endsWith("/**")) {
+				if (url.startsWith(noTolenValid.substring(0, noTolenValid.length() - 3))) {
+					return false;
+				}
+			} else {
+				if (url.equals(noTolenValid) && request.getMethod().equals("GET")) {
+					return false;
+				}
 			}
 		}
         

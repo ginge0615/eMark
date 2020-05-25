@@ -37,4 +37,19 @@ export class ManageStockComponent implements OnInit {
     );
   }
 
+  update(data : Item) {
+    this.itemService.updateStock(data.id, data.stock).subscribe(
+      data => {
+        //successful
+        const respData: any = data;
+        this.msgPopup.success("Successful update stock.");
+      },
+      res => {
+        //error
+        const response: any = res;
+        this.router.navigate(['/server-error',response.status]);
+      }
+    );
+  }
+
 }

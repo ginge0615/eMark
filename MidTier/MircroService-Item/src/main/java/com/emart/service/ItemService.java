@@ -9,6 +9,12 @@ import com.emart.model.ItemModel;
 public interface ItemService {
 	
 	/**
+	 * Get all items
+	 * @return List<ItemModel>
+	 */
+	public List<ItemModel> getAllItems();
+	
+	/**
 	 * Search item
 	 * @param context
 	 * @return List<ItemModel>

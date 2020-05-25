@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Option } from 'src/app/models/option';
-import { OptionsService } from 'src/app/services/options.service';
-import { ItemDetailModel } from 'src/app/models/ItemDetailModel';
-import { MessageService } from 'src/app/services/message.service';
 import { UploadFile } from 'ng-zorro-antd/upload';
+import { OptionsService } from 'src/app/services/options.service';
+import { MessageService } from 'src/app/services/message.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ItemService } from 'src/app/services/item.service';
 import { GlobalService } from 'src/app/services/global.service';

@@ -37,7 +37,8 @@
                         <nz-input-number [(ngModel)]="data.stock" [nzStep]="1 " [nzMin]="0 " class="stock"></nz-input-number>
                     </td>
                     <td>
-                        <button nz-button nzType="primary" i18n="@@Update "><span class="ml-1 ">Update</span></button>
+                        <button nz-button nzType="primary" (click)="update(data)" i18n="@@Update "><span class="ml-1 ">Update</span>
+                        </button>
                     </td>
                 </tr>
             </tbody>

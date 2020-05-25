@@ -21,7 +21,7 @@ export class ItemService {
   }
 
   public search(context:string) {
-    return this.http.get("/item/" + context, httpOptions);
+    return this.http.get("/item/search/" + context, httpOptions);
   }
 
   public viewDetail(itemId:string) {
@@ -33,7 +33,11 @@ export class ItemService {
       id : itemId,
       stock : stock
     }
-    return this.http.put("/item/stock/"  ,JSON.stringify(model),  httpOptions);
+    return this.http.put("/item/stock"  ,JSON.stringify(model),  httpOptions);
+  }
+
+  public getAllItems() {
+    return this.http.get("/item", httpOptions);
   }
 
 }

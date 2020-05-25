@@ -35,7 +35,17 @@ public class ItemController {
 	 * @param context
 	 * @return List<ItemModel>
 	 */
-	@GetMapping("/{context}")
+	@GetMapping()
+    public ResponseEntity<List<ItemModel>> getAllItems() {
+		return ResponseEntity.ok(service.getAllItems());
+    }
+	
+	/**
+	 * Search items
+	 * @param context
+	 * @return List<ItemModel>
+	 */
+	@GetMapping("/search/{context}")
     public ResponseEntity<List<ItemModel>> search(@PathVariable String context) {
 		return ResponseEntity.ok(service.search(context));
     }
