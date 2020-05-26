@@ -110,7 +110,7 @@ export class ItemSpecificationsComponent implements OnInit {
       buyerId: this.globalService.getUserId(),
       sellerId: this.data.sellerId,
       itemId: this.data.id,
-      price : this.data.price,
+      price : this.data.price + this.data.tax,
       purchaseNumber: this.data.number,
       type : "1",
       transactionAmount : (this.data.price + this.data.tax) * this.data.number

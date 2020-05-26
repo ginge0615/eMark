@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from 'src/app/models/Item';
+import { PurchaseHistory } from 'src/app/models/PurchaseHistory';
 import { GlobalService } from 'src/app/services/global.service';
+import { HistoryService } from 'src/app/services/history.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-purchase-history',
@@ -8,10 +10,24 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./purchase-history.component.css']
 })
 export class PurchaseHistoryComponent implements OnInit {
-  constructor(private global: GlobalService) { }
-  listOfData : Item[];
+  constructor(private globalService: GlobalService, 
+    private historyService:HistoryService,
+    private router : Router) { }
+  listOfData : PurchaseHistory[];
 
   ngOnInit() {
+    this.historyService.getPuchaseHistory(this.globalService.getUserId()).subscribe(
+      data => {
+        //successful
+        const respData: any = data;
+        this.listOfData = respData;
+      },
+      res => {
+        //error
+        const response: any = res;
+        this.router.navigate(['/server-error',response.status]);
+      }
+    );
   }
 
 }
