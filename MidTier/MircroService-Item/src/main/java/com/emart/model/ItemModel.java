@@ -13,6 +13,7 @@ public class ItemModel {
 	private String seller;
 	private Integer salesVolume = 0;
 	private Integer stock = 0;
+	private BigDecimal tax;
 	
 	public Integer getId() {
 		return id;
@@ -75,6 +76,12 @@ public class ItemModel {
 	}
 	public void setCover(String cover) {
 		this.cover = cover;
+	}
+	public BigDecimal getTax() {
+		return tax;
+	}
+	public void setTax(BigDecimal tax) {
+		this.tax = tax;
 	}
 	
 }

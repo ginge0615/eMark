@@ -1,7 +1,9 @@
 package com.emart.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +71,21 @@ public class CategoryServiceImpl implements CategoryService {
 		});
 		
 		return lstModel;
+	}
+	
+	/**
+	 * Get tax by sub category
+	 * @param categoryId
+	 * @return tax
+	 */
+	public BigDecimal getTax(String categoryId) {
+		Optional<SubcategoryEntity> entity = subResitory.findById(Integer.parseInt(categoryId));
+		
+		if (entity.isPresent()) {
+			return entity.get().getGst();
+		}
+		
+		return null;
 	}
 
 }

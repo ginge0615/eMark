@@ -58,7 +58,7 @@ export class ItemSearchComponent implements OnInit {
       },
       {
         title: 'Price',
-        compare: (a: Item, b: Item) => a.price - b.price,
+        compare: (a: Item, b: Item) => a.price + a.tax - b.price - b.tax,
       },
       {
         title: 'Seller',

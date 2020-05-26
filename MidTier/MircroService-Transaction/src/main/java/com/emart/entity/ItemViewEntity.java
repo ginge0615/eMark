@@ -51,6 +51,8 @@ public class ItemViewEntity{
 
     @Column(name="search_context")
     private String searchContext;
+    
+    private BigDecimal tax;
 
     public Integer getId() {
 		return id;
@@ -170,5 +172,13 @@ public class ItemViewEntity{
 
 	public void setCover(String cover) {
 		this.cover = cover;
+	}
+
+	public BigDecimal getTax() {
+		return tax;
+	}
+
+	public void setTax(BigDecimal tax) {
+		this.tax = tax;
 	}
 }

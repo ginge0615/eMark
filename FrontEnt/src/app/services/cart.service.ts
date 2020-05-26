@@ -13,13 +13,7 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
 
-  public addToCart(buyerId: String, itemId: String, num: number) {
-    let model = {
-      buyerId: buyerId,
-      itemId: itemId,
-      number: num
-    }
-
+  public addToCart(model) {
     return this.http.post("/remote/cart", JSON.stringify(model), httpOptions);
   }
 

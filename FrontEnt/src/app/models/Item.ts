@@ -11,9 +11,5 @@ export interface Item {
   seller: string;
   salesVolume : number;
   stock : number;
-  purchaseNum : number;
-  tax : number;
-  pictures : string[];
-  descriptions:string[];
-  datetime : Date;
+  tax:number;
 }

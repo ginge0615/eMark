@@ -55,6 +55,7 @@ import { ServerErrorComponent } from  './component/common/server-error/server-er
 import { MessageBarComponent } from  './component/common/message-bar/message-bar.component';
 import { SignupSuccessComponent } from './component/common/signup-success/signup-success.component';
 import { AdditemSuccessComponent } from './component/seller/add-item/additem-success/additem-success.component';
+import { CheckoutSuccessComponent } from './component/buyer/item-specifications/checkout-success/checkout-success.component';
 
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import { UserService } from './services/user.service'
@@ -78,7 +79,8 @@ import { UserService } from './services/user.service'
       ServerErrorComponent,
       MessageBarComponent,
       SignupSuccessComponent,
-      AdditemSuccessComponent
+      AdditemSuccessComponent,
+      CheckoutSuccessComponent
    ],
    imports: [
       AppRoutingModule,

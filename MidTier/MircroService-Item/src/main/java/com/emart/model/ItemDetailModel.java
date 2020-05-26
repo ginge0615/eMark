@@ -4,6 +4,7 @@ public class ItemDetailModel extends ItemModel{
 	private String[] pictures;
 	private int number;
 	private String[] descriptions;
+	private Integer sellerId;
 	
 	public String[] getPictures() {
 		return pictures;
@@ -22,6 +23,12 @@ public class ItemDetailModel extends ItemModel{
 	}
 	public void setDescriptions(String[] descriptions) {
 		this.descriptions = descriptions;
+	}
+	public Integer getSellerId() {
+		return sellerId;
+	}
+	public void setSellerId(Integer sellerId) {
+		this.sellerId = sellerId;
 	}
 	
 }

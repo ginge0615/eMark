@@ -11,8 +11,9 @@ public class ItemModel {
 	private String itemName;
 	private BigDecimal price;
 	private String seller;
-	private Integer salesVolume;
-	private Integer stock;
+	private Integer salesVolume = 0;
+	private Integer stock = 0;
+	private BigDecimal tax;
 	
 	public Integer getId() {
 		return id;
@@ -20,6 +21,7 @@ public class ItemModel {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getCategory() {
 		return category;
 	}
@@ -51,16 +53,16 @@ public class ItemModel {
 	public void setSeller(String seller) {
 		this.seller = seller;
 	}
-	public int getSalesVolume() {
+	public Integer getSalesVolume() {
 		return salesVolume;
 	}
-	public void setSalesVolume(int salesVolume) {
+	public void setSalesVolume(Integer salesVolume) {
 		this.salesVolume = salesVolume;
 	}
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 	public String getItemName() {
@@ -69,17 +71,17 @@ public class ItemModel {
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	public void setSalesVolume(Integer salesVolume) {
-		this.salesVolume = salesVolume;
-	}
-	public void setStock(Integer stock) {
-		this.stock = stock;
-	}
 	public String getCover() {
 		return cover;
 	}
 	public void setCover(String cover) {
 		this.cover = cover;
+	}
+	public BigDecimal getTax() {
+		return tax;
+	}
+	public void setTax(BigDecimal tax) {
+		this.tax = tax;
 	}
 	
 }

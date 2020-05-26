@@ -3,6 +3,7 @@ package com.emart.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,9 @@ public class TransactionController {
 	@Autowired
 	private TransactionService service;	
 	
+	@Autowired
+	private MessageSource msgSource;
+	
 	/**
 	 * Checkout
 	 * @param models TransactionModel[] 
@@ -30,19 +34,17 @@ public class TransactionController {
 	 */
 	@PostMapping
 	public ResponseEntity<MessageModel> checkout(@RequestBody TransactionModel[] models) {
-		MessageModel rtnModel = null;
 		
 		try {
 			service.checkout(models);
 		} catch (BusinessException e) {
 			log.error(e.toString());
 			
-			rtnModel = new MessageModel();
-			rtnModel.setMessageCode(e.getMessageCode());
-			rtnModel.setArgs(e.getArgs());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(rtnModel);
+			MessageModel msg = new MessageModel();
+			msg.setMessage(msgSource.getMessage(e.getMessageCode(), e.getArgs(), null));
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(msg);
 		}
 		
-		return ResponseEntity.ok(rtnModel);
+		return ResponseEntity.ok(null);
 	}
 }

@@ -1,5 +1,6 @@
 package com.emart.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,16 @@ public class CategoryController {
 		}
 		
 		return ResponseEntity.ok(lst);
+	}
+	
+	/**
+	 * Get tax
+	 * @param subCategroyId
+	 * @return
+	 */
+	@GetMapping("/tax/{subCategroyId}")
+	public ResponseEntity<BigDecimal> getTax(@PathVariable String subCategroyId) {
+		BigDecimal tax = this.service.getTax(subCategroyId);
+		return ResponseEntity.ok(tax);
 	}
 }
