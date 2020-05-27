@@ -8,6 +8,7 @@ import { Option } from 'src/app/models/option';
 import { GlobalService } from 'src/app/services/global.service';
 import { CartService } from 'src/app/services/cart.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
   styleUrls: ['./item-specifications.component.css']
 })
 export class ItemSpecificationsComponent implements OnInit {
-
+  validateForm: FormGroup;
   effect = 'scrollx';
 
   id: string;
@@ -32,12 +33,17 @@ export class ItemSpecificationsComponent implements OnInit {
     private router: Router,
     private globalService: GlobalService,
     private cartService: CartService,
-    private transactionService : TransactionService
+    private transactionService : TransactionService,
+    private fb: FormBuilder
   ) {
     this.msgService.hideMessage();
   }
 
   ngOnInit() {
+    this.validateForm = this.fb.group({
+      number: [null, [Validators.required]],
+    });
+
     this.routerInfo.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
@@ -139,15 +145,30 @@ export class ItemSpecificationsComponent implements OnInit {
 
   private check() : boolean {
     if (!this.globalService.isLogined()) {
-      this.msgPopup.warning("Please login first.");
+      this.router.navigate(['/login']);
       return false;
     }
 
-    if (this.data.number <= 0) {
-      this.msgPopup.error("Please input number.");
-      return false;
+    this.data.number = this.num;
+
+    // if (this.data.number <= 0) {
+    //   this.msgPopup.error("Please input number.");
+    //   return false;
+    // }
+
+    let hasError : boolean = false;
+
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+      if (this.validateForm.controls[i].errors) {
+        hasError = true;
+      }
     }
 
-    return true;
+    return !hasError;
+  }
+
+  submitForm(): void {
   }
 }
