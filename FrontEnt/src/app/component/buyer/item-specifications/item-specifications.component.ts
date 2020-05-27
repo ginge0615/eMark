@@ -151,11 +151,6 @@ export class ItemSpecificationsComponent implements OnInit {
 
     this.data.number = this.num;
 
-    // if (this.data.number <= 0) {
-    //   this.msgPopup.error("Please input number.");
-    //   return false;
-    // }
-
     let hasError : boolean = false;
 
     for (const i in this.validateForm.controls) {
