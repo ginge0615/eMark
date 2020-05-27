@@ -93,6 +93,7 @@ export class ItemSpecificationsComponent implements OnInit {
       data => {
         //successful
         const respData: any = data;
+        this.cartService.refreshCount(model.buyerId);
         this.msgPopup.success("Successful add to cart.");
       },
       res => {

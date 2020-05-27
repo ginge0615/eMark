@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { MessageService } from 'src/app/services/message.service'
+import { MessageService } from 'src/app/services/message.service';
+import {CartService} from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private routeInfo: ActivatedRoute,
     private userService: UserService,
-    private msgService: MessageService) {
+    private msgService: MessageService,
+    private cartService : CartService) {
 
     // this.iconService.fetchFromIconfont({
     //   scriptUrl: 'https://at.alicdn.com/t/font_8d5l8fzk5b87iudi.js'
@@ -72,6 +74,8 @@ export class LoginComponent implements OnInit {
           window.sessionStorage.setItem('token', respData.token);
           window.sessionStorage.setItem('userId', respData.id);
           window.sessionStorage.setItem('role', respData.role);
+
+          this.cartService.refreshCount(respData.id);
 
           if (this.role === "1") {
             this.router.navigate(['/emart-buyer']);

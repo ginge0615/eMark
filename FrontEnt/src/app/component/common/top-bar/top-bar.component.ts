@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import {CartService} from 'src/app/services/cart.service'
+
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -9,7 +11,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(private router: Router, public global: GlobalService, private authService : AuthService) {
+  constructor(private router: Router, 
+    public cartService: CartService, 
+    private authService : AuthService,
+    public globalService: GlobalService) {
   }
 
   logout() {
@@ -18,6 +23,14 @@ export class TopBarComponent implements OnInit {
     window.sessionStorage.removeItem("role");
     this.authService.logout
     this.router.navigate(['/']);
+  }
+
+  getItemsCountInCart() : number {
+    if (window.sessionStorage.getItem("count")) {
+      return Number(window.sessionStorage.getItem("count"));
+    }
+
+    return 0;
   }
 
   ngOnInit() {

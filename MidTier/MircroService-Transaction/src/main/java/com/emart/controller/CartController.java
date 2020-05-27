@@ -31,14 +31,8 @@ public class CartController {
 	 * @return List<ItemModel>
 	 */
 	@GetMapping("/{userId}")
-    public ResponseEntity<List<CartModel>> getCart(@PathVariable String userId) {
-		
-		List<CartModel> lst = service.getCart(Integer.parseInt(userId));
-		
-		if (CollectionUtils.isEmpty(lst)) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		
+    public ResponseEntity<List<CartModel>> getCart(@PathVariable Integer userId) {
+		List<CartModel> lst = service.getCart(userId);
 		return ResponseEntity.ok(lst);
     }
 	
@@ -75,5 +69,16 @@ public class CartController {
 			msg.setMessageCode("E999");
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(msg);
 		}
+	}
+	
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	@GetMapping("/count/{userId}")
+	public ResponseEntity<Integer> getItemsCountInCart(@PathVariable Integer userId) {
+		Integer count = this.service.getItemsCountInCart(userId);
+		return ResponseEntity.ok(count);
 	}
 }

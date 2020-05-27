@@ -53,6 +53,7 @@ public class CartServiceImpl implements CartService {
 			if (optItemViewEntity.isPresent()) {
 				//Copy propeties from ItemViewEntity to cart model
 				BeanUtils.copyProperties(optItemViewEntity.get(), model);
+				model.setItemId(model.getId());
 				//Copy propeties from cart entity to cart model
 				BeanUtils.copyProperties(entity, model);
 				
@@ -75,10 +76,21 @@ public class CartServiceImpl implements CartService {
 	 */
 	@Override
 	public void add(Integer buyerId, Integer itemId, Integer number) throws IllegalArgumentException {
-		CartEntity entity = new CartEntity();
-		entity.setBuyerId(buyerId);
-		entity.setItemId(itemId);
-		entity.setNumber(number);
+		CartEntity entity = null;
+		
+		Optional<CartEntity> optEntity = cartRepositor.findByBuyerIdAndItemId(buyerId, itemId);
+		
+		if (optEntity.isPresent()) {
+			//If there is the same item in cart, update number
+			entity = optEntity.get();
+			entity.setNumber(entity.getNumber() + number);
+		} else {
+			//If there is not the same item in cart, add to cart
+			entity = new CartEntity();
+			entity.setBuyerId(buyerId);
+			entity.setItemId(itemId);
+			entity.setNumber(number);
+		}
 		
 		//Add to cart
 		cartRepositor.save(entity);
@@ -94,4 +106,12 @@ public class CartServiceImpl implements CartService {
 		cartRepositor.deleteById(id);
 	}
 
+	/**
+	 * Get items count in cart
+	 * @param userId
+	 * @return 
+	 */
+	public Integer getItemsCountInCart(Integer userId) {
+		return cartRepositor.findByBuyerId(userId).size();
+	}
 }

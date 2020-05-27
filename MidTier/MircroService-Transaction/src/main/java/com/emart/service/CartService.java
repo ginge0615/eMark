@@ -13,6 +13,13 @@ public interface CartService {
 	public List<CartModel> getCart(Integer userId);
 	
 	/**
+	 * Get items count in cart
+	 * @param userId
+	 * @return 
+	 */
+	public Integer getItemsCountInCart(Integer userId);
+	
+	/**
 	 * Add item to buyer's cart.
 	 * @param buyerId
 	 * @param itemId

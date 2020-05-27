@@ -35,6 +35,7 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 
 //MyCompents
@@ -116,7 +117,8 @@ import { UserService } from './services/user.service'
       NzResultModule,
       NzMessageModule,
       HttpClientJsonpModule,
-      HttpClientModule
+      HttpClientModule,
+      NzPopconfirmModule
    ],
    providers: [
       { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
