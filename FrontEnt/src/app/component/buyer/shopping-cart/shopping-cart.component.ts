@@ -5,6 +5,8 @@ import { CartService } from 'src/app/services/cart.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {DiscountService} from 'src/app/services/discount.service'
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,6 +20,9 @@ export class ShoppingCartComponent implements OnInit {
   totalPrice: number = 0;
   setOfCheckedId = new Set<string>();
   listOfData: CartModel[] = [];
+  isDiscountVisible : boolean = false;
+  discountCode : string;
+  validateForm: FormGroup;
 
   private userId: string;
 
@@ -25,10 +30,16 @@ export class ShoppingCartComponent implements OnInit {
     private cartService: CartService,
     private transactionService: TransactionService,
     private router: Router,
-    private msgPopup: NzMessageService) {
+    private msgPopup: NzMessageService,
+    private fb: FormBuilder,
+    private discountService : DiscountService) {
   }
 
   ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      discount: [null, [Validators.required]],
+    });
+
     this.userId = this.globalService.getUserId();
 
     this.cartService.getCart(this.userId).subscribe(
@@ -164,5 +175,54 @@ export class ShoppingCartComponent implements OnInit {
       }
     );
 
+  }
+
+  showModal(): void {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].reset();
+    }
+
+    this.isDiscountVisible = true;
+  }
+
+  handleOk(): void {
+    let hasError : boolean = false;
+
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+      if (this.validateForm.controls[i].errors) {
+        hasError = true;
+      }
+    }
+
+    if (hasError) return;
+
+    this.isDiscountVisible = false;
+
+    this.discountService.getDiscount(this.discountCode).subscribe(
+      data => {
+        const respData: any = data;
+
+        let discountValue = Number(respData);
+
+        for (let item of this.listOfData) {
+          item.price = item.price * (1 - discountValue);
+          item.tax = item.tax * (1 - discountValue);
+        }
+
+        this.msgPopup.success("All items are sold " + (discountValue * 100) +"% off! ");
+      },
+      res => {
+        //error
+        const response: any = res;
+        this.msgPopup.warning("The discount code is incorrect or expired.");
+      }
+    );
+    
+  }
+
+  handleCancel(): void {
+    this.isDiscountVisible = false;
   }
 }

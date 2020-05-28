@@ -68,7 +68,7 @@
                 </div>
                 <div nz-row [nzGutter]="16">
                     <div nz-col nzSpan="12" class="text-right">
-                        <button nz-button nzType="primary" nzDanger nzSize="large" i18n="@@ApplyDiscount ">Apply Discount</button>
+                        <button nz-button nzType="primary" nzDanger nzSize="large" i18n="@@ApplyDiscount" (click)="showModal()">Apply Discount</button>
                     </div>
                     <div nz-col nzSpan="12">
                         <button nz-button nzType="primary" nzSize="large" (click)="checkout()" i18n="@@Checkout">Checkout</button>
@@ -83,3 +83,20 @@
         <button [routerLink]="['/']" class="btn btn-link btn-sm"><i class="fas fa-angle-double-left"></i>Back to Search</button>
     </div>
 </div>
+<nz-modal [(nzVisible)]="isDiscountVisible" nzTitle="Apply Discount" nzOkText="Apply" nzWidth="400px" nzCancelText="Cancel" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <form nz-form [formGroup]="validateForm" style="width: 100%;">
+        <nz-form-item>
+            <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="discount" nzRequired>
+                <span>Discount code
+                </span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please input discount code.">
+                <nz-space [nzSize]="16">
+                    <nz-space-item>
+                        <input nz-input formControlName="discount" [(ngModel)]="discountCode" />
+                    </nz-space-item>
+                </nz-space>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

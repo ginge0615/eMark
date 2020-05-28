@@ -3,6 +3,7 @@ package com.emart.controller;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,11 @@ public class DiscountController {
 	 */
 	@GetMapping("/{code}")
     public ResponseEntity<BigDecimal> getDiscount(@PathVariable String code) {
+		BigDecimal discount = service.getDiscount(code);
+		
+		if (discount == null) {
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+		}
 		return ResponseEntity.ok(service.getDiscount(code));
     }
 
