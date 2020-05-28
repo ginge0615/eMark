@@ -7,6 +7,7 @@ public class PurchaseHistoryModel extends ItemModel {
 	private Date datetime;
     private Integer purchaseNumber;
     private BigDecimal transactionAmount;
+    private Integer itemId;
 	
 
 	public Date getDatetime() {
@@ -26,5 +27,11 @@ public class PurchaseHistoryModel extends ItemModel {
 	}
 	public void setTransactionAmount(BigDecimal transactionAmount) {
 		this.transactionAmount = transactionAmount;
+	}
+	public Integer getItemId() {
+		return itemId;
+	}
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}	
 }

@@ -119,29 +119,19 @@ export class ItemSearchComponent implements OnInit {
   }
 
   filter() {
-    this.listCurrentData = [];
-    isObjectData: Boolean;
+    this.listCurrentData = this.listOfData;
 
-    for (let data of this.listOfData) {
-      let isObjectData = true;
-
-      if (this.selectedManufacturer?.label) {
-        isObjectData = data.manufactur === this.selectedManufacturer.label;
-      }
-
-      if (isObjectData && this.priceFrom) {
-        isObjectData = data.price >= this.priceFrom;
-      }
-
-      if (isObjectData && this.priceTo) {
-        isObjectData = data.price <= this.priceTo;
-      }
-
-      if (isObjectData) {
-        this.listCurrentData.push(data);
-      }
+    if (this.selectedManufacturer?.label) {
+      this.listCurrentData = this.listCurrentData.filter(data => data.manufactur === this.selectedManufacturer.label);
     }
 
+    if (this.priceFrom) {
+      this.listCurrentData = this.listCurrentData.filter(data => data.price + data.tax >= this.priceFrom);
+    }
+
+    if (this.priceTo) {
+      this.listCurrentData = this.listCurrentData.filter(data => data.price + data.tax <= this.priceTo);
+    }
   }
 
   clear() {
