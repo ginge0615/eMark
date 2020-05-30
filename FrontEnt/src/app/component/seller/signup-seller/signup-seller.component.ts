@@ -28,7 +28,7 @@ export class SignupSellerComponent implements OnInit {
     this.validateForm = this.fb.group({
       username: [null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
-      password: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(8)]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       company: [null, [Validators.required]],
       contact: [null, [Validators.required]],

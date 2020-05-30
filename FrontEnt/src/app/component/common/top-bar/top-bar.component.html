@@ -1,4 +1,7 @@
-<a [routerLink]="['/']">
+<a [routerLink]="['/']" *ngIf="!globalService.isSeller()">
+    <h1>eMart</h1>
+</a>
+<a [routerLink]="['/emart-seller']" *ngIf="globalService.isSeller()">
     <h1>eMart</h1>
 </a>
 <span>

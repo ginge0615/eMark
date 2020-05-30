@@ -7,26 +7,30 @@
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired i18n="@@signup.Username">
                     <span>Username</span>
                 </nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your username!">
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback nzErrorTip="Please input your username!">
                     <input nz-input id="username" formControlName="username" [(ngModel)]="model.username" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" i18n="@@signup.Email">Email address</nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback nzErrorTip="The input is not valid E-mail!">
                     <input nz-input formControlName="email" id="email" [(ngModel)]="model.email" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired i18n="@@signup.Password">Password</nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback [nzErrorTip]="combineTpl">
                     <input nz-input type="password" id="password" formControlName="password" [(ngModel)]="model.password" (ngModelChange)="updateConfirmValidator()" />
-                    <p style="font-size: 0.7em" i18n="@@signup.passwordInputTips">Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.</p>
+                    <ng-template #combineTpl let-control>
+                        <ng-container *ngIf="control.hasError('maxlength')">MaxLength is 15</ng-container>
+                        <ng-container *ngIf="control.hasError('minlength')">MinLength is 8</ng-container>
+                        <ng-container *ngIf="control.hasError('required')">Input is required</ng-container>
+                    </ng-template>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired i18n="@@signup.ConfirmPassword">Confirm Password</nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback [nzErrorTip]="errorTpl">
                     <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
                     <ng-template #errorTpl let-control>
                         <ng-container *ngIf="control.hasError('required')" i18n="@@signup.PlsConfirmPassword">
@@ -44,25 +48,25 @@
                 Company name
             </span>
                 </nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your company name!">
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback nzErrorTip="Please input your company name!">
                     <input nz-input id="company" formControlName="company" [(ngModel)]="model.companyName" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="contact" nzRequired>Contact number</nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['contact']" nzErrorTip="Please input your contact number!">
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['contact']" nzHasFeedback nzErrorTip="Please input your contact number!">
                     <input formControlName="contact" id="'contact'" nz-input [(ngModel)]="model.contactNumber" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gstin" nzRequired>GSTIN</nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input GSTIN!">
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback nzErrorTip="Please input GSTIN!">
                     <input nz-input id="gstin" formControlName="gstin" [(ngModel)]="model.gstin" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="postal" nzRequired>Postal address</nz-form-label>
-                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input postal address!">
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback nzErrorTip="Please input postal address!">
                     <input nz-input id="postal" formControlName="postal" [(ngModel)]="model.postalAddress" />
                 </nz-form-control>
             </nz-form-item>

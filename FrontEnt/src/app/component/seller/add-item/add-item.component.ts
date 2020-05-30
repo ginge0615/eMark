@@ -26,7 +26,7 @@ function getBase64(file: File): Promise<string | ArrayBuffer | null> {
 })
 export class AddItemComponent implements OnInit {
 
-  labelSize = 6;
+  labelSize = 7;
   controlSize = 14;
 
   validateForm: FormGroup;
