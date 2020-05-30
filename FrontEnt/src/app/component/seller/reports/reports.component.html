@@ -1,24 +1,24 @@
-<form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+<form nz-form [nzLayout]="'inline'" [formGroup]="validateForm">
     <nz-form-item>
         <nz-form-label nzFor="item">Item</nz-form-label>
         <nz-form-control>
-            <input formControlName="item" nz-input />
+            <input nz-input formControlName="item" [(ngModel)]="item" />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label nzFor="sellDate">SelledDate</nz-form-label>
         <nz-form-control>
-            <nz-range-picker [nzFormat]="'yyyy-MM-dd'" formControlName="sellDate" ngDefaultControl></nz-range-picker>
+            <nz-range-picker [nzFormat]="'yyyy-MM-dd'" formControlName="sellDate" [nzDisabledDate]="disabledDate" ngDefaultControl [(ngModel)]="sellDate" (ngModelChange)="sellDateChange()"></nz-range-picker>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-control>
-            <button nz-button nzType="primary"><i nz-icon nzType="search" nzTheme="outline"></i>Search</button>
+            <button nz-button nzType="primary" (click)="search()"><i nz-icon nzType="search" nzTheme="outline"></i>Search</button>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-control>
-            <button nz-button nzType="primary" nzGhost><i nz-icon nzType="download"></i>Output Report</button>
+            <button nz-button nzType="primary" nzGhost (click)="exportTable()"><i nz-icon nzType="download"></i>Output Report</button>
         </nz-form-control>
     </nz-form-item>
 </form>
@@ -47,7 +47,7 @@
                             </div>
                             <div nz-row>
                                 <div nz-col>
-                                    {{ data.item }}
+                                    {{ data.itemName }}
                                 </div>
                             </div>
                         </div>
@@ -55,8 +55,8 @@
                 </a>
             </td>
             <td>{{ data.price | currency }}</td>
-            <td>{{ data.volume }}</td>
-            <td>{{ data.volume * data.price | currency }}</td>
+            <td>{{ data.salesVolume }}</td>
+            <td>{{ data.transactionAmount | currency }}</td>
         </tr>
     </tbody>
 </nz-table>

@@ -38,11 +38,6 @@ public class ReportController {
 		
 		try {
 			List<ReportModel> lst = service.getReport(sellId, item, fromDate, toDate);
-			
-			if (CollectionUtils.isEmpty(lst)) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-			}
-			
 			return ResponseEntity.ok(lst);
 			
 		} catch (ParseException e) {

@@ -30,7 +30,7 @@ public class PurchaseHistoryServiceImpl implements PurchaseHistoryService {
 	@Autowired
 	private ItemViewRepository itemViewRepositor;
 	
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	/**
 	 * Get purchase history
