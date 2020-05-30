@@ -8,7 +8,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { ItemService } from 'src/app/services/item.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
-
+import { Observable, Observer } from 'rxjs';
 
 function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
@@ -126,6 +126,25 @@ export class AddItemComponent implements OnInit {
     }
   }
 
+  beforeUpload = (file: UploadFile, _fileList: UploadFile[]) => {
+    return new Observable((observer: Observer<boolean>) => {
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jif' || file.type === 'image/jpg';
+      if (!isJpgOrPng) {
+        this.msgPopup.error('You can only upload JPG file!');
+        observer.complete();
+        return;
+      }
+      const isLt2M = file.size! / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        this.msgPopup.error('Image must smaller than 2MB!');
+        observer.complete();
+        return;
+      }
+      observer.next(isJpgOrPng && isLt2M);
+      observer.complete();
+    });
+  };
+
 
   submitForm(): void {
     let hasError: boolean = false;
@@ -229,9 +248,10 @@ export class AddItemComponent implements OnInit {
         break;
       case 'done':
         info.file.url = info.file.response.path;
+        info.file.thumbUrl =  info.file.response.path;
         break;
       case 'error':
-        this.msgPopup.error('Network error');
+        this.msgPopup.error('Server error');
         break;
     }
   }

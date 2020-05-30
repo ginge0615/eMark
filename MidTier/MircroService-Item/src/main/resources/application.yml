@@ -17,6 +17,9 @@ spring:
          database-platform: org.hibernate.dialect.MySQLDialect
          ddl-auto: update
          show-sql: true
+   servlet:
+      multipart:
+        max-file-size: 5MB
 logging:
   level:
     org:

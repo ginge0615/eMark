@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: zuul
+  servlet:
+    multipart:
+      max-file-size: 5MB
 eureka:
   instance:
     prefer-ip-address: true
