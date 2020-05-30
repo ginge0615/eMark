@@ -157,18 +157,14 @@ export class AddItemComponent implements OnInit {
         hasError = true;
       }
     }
+    
+    if (this.pictureControls.length == 0) {
+      this.msgPopup.error("Please upload at least one picture.");
+      hasError = true;
+    }
 
     if (hasError) return;
 
-    if (this.pictureControls.length == 0) {
-      this.msgPopup.error("Please upload at least one picture.");
-      return;
-    }
- 
-    if (this.descriptionControls.length == 0) {
-      this.msgPopup.error("Please input at least one description.");
-      return;
-    }
 
     this.msgService.hideMessage();
 
@@ -248,7 +244,6 @@ export class AddItemComponent implements OnInit {
         break;
       case 'done':
         info.file.url = info.file.response.path;
-        info.file.thumbUrl =  info.file.response.path;
         break;
       case 'error':
         this.msgPopup.error('Server error');

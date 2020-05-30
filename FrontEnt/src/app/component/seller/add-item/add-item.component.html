@@ -3,7 +3,7 @@
         <div nz-col nzSpan="12">
             <nz-form-item>
                 <nz-form-label [nzSpan]="labelSize" nzFor="category" nzRequired>Select Category</nz-form-label>
-                <nz-form-control [nzSpan]="controlSize">
+                <nz-form-control [nzSpan]="controlSize" nzErrorTip="Please select category!">
                     <nz-select [(ngModel)]="selectedCategory" [compareWith]="compareFn" formControlName="category" nzPlaceHolder="Choose" ngDefaultControl (ngModelChange)="changeCategory($event)">
                         <nz-option *ngFor="let o of categoryOptionList" [nzValue]="o" [nzLabel]="o.label"></nz-option>
                     </nz-select>
@@ -11,7 +11,7 @@
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSpan]="labelSize" nzFor="subCategory" nzRequired>Select SubCategory</nz-form-label>
-                <nz-form-control [nzSpan]="controlSize">
+                <nz-form-control [nzSpan]="controlSize" nzErrorTip="Please select subcategory!">
                     <nz-select [(ngModel)]="selectedSubCategory" [compareWith]="compareFn" formControlName="subCategory" nzPlaceHolder="Choose" ngDefaultControl>
                         <nz-option *ngFor="let o of subCategoryOptionList" [nzValue]="o" [nzLabel]="o.label"></nz-option>
                     </nz-select>
@@ -19,7 +19,7 @@
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label [nzSpan]="labelSize" nzFor="manufacturer" nzRequired>Manufacturer</nz-form-label>
-                <nz-form-control [nzSpan]="controlSize">
+                <nz-form-control [nzSpan]="controlSize" nzErrorTip="Please select manufacturer!">
                     <nz-select [(ngModel)]="selectedManufacturer" [compareWith]="compareFn" formControlName="manufacturer" nzPlaceHolder="Choose" ngDefaultControl>
                         <nz-option *ngFor="let o of manufacturerOptionList" [nzValue]="o" [nzLabel]="o.label"></nz-option>
                     </nz-select>
