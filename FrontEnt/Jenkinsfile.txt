@@ -1,0 +1,24 @@
+node {
+    def workspace = 'D:\\workspace\\Jenkins'
+		
+	stage('git clone') { // for display purposes
+		dir("${workspace}") {
+			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'ginge', url: 'https://github.com/ginge0615/eMark.git']]])
+		}
+	}
+	stage('Build') {
+		withEnv(['node_modules_ref=D:\\workspace\\eMark\\FrontEnt\\node_modules') {
+			dir("${workspace}\\FrontEnt") {
+				bat script: '''
+					set current_dir=%cd%
+					
+					if not exist %current_dir%\\node_modules (
+						mkdir node_modules
+						xcopy %node_modules_ref% %current_dir%\\node_modules /s /e /q
+					)				
+					npm run build
+					'''
+			}
+		}
+	}
+}

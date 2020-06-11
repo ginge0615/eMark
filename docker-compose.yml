@@ -1,0 +1,32 @@
+version: '2'
+services:
+  eureka:
+    build: ./MidTier/EurekaServer
+    image: eureka:latest
+    ports:
+      - "9001:9001"
+  zuul-gateway:
+    build: ./MidTier/ZuulGateway
+    image: zuul-gateway:latest
+    ports:
+      - "8080:8080"
+  ms-user:
+    build: ./MidTier/MircroService-User
+    image: ms-user:latest
+    ports:
+      - "8081:8081"
+  ms-item:
+    build: ./MidTier/MircroService-Item
+    image: ms-item:latest
+    ports:
+      - "8082:8082"
+  ms-transaction:
+    build: ./MidTier/MircroService-Transaction
+    image: ms-transaction:latest
+    ports:
+      - "8083:8083"
+  ms-mast:
+    build: ./MidTier/MircroService-Mast
+    image: ms-mast:latest
+    ports:
+      - "8084:8084"

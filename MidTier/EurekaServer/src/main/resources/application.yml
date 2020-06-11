@@ -9,7 +9,7 @@ spring:
       maxRequestSize: "10240MB"
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka
     prefer-ip-address: true
   client:
     serviceUrl:

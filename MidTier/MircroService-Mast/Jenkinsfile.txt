@@ -1,0 +1,16 @@
+node {
+    def workspace = 'D:\\workspace\\Jenkins'
+		
+	stage('git clone') { // for display purposes
+		dir("${workspace}") {
+			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'ginge', url: 'https://github.com/ginge0615/eMark.git']]])
+		}
+	}
+	stage('Build') {
+		withMaven(jdk: 'jdk1.8_202', maven: 'maven') {
+			dir("${workspace}\\MidTier\\MircroService-Mast") {
+				bat script: 'mvn clean package -Dmaven.test.skip=true'
+			}
+		}
+	}
+}
