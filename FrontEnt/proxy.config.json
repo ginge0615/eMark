@@ -1,6 +1,6 @@
 {
     "/remote": {
-        "target": "http://localhost:8080",
+        "target": "http://localhost:8085",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true,
@@ -9,7 +9,7 @@
         }
     },
     "/picture": {
-        "target": "http://localhost:8080",
+        "target": "http://localhost:8085",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8085
 spring:
   application:
     name: zuul
@@ -11,7 +11,7 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://eureka:9001/eureka2/
+      defaultZone: http://172.99.0.2:9001/eureka/
 zuul:
   shouldNotFilter: /user/**,/picture/**,/item,/item/search/**,/item/detail/**,/manufactur
   routes:

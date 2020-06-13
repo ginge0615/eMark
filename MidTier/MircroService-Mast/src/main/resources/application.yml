@@ -5,13 +5,11 @@ spring:
       name: MircroService-Mast
    profiles:
       active: test
-   zipkin:
-      baseUrl: http://localhost:8080
    datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/emart-main?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-      username: root
-      password: root
+      url: jdbc:mysql://172.99.0.4:3306/emart-main?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: emart
+      password: 123456
    jpa:
       hibernate:
          database-platform: org.hibernate.dialect.MySQLDialect
@@ -27,4 +25,4 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://eureka:9001/eureka/
+      defaultZone: http://172.99.0.2:9001/eureka/
