@@ -30,4 +30,4 @@ eureka:
     serviceUrl:
       defaultZone: http://172.99.0.2:9001/eureka/
 picture:
-  upload-path: C://eMart//pictures//
+  upload-path: /mnt/

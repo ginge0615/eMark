@@ -22,7 +22,7 @@ logging:
   level:
     org:
       hibernate:
-        SQL: DEBUG
+        SQL: ERROR
 token:
   secret: emart
   expire-time: 720 #minutes

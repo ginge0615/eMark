@@ -60,7 +60,7 @@ token:
   expire-time: 720
 logging:
   level:
-    root: info
+    root: ERROR
 ribbon:
   ReadTimeout: 120000
   ConnectTimeout: 30000

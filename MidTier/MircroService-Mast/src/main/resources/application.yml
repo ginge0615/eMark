@@ -19,7 +19,7 @@ logging:
   level:
     org:
       hibernate:
-        SQL: DEBUG
+        SQL: ERROR
 eureka:
   instance:
     prefer-ip-address: true
