@@ -6,7 +6,8 @@ import { TransactionService } from 'src/app/services/transaction.service';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {DiscountService} from 'src/app/services/discount.service'
+import {DiscountService} from 'src/app/services/discount.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -23,6 +24,7 @@ export class ShoppingCartComponent implements OnInit {
   isDiscountVisible : boolean = false;
   discountCode : string;
   validateForm: FormGroup;
+  baseUrl : string = environment.baseUrl;
 
   private userId: string;
 

@@ -49,7 +49,7 @@
         <div nz-col nzSpan="10">
             <div nz-row>
                 <div class="clearfix">
-                    <nz-upload nzAction="/picture" nzListType="picture-card" [(nzFileList)]="pictureControls" [nzShowButton]="pictureControls.length < 4" [nzPreview]="handlePreview" [nzBeforeUpload]="beforeUpload" (nzChange)="handleUploadPictureChange($event)">
+                    <nz-upload [nzAction]="uploadUrl" nzListType="picture-card" [(nzFileList)]="pictureControls" [nzShowButton]="pictureControls.length < 4" [nzPreview]="handlePreview" [nzBeforeUpload]="beforeUpload" (nzChange)="handleUploadPictureChange($event)">
                         <i nz-icon nzType="plus" style="font-size: 32px;color: #999;"></i>
                         <div class="ant-upload-text">Upload</div>
                     </nz-upload>

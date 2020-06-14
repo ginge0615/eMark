@@ -9,6 +9,7 @@ import { GlobalService } from 'src/app/services/global.service';
 import { CartService } from 'src/app/services/cart.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class ItemSpecificationsComponent implements OnInit {
   num: number = 1;
   data: ItemDetail;
   descriptions: Option[] = [];
+  baseUrl : string = environment.baseUrl;
 
   constructor(
     private routerInfo: ActivatedRoute,

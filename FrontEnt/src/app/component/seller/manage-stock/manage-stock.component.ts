@@ -5,6 +5,7 @@ import { GlobalService } from 'src/app/services/global.service';
 import { MessageService } from 'src/app/services/message.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-manage-stock',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./manage-stock.component.css']
 })
 export class ManageStockComponent implements OnInit {
-
+  baseUrl : string = environment.baseUrl;
   listOfData: Item[];
   constructor(private itemService: ItemService, 
     private globalService : GlobalService,

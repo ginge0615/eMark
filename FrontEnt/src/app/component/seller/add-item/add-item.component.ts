@@ -9,6 +9,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 function getBase64(file: File): Promise<string | ArrayBuffer | null> {
   return new Promise((resolve, reject) => {
@@ -56,6 +57,8 @@ export class AddItemComponent implements OnInit {
   parserDollar = (value: string) => value.replace('$ ', '');
   formatterPercent = (value: number) => `${value} %`;
   parserPercent = (value: string) => value.replace(' %', '');
+
+  uploadUrl : string = environment.baseUrl + "/picture";
 
   constructor(private fb: FormBuilder,
     private optionsService: OptionsService,

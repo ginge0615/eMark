@@ -10,6 +10,7 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import format from 'date-fns/format';
 import { JSON2SheetOpts } from 'xlsx';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reports',
@@ -22,6 +23,7 @@ export class ReportsComponent implements OnInit {
   sellDate : Date[];
   listOfData: ReportModel[];
   today = new Date();
+  baseUrl : string = environment.baseUrl;
 
   disabledDate = (current: Date): boolean => {
     // Can not select days before today and today

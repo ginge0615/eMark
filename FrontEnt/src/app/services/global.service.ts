@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../models/Item';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class GlobalService {
     return false;
   }
 
+  public getBaseUrl() : string {
+    return environment.baseUrl;
+  }
+
   public isBuyer() : boolean {
     return window.sessionStorage["role"] === "1";
   }
@@ -27,9 +31,4 @@ export class GlobalService {
     return window.sessionStorage.getItem("userId");
   }
  
-  //test
-  public listItems : Item[] = [];
-
-  public cartItems : Item[] = [];
-
 }

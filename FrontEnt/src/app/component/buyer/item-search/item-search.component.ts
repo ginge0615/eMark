@@ -5,6 +5,7 @@ import { OptionsService } from 'src/app/services/options.service';
 import { MessageService } from 'src/app/services/message.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ItemService } from 'src/app/services/item.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-item-search',
@@ -20,6 +21,7 @@ export class ItemSearchComponent implements OnInit {
   listOfColumn = [];
   listOfData: Item[];
   listCurrentData: Item[];
+  baseUrl : string;
 
   compareFn = (o1: any, o2: any) => (o1 && o2 ? o1.value === o2.value : o1 === o2);
 
@@ -28,6 +30,7 @@ export class ItemSearchComponent implements OnInit {
     private msgPopup: NzMessageService,
     private itemService: ItemService) {
     this.msgService.hideMessage();
+    this.baseUrl = environment.baseUrl;
   }
 
   ngOnInit() {

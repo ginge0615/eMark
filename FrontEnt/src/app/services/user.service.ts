@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,15 +18,15 @@ export class UserService {
   }
 
   public login(user) {
-    return this.http.post("/remote/user/login", JSON.stringify(user), httpOptions);
+    return this.http.post(environment.baseUrl + "/user/login", JSON.stringify(user), httpOptions);
   }
 
   public signinAsBuyer(buyer) {
-    return this.http.post("/remote/user/signinasbuyer", JSON.stringify(buyer), httpOptions);
+    return this.http.post(environment.baseUrl + "/user/signinasbuyer", JSON.stringify(buyer), httpOptions);
   }
 
   public signinAsSeller(seller) {
-    return this.http.post("/remote/user/signinasseller", JSON.stringify(seller), httpOptions);
+    return this.http.post(environment.baseUrl + "/user/signinasseller", JSON.stringify(seller), httpOptions);
   }
 
   

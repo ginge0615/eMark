@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import format from 'date-fns/format';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ReportService {
     }
 
 
-    return this.http.get("/remote/report/",
+    return this.http.get(environment.baseUrl + "/report/",
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         params: {

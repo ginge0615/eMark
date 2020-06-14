@@ -2,7 +2,7 @@
     <div nz-col [nzSpan]="4" class="pic-fix-szie" nzOffset="1">
         <nz-carousel [nzEffect]="effect" nzAutoPlay>
             <div nz-carousel-content *ngFor="let pic of data?.pictures">
-                <img src="{{pic}}" class="pic-fix-szie">
+                <img src="{{ baseUrl + pic}}" class="pic-fix-szie">
             </div>
         </nz-carousel>
     </div>
