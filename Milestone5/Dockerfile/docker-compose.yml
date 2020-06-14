@@ -1,0 +1,92 @@
+version: '2'
+services:
+  eureka:
+    build: ./MidTier/EurekaServer
+    image: eureka:latest
+    container_name: eureka
+    restart: always
+    networks:
+        extnetwork:
+            ipv4_address: 172.99.0.2
+    ports:
+      - "9001:9001"
+  zuul-gateway:
+    build: ./MidTier/ZuulGateway
+    image: zuul-gateway:latest
+    container_name: zuul-gateway
+    restart: always
+    depends_on:
+      - eureka
+    networks:
+        extnetwork:
+            ipv4_address: 172.99.0.3
+    ports:
+      - "8085:8085"
+  db:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: "123456"
+        MYSQL_USER: 'emart'
+        MYSQL_PASS: '123456'
+    volumes:
+        - "/D/workspace/docker/mysql/data:/var/lib/mysql"
+        - "/D/workspace/docker/mysql/config:/etc/mysql/conf.d"
+    networks:
+        extnetwork:
+            ipv4_address: 172.99.0.4
+    ports:
+      - "3307:3306"
+  ms-user:
+    build: ./MidTier/MircroService-User
+    image: ms-user:latest
+    container_name: ms-user
+    restart: always
+    depends_on:
+      - eureka
+      - db
+    networks:
+         extnetwork:
+            ipv4_address: 172.99.0.5
+  ms-item:
+    build: ./MidTier/MircroService-Item
+    image: ms-item:latest
+    container_name: ms-item
+    restart: always
+    depends_on:
+      - eureka
+      - db
+    volumes:
+        - "/D/workspace/docker/pictures:/mnt"
+    networks:
+         extnetwork:
+            ipv4_address: 172.99.0.6
+  ms-transaction:
+    build: ./MidTier/MircroService-Transaction
+    image: ms-transaction:latest
+    container_name: ms-transaction
+    restart: always
+    depends_on:
+      - eureka
+      - db
+    networks:
+         extnetwork:
+            ipv4_address: 172.99.0.7
+  ms-mast:
+    build: ./MidTier/MircroService-Mast
+    image: ms-mast:latest
+    container_name: ms-mast
+    restart: always
+    depends_on:
+      - eureka
+      - db
+    networks:
+         extnetwork:
+            ipv4_address: 172.99.0.8
+networks:
+   extnetwork:
+      ipam:
+         config:
+         - subnet: 172.99.0.0/16
+           gateway: 172.99.0.1

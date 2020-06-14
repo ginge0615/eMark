@@ -1,0 +1,73 @@
+node {
+   def workspace = 'D:\\workspace\\Jenkins'
+   
+   withEnv(['node_modules_ref=D:\\workspace\\eMark\\FrontEnt\\node_modules', 
+            'iis_website=D:\\workspace\\IIS_website']) {
+			
+		stage('git clone') { // for display purposes
+			dir("${workspace}") {
+				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'ginge', url: 'https://github.com/ginge0615/eMark.git']]])
+			}
+		}
+		stage('Build') {
+			dir("${workspace}\\FrontEnt") {
+				bat script: '''
+					set current_dir=%cd%
+					
+					if not exist %current_dir%\\node_modules (
+						mkdir node_modules
+						
+						if exist %node_modules_ref% (
+							xcopy %node_modules_ref% %current_dir%\\node_modules /s /e /q
+						) else {
+							npm install
+						}
+					)				
+					npm run build
+					'''
+			}
+			withMaven(jdk: 'jdk1.8_202', maven: 'maven') {
+				dir("${workspace}\\MidTier\\EurekaServer") {
+					bat script: 'mvn clean package -Dmaven.test.skip=true'
+				}
+				dir("${workspace}\\MidTier\\MircroService-Item") {
+					bat script: 'mvn clean package -Dmaven.test.skip=true'
+				}
+				dir("${workspace}\\MidTier\\MircroService-Mast") {
+					bat script: 'mvn clean package -Dmaven.test.skip=true'
+				}
+				dir("${workspace}\\MidTier\\MircroService-Transaction") {
+					bat script: 'mvn clean package -Dmaven.test.skip=true'
+				}
+				dir("${workspace}\\MidTier\\MircroService-User") {
+					bat script: 'mvn clean package -Dmaven.test.skip=true'
+				}
+				dir("${workspace}\\MidTier\\ZuulGateway") {
+					bat script: 'mvn clean package -Dmaven.test.skip=true'
+				}
+			}
+		}
+		stage('Deploy') {
+			//Deploy FrontEnd to IIS
+			dir("${workspace}\\FrontEnt\\dist\\FrontEnt") {
+				bat script: '''
+					set current_dir=%cd%
+					
+					if exist %iis_website% rd %iis_website% /s /q
+					mkdir %iis_website%
+					xcopy %current_dir% %iis_website% /s /e /q
+				'''
+			}
+			//Deploy MicroService
+			dir("${workspace}") {
+				bat script: '''
+					docker-compose down
+					docker rmi (docker images -q --filter=reference='ms-*')
+					docker rmi (docker images -q --filter=reference='eureka') 
+					docker rmi (docker images -q --filter=reference='zuul*')
+				    docker-compose up -d
+				'''
+			}
+		}
+   }
+}
